@@ -1,0 +1,5 @@
+object DevoutServer {
+    fun start() {
+
+    }
+}
