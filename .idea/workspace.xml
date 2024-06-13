@@ -4,54 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbee4bdc-f920-4569-8bf6-f5314883b924" name="更改" comment="hello Minestom">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/electronwill/nightconfig/core/conversion/ObjectConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/taboolib/common5/Baffle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/taboolib/common5/Coerce.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/taboolib/common5/Quat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/taboolib/common5/RealTime.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/taboolib/library/configuration/BukkitYaml.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/taboolib/library/configuration/YamlConstructor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/taboolib/library/configuration/YamlRepresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/taboolib/module/configuration/YamlCommentLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/taboolib/module/configuration/YamlFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/DevoutServer.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/common/util/String.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/CoerceExtensions.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/Demand.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/RandomList.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/util/String2Time.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/util/String2UUID.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/util/StringBase64.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/util/StringOperator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/util/StringQualify.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/util/Throwable.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/library/configuration/ConfigurationSection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/Config.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/ConfigFile.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/ConfigMigrator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/ConfigNode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/ConfigNodeFile.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/ConfigNodeTransfer.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/ConfigSection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/Configuration.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/Converters.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/LocalFile.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/SecuredFile.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/Type.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/YamlParser.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/YamlWriter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/util/Comments.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/util/Delegate.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/util/SectionToMap.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/util/SectionToSimpleComponent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/util/Sections.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/server.yml" afterDir="false" />
+    <list default="true" id="bbee4bdc-f920-4569-8bf6-f5314883b924" name="更改" comment="module configuration integration">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/ManagerTime.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/SubPouvoir.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/TotalManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/Util.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/annotation/AutoRegister.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/annotation/PouManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/handler/ClassHandler.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/BaseMap.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/DataMap.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/KeyMap.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/LinkedKeyMap.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/LinkedMap.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/LowerKeyMap.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/LowerMap.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/MultiExecMap.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/MultiMap.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/RegContainer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/SingleExecMap.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/component/Keyable.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/component/Registrable.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/object/BaseObject.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/object/Releasable.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/manager/ConfigManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/manager/Manager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/manager/ManagerData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/manager/sub/script/CompileManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/manager/sub/script/ScriptAnnotationManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/manager/sub/script/ScriptEngineManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/manager/sub/script/ScriptManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/DiscoveredPlugin.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/Plugin.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/PluginClassLoader.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/manager/PluginManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/internal/manager/PluginManagerImpl.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/DevoutServer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/DevoutServer.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +85,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Object" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -125,45 +116,58 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/Code/MyCode/MineStom/Devout/DevoutServer/src/main/kotlin/taboolib/common/util",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Code/MyCode/MineStom/Devout/DevoutServer/src/main/java&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "kotlin-gradle-user-dirs": [
-      "F:\\Code\\Gradle"
+  &quot;keyToStringList&quot;: {
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;F:\\Code\\Gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\java" />
+      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin\com\github\zimablue\devoutserver\internal\core" />
       <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin\taboolib\common\util" />
       <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin\taboolib" />
       <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\java\taboolib" />
-      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\java" />
-      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin\taboolib\common\util" />
+      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin\taboolib\common" />
       <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin\com\github\zimablue\devoutserver" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.github.zimablue.devoutserver.api.plugin" />
+      <recent name="taboolib.common" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.github.zimablue.devoutserver.internal.manager" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.github.zimablue.devoutserver.internal.manager" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
       </set>
     </attachedChunks>
   </component>
@@ -186,6 +190,10 @@
       <workItem from="1715432862388" duration="808000" />
       <workItem from="1715487599228" duration="28000" />
       <workItem from="1715504998974" duration="6840000" />
+      <workItem from="1717762874742" duration="2501000" />
+      <workItem from="1717850891181" duration="5555000" />
+      <workItem from="1718198010197" duration="534000" />
+      <workItem from="1718198589381" duration="3369000" />
     </task>
     <task id="LOCAL-00001" summary="hello Minestom">
       <option name="closed" value="true" />
