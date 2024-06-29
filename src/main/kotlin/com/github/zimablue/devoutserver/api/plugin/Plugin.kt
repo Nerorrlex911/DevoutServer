@@ -18,7 +18,7 @@ abstract class Plugin protected constructor() : Keyable<String> {
     /**
      * List of extensions that depend on this extension.
      */
-    val dependents: Set<String> = HashSet()
+    val dependents = HashSet<String>()
 
     fun preInitialize() {
     }

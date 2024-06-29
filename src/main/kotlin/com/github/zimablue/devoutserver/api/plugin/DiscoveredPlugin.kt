@@ -19,7 +19,7 @@ class DiscoveredPlugin {
     var name: String? = null
 
     /** Main class of this DiscoveredPlugin, must extend Plugin.  */
-    private var entrypoint: String? = null
+    var entrypoint: String? = null
 
     /** Version of this extension, highly reccomended to set it.  */
     private var version: String? = null
@@ -29,11 +29,11 @@ class DiscoveredPlugin {
         private set
 
     /** List of extension names that this depends on.  */
-    var dependencies = listOf<String>()
+    var dependencies = mutableListOf<String>()
         private set
 
     /** List of Repositories and URLs that this depends on.  */
-    private var externalDependencies: ExternalDependencies? = null
+    var externalDependencies: ExternalDependencies? = null
 
     /**
      * Extra meta on the object.
@@ -101,12 +101,12 @@ class DiscoveredPlugin {
     }
 
     class ExternalDependencies {
-        var repositories: Array<Repository?> = arrayOfNulls(0)
-        var artifacts: Array<String?> = arrayOfNulls(0)
+        var repositories: Array<Repository> = arrayOf()
+        var artifacts: Array<String> = arrayOf()
 
         class Repository {
-            var name: String = ""
-            var url: String = ""
+            val name: String?=null
+            val url: String?=null
         }
     }
 

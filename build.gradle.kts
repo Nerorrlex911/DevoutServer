@@ -9,6 +9,7 @@ repositories {
     mavenCentral()
     maven("https://jitpack.io")
     maven { url = uri("https://repo.tabooproject.org/repository/releases/") }
+
 }
 
 dependencies {
@@ -33,9 +34,11 @@ dependencies {
     //guava
     compileOnly("com.google.guava:guava:21.0")
     //minestom
-    implementation("net.minestom:minestom-snapshots:6758737b80")
+    // https://mvnrepository.com/artifact/net.minestom/minestom-snapshots
+    implementation("net.minestom:minestom-snapshots:edb73f0a5a")
+    implementation("com.github.Minestom:DependencyGetter:v1.0.1")
     implementation("dev.hollowcube:minestom-ce-extensions:1.2.0")
-    implementation("org.yaml.snakeyaml:1.30")
+
 }
 
 tasks.test {
