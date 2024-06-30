@@ -4,90 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbee4bdc-f920-4569-8bf6-f5314883b924" name="更改" comment="extension integration complete">
-      <change afterPath="$PROJECT_DIR$/module-configuration/src/main/resources/datasource.yml" afterDir="false" />
+    <list default="true" id="bbee4bdc-f920-4569-8bf6-f5314883b924" name="更改" comment="extension integration init">
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/electronwill/nightconfig/core/conversion/ObjectConverter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/taboolib/common5/Baffle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/taboolib/common5/Coerce.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/taboolib/common5/Quat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/taboolib/common5/RealTime.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/taboolib/library/configuration/BukkitYaml.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/taboolib/library/configuration/YamlConstructor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/taboolib/library/configuration/YamlRepresenter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/taboolib/module/configuration/YamlCommentLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/taboolib/module/configuration/YamlFormat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/DevoutServer.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/Main.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/ManagerTime.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/SubPouvoir.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/TotalManager.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/Util.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/annotation/AutoRegister.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/annotation/PouManager.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/handler/ClassHandler.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/BaseMap.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/DataMap.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/KeyMap.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/LinkedKeyMap.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/LinkedMap.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/LowerKeyMap.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/LowerMap.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/MultiExecMap.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/MultiMap.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/RegContainer.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/SingleExecMap.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/component/Keyable.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/map/component/Registrable.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/object/BaseObject.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/object/Releasable.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/package-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/manager/ConfigManager.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/manager/Manager.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/manager/ManagerData.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/manager/sub/script/CompileManager.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/manager/sub/script/ScriptAnnotationManager.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/manager/sub/script/ScriptEngineManager.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/manager/sub/script/ScriptManager.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/DiscoveredPlugin.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/Plugin.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/PluginClassLoader.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/manager/PluginManager.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/internal/manager/PluginManagerImpl.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/common/util/String.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/CoerceExtensions.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/Demand.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/RandomList.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/util/String2Time.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/util/String2UUID.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/util/StringBase64.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/util/StringOperator.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/util/StringQualify.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/common5/util/Throwable.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/library/configuration/ConfigurationSection.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/Config.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/ConfigFile.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/ConfigMigrator.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/ConfigNode.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/ConfigNodeFile.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/ConfigNodeTransfer.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/ConfigSection.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/Configuration.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/Converters.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/SecuredFile.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/Type.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/YamlParser.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/YamlWriter.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/util/Comments.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/util/Delegate.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/util/SectionToMap.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/taboolib/module/configuration/util/Sections.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/server.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/DiscoveredPlugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/DiscoveredPlugin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/Plugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/Plugin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/internal/manager/PluginManagerImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/internal/manager/PluginManagerImpl.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,9 +27,6 @@
     <system id="GRADLE">
       <state>
         <task path="$PROJECT_DIR$">
-          <activation />
-        </task>
-        <task path="$PROJECT_DIR$/module-configuration">
           <activation />
         </task>
         <projects_view>
@@ -126,6 +47,64 @@
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DevoutServer" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build setup" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DevoutServer" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="documentation" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DevoutServer" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="help" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DevoutServer" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DevoutServer" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DevoutServer" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DevoutServer" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DevoutServer" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="runtimeClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DevoutServer" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="testCompileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DevoutServer" type="f1a62948:ProjectNode" />
+                <item name="运行配置" type="7b0102dc:RunConfigurationsNode" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -138,7 +117,6 @@
       <list>
         <option value="Kotlin Object" />
         <option value="Kotlin Class" />
-        <option value="package-info" />
       </list>
     </option>
   </component>
@@ -160,9 +138,6 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="PerforceDirect.Settings">
-    <option name="CHARSET" value="无" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -172,49 +147,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.DevoutServer [clean].executor": "Run",
-    "Gradle.DevoutServer [dependencies].executor": "Run",
-    "Gradle.DevoutServer [jar].executor": "Run",
-    "Gradle.DevoutServer [refresh].executor": "Run",
-    "Gradle.升级 Gradle 包装器.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ToolWindow构建.ShowToolbar": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/Code/Java",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.DevoutServer [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DevoutServer [dependencies].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DevoutServer [refresh].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ToolWindow构建.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Code/Java&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "kotlin-gradle-user-dirs": [
-      "F:\\Code\\Gradle"
+  &quot;keyToStringList&quot;: {
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;F:\\Code\\Gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\module-configuration\src\main\kotlin" />
-      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\resources" />
-      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin\taboolib\module" />
-      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin" />
       <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\java" />
+      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin\com\github\zimablue\devoutserver\internal\core" />
+      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin\taboolib\common\util" />
+      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin\taboolib" />
+      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\java\taboolib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\server" />
-      <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\module-configuration\src\main\resources" />
       <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin\taboolib\common\util" />
       <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin\taboolib\common" />
       <recent name="F:\Code\MyCode\MineStom\Devout\DevoutServer\src\main\kotlin\com\github\zimablue\devoutserver" />
@@ -223,19 +191,14 @@
       <recent name="com.github.zimablue.devoutserver.api.plugin" />
       <recent name="taboolib.common" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="taboolib.module.configuration" />
-      <recent name="taboolib.library.configuration" />
-    </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
-      <recent name="taboolib.module.configuration" />
       <recent name="com.github.zimablue.devoutserver.internal.manager" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.github.zimablue.devoutserver.internal.manager" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.DevoutServer [jar]">
+  <component name="RunManager" selected="Gradle.DevoutServer [refresh]">
     <configuration name="DevoutServer [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -280,28 +243,6 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="DevoutServer [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="jar" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration name="DevoutServer [refresh]" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -326,13 +267,11 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.DevoutServer [refresh]" />
-      <item itemvalue="Gradle.DevoutServer [jar]" />
       <item itemvalue="Gradle.DevoutServer [dependencies]" />
       <item itemvalue="Gradle.DevoutServer [clean]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.DevoutServer [jar]" />
         <item itemvalue="Gradle.DevoutServer [dependencies]" />
         <item itemvalue="Gradle.DevoutServer [clean]" />
       </list>
@@ -378,12 +317,7 @@
       <workItem from="1719237289468" duration="246000" />
       <workItem from="1719570085028" duration="1185000" />
       <workItem from="1719578131309" duration="4108000" />
-      <workItem from="1719620064181" duration="2832000" />
-      <workItem from="1719625756283" duration="5679000" />
-      <workItem from="1719665117005" duration="4004000" />
-      <workItem from="1719672535128" duration="1534000" />
-      <workItem from="1719711930681" duration="1560000" />
-      <workItem from="1719724463446" duration="6891000" />
+      <workItem from="1719620064181" duration="650000" />
     </task>
     <task id="LOCAL-00001" summary="hello Minestom">
       <option name="closed" value="true" />
@@ -401,15 +335,7 @@
       <option name="project" value="LOCAL" />
       <updated>1718284759819</updated>
     </task>
-    <task id="LOCAL-00003" summary="extension integration complete">
-      <option name="closed" value="true" />
-      <created>1719621062977</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1719621062977</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,8 +344,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="hello Minestom" />
     <MESSAGE value="extension integration init" />
-    <MESSAGE value="extension integration complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="extension integration complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="extension integration init" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

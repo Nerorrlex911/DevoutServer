@@ -1,78 +1,44 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    java
-    id("org.jetbrains.kotlin.jvm") version "1.9.22" apply false
-    id("com.github.johnrengelman.shadow") version "7.1.2" apply false
+    kotlin("jvm") version "1.9.22"
 }
 
 group = "com.github.zimablue.devoutserver"
 version = "1.0-SNAPSHOT"
 
-subprojects {
-    apply(plugin = "java-library")
-    apply(plugin = "org.jetbrains.kotlin.jvm")
-    apply(plugin = "com.github.johnrengelman.shadow")
-    apply(plugin = "maven-publish")
+repositories {
+    mavenCentral()
+    maven("https://jitpack.io")
+    maven { url = uri("https://repo.tabooproject.org/repository/releases/") }
 
-    repositories {
-        maven("https://libraries.minecraft.net")
-        maven("https://repo1.maven.org/maven2")
-        maven("https://maven.aliyun.com/repository/central")
-        maven("https://repo.codemc.io/repository/nms/")
-        maven("https://repo.tabooproject.org/repository/releases/")
-        maven("https://jitpack.io")
-        mavenLocal()
-        mavenCentral()
-    }
-
-    dependencies {
-        compileOnly(kotlin("stdlib"))
-        compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-        compileOnly("com.google.guava:guava:21.0")
-        compileOnly("com.google.code.gson:gson:2.8.7")
-        compileOnly("org.apache.commons:commons-lang3:3.5")
-        compileOnly("org.tabooproject.reflex:reflex:1.0.19")
-        compileOnly("org.tabooproject.reflex:analyser:1.0.19")
-
-        //minestom
-        // https://mvnrepository.com/artifact/net.minestom/minestom-snapshots
-        implementation("net.minestom:minestom-snapshots:edb73f0a5a")
-        implementation("com.github.Minestom:DependencyGetter:v1.0.1")
-        implementation("dev.hollowcube:minestom-ce-extensions:1.2.0")
-    }
-
-    java {
-        withSourcesJar()
-    }
-
-    tasks.build {
-        dependsOn("shadowJar")
-    }
-
-    tasks.withType<JavaCompile> {
-        options.encoding = "UTF-8"
-        options.compilerArgs.addAll(listOf("-XDenableSunApiLintControl"))
-    }
-
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "21"
-            freeCompilerArgs = listOf("-Xjvm-default=all")
-        }
-    }
-
-    configure<JavaPluginConvention> {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
-    }
 }
 
+dependencies {
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    //config
+    compileOnly("org.yaml:snakeyaml:2.2")
+    compileOnly("com.typesafe:config:1.4.3")
+    compileOnly("com.electronwill.night-config:core:3.6.7")
+    compileOnly("com.electronwill.night-config:toml:3.6.7")
+    compileOnly("com.electronwill.night-config:json:3.6.7")
+    compileOnly("com.electronwill.night-config:hocon:3.6.7")
+    implementation("com.electronwill.night-config:core-conversion:6.0.0")
+    //reflex
+    // 本体
+    implementation("org.tabooproject.reflex:analyser:1.0.23")
+    implementation("org.tabooproject.reflex:fast-instance-getter:1.0.23")
+    implementation("org.tabooproject.reflex:reflex:1.0.23") // 需要 analyser 模块
+    // 本体依赖
+    implementation("org.ow2.asm:asm:9.2")
+    implementation("org.ow2.asm:asm-util:9.2")
+    implementation("org.ow2.asm:asm-commons:9.2")
+    //guava
+    compileOnly("com.google.guava:guava:21.0")
+    //minestom
+    // https://mvnrepository.com/artifact/net.minestom/minestom-snapshots
+    implementation("net.minestom:minestom-snapshots:edb73f0a5a")
+    implementation("com.github.Minestom:DependencyGetter:v1.0.1")
+    implementation("dev.hollowcube:minestom-ce-extensions:1.2.0")
 
-
-tasks.register<Jar>("uberJar") {
-    from(subprojects.flatMap { it.tasks.matching { it is Jar } })
-    archiveClassifier.set("DevoutServer")
 }
 
 tasks.test {
