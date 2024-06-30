@@ -1,4 +1,5 @@
 import com.github.zimablue.devoutserver.api.plugin.manager.PluginManager
+import com.github.zimablue.devoutserver.internal.manager.ConfigManagerImpl
 import com.github.zimablue.devoutserver.internal.manager.PluginManagerImpl
 import net.minestom.server.MinecraftServer
 import java.net.InetSocketAddress
@@ -16,6 +17,18 @@ object DevoutServer {
 
         pluginManager.start()
         pluginManager.gotoPreInit()
+    }
+
+    fun debug(callback:() -> Unit) {
+        if(ConfigManagerImpl.debug) {
+            callback.invoke()
+        }
+    }
+
+    fun debugMsg(vararg msg: String) {
+        if(ConfigManagerImpl.debug) {
+            msg.forEach{ MinecraftServer.LOGGER.debug(it) }
+        }
     }
 
     fun start(address: String, port: Int) {

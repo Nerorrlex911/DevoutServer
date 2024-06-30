@@ -38,6 +38,8 @@ dependencies {
     implementation("net.minestom:minestom-snapshots:edb73f0a5a")
     implementation("com.github.Minestom:DependencyGetter:v1.0.1")
     implementation("dev.hollowcube:minestom-ce-extensions:1.2.0")
+    //database
+    implementation("com.zaxxer:HikariCP:4.0.3")
 
 }
 
