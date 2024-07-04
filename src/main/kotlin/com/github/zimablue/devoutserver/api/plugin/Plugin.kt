@@ -1,6 +1,7 @@
 package com.github.zimablue.devoutserver.api.plugin
 
 import com.github.zimablue.devoutserver.api.decouple.map.component.Keyable
+import com.github.zimablue.devoutserver.api.lifecycle.LifeCycle
 import net.kyori.adventure.text.logger.slf4j.ComponentLogger
 import net.minestom.server.event.Event
 import net.minestom.server.event.EventNode
@@ -12,6 +13,14 @@ import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 
 abstract class Plugin protected constructor() : Keyable<String> {
+    companion object {
+        fun lifeCycle(lifeCycle: LifeCycle) {
+            TODO()
+        }
+        init {
+            lifeCycle(LifeCycle.CONST)
+        }
+    }
     /**
      * @return A modifiable list of dependents.
      */
@@ -19,6 +28,27 @@ abstract class Plugin protected constructor() : Keyable<String> {
      * List of extensions that depend on this extension.
      */
     val dependents = HashSet<String>()
+
+
+    init {
+        onInit()
+    }
+
+    fun onInit() {
+        lifeCycle(LifeCycle.INIT)
+    }
+
+    fun onLoad() {
+        lifeCycle(LifeCycle.LOAD)
+    }
+
+    fun onEnable() {
+        lifeCycle((LifeCycle.ENABLE))
+    }
+
+    fun onDisable() {
+        lifeCycle(LifeCycle.DISABLE)
+    }
 
     fun preInitialize() {
     }

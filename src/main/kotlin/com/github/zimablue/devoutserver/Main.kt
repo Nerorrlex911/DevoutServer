@@ -5,5 +5,5 @@ import net.minestom.server.MinecraftServer
 
 fun main(args: Array<String>) {
     val server = ExtensionBootstrap.init()
-    MinecraftServer.getBiomeManager().loadVanillaBiomes()
+    //MinecraftServer.getBiomeManager().loadVanillaBiomes()
 }

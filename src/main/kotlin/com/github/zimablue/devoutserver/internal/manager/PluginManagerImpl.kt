@@ -69,10 +69,6 @@ object PluginManagerImpl : PluginManager() {
         this.state = if (loadOnStartup) State.NOT_STARTED else State.DO_NOT_START
     }
 
-    fun getPlugins(): Collection<Plugin> {
-        return values
-    }
-
     fun loadPlugins() {
 
 

@@ -13,6 +13,7 @@ import com.skillw.pouvoir.util.plugin.PluginUtils
 import com.skillw.pouvoir.util.safe
 import com.skillw.pouvoir.util.static
 import org.bukkit.Bukkit
+import org.tabooproject.reflex.ClassStructure
 import taboolib.common.LifeCycle
 import taboolib.common.platform.Awake
 import taboolib.library.reflex.ClassStructure

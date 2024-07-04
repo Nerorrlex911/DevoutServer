@@ -155,6 +155,7 @@ public class VisitorHandler {
         }
     }
 
+    //TODO 重新安排过滤
     /**
      * 获取能够被 ClassVisitor 访问到的所有类
      */
@@ -171,10 +172,6 @@ public class VisitorHandler {
                     }
                     // 排除 TabooLib 的非开放类
                     if (it.getKey().startsWith(ProjectIdKt.getTaboolibPath()) && !it.getValue().isAnnotationPresent(Inject.class)) {
-                        continue;
-                    }
-                    // 排除其他平台
-                    if (!Platform.check(it.getValue())) {
                         continue;
                     }
                     classes.add(it.getValue());

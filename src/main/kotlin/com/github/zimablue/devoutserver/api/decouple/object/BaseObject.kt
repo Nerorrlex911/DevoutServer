@@ -1,7 +1,7 @@
 package com.github.zimablue.devoutserver.api.decouple.`object`
 
 import com.github.zimablue.devoutserver.api.decouple.map.component.Registrable
-import org.bukkit.configuration.serialization.ConfigurationSerializable
+
 
 /**
  * Base object
@@ -9,8 +9,7 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable
  * @constructor Create empty Base object
  */
 interface BaseObject : Registrable<String>,
-    Comparable<BaseObject>,
-    ConfigurationSerializable {
+    Comparable<BaseObject>{
     override val key: String
 
     /** Priority */
