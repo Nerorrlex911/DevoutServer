@@ -13,14 +13,7 @@ import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 
 abstract class Plugin protected constructor() : Keyable<String> {
-    companion object {
-        fun lifeCycle(lifeCycle: LifeCycle) {
-            TODO()
-        }
-        init {
-            lifeCycle(LifeCycle.CONST)
-        }
-    }
+
     /**
      * @return A modifiable list of dependents.
      */
@@ -31,22 +24,22 @@ abstract class Plugin protected constructor() : Keyable<String> {
 
 
     init {
-        onInit()
+        this.onInit()
     }
 
-    fun onInit() {
+    open fun onInit() {
         lifeCycle(LifeCycle.INIT)
     }
 
-    fun onLoad() {
+    open fun onLoad() {
         lifeCycle(LifeCycle.LOAD)
     }
 
-    fun onEnable() {
+    open fun onEnable() {
         lifeCycle((LifeCycle.ENABLE))
     }
 
-    fun onDisable() {
+    open fun onDisable() {
         lifeCycle(LifeCycle.DISABLE)
     }
 

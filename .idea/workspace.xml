@@ -4,25 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bbee4bdc-f920-4569-8bf6-f5314883b924" name="更改" comment="module database integration init">
-      <change afterPath="$PROJECT_DIR$/src/main/java/taboolib/common/LifeCycleTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/taboolib/common/TabooLib.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/annotation/AnnotationManager.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/annotation/AnnotationRange.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/lifecycle/LifeCycle.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/lifecycle/LifeCycleTask.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/internal/manager/AnnotationManagerImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/internal/manager/LifeCycleManagerImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/internal/manager/Manager.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/internal/manager/TotalManager.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/util/ClassUtil.kt" afterDir="false" />
+    <list default="true" id="bbee4bdc-f920-4569-8bf6-f5314883b924" name="更改" comment="Annotations and LifeCycle init">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/manager/LifeCycleManager.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/taboolib/common/inject/VisitorHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/taboolib/common/inject/VisitorHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/SubPouvoir.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/SubPouvoir.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/TotalManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/TotalManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/object/BaseObject.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/decouple/object/BaseObject.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/internal/manager/ConfigManagerImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/internal/manager/ConfigManagerImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/Plugin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/api/plugin/Plugin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/internal/manager/AnnotationManagerImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/zimablue/devoutserver/internal/manager/AnnotationManagerImpl.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,8 +115,8 @@
         <option value="module-info" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Object" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Enum" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -151,6 +137,9 @@
 }</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="PerforceDirect.Settings">
+    <option name="CHARSET" value="无" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -340,7 +329,10 @@
       <workItem from="1719834735060" duration="6794000" />
       <workItem from="1719922348151" duration="10025000" />
       <workItem from="1720073245851" duration="512000" />
-      <workItem from="1720079071041" duration="1152000" />
+      <workItem from="1720079071041" duration="11160000" />
+      <workItem from="1720147734234" duration="636000" />
+      <workItem from="1720160562546" duration="1342000" />
+      <workItem from="1720177482562" duration="7314000" />
     </task>
     <task id="LOCAL-00001" summary="hello Minestom">
       <option name="closed" value="true" />
@@ -366,7 +358,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719753957981</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Annotations and LifeCycle init">
+      <option name="closed" value="true" />
+      <created>1720106191986</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1720106191986</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,7 +376,8 @@
     <MESSAGE value="hello Minestom" />
     <MESSAGE value="extension integration init" />
     <MESSAGE value="module database integration init" />
-    <option name="LAST_COMMIT_MESSAGE" value="module database integration init" />
+    <MESSAGE value="Annotations and LifeCycle init" />
+    <option name="LAST_COMMIT_MESSAGE" value="Annotations and LifeCycle init" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -2,6 +2,7 @@ package com.github.zimablue.devoutserver.internal.manager
 
 import com.github.zimablue.devoutserver.api.annotation.AnnotationManager
 import com.github.zimablue.devoutserver.api.annotation.AnnotationRange
+import com.github.zimablue.devoutserver.api.plugin.Plugin
 import com.github.zimablue.devoutserver.util.ClassUtil
 import java.lang.reflect.Field
 import java.lang.reflect.Method
@@ -10,7 +11,9 @@ import kotlin.annotation.AnnotationTarget.*
 object AnnotationManagerImpl: AnnotationManager() {
     override val priority: Int = 0
     override val key: String = "AnnotationManager"
-    val pluginClasses = mutableSetOf<Class<*>>()
+    val pluginClassMap = mutableMapOf<Plugin,Set<Class<*>>>()
+    val pluginClasses
+        get() = pluginClassMap.values.flatten().toSet()
     val coreClasses = mutableSetOf<Class<*>>()
 
     inline fun <reified V: Annotation> getTargets(range: AnnotationRange): Triple<HashSet<Field>, HashSet<Method>, HashSet<Class<*>>> {
