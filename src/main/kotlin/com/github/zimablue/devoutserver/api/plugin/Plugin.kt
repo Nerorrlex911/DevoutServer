@@ -2,6 +2,7 @@ package com.github.zimablue.devoutserver.api.plugin
 
 import com.github.zimablue.devoutserver.api.decouple.map.component.Keyable
 import com.github.zimablue.devoutserver.api.lifecycle.LifeCycle
+import com.github.zimablue.devoutserver.internal.manager.LifeCycleManagerImpl.lifeCycle
 import net.kyori.adventure.text.logger.slf4j.ComponentLogger
 import net.minestom.server.event.Event
 import net.minestom.server.event.EventNode

@@ -32,6 +32,13 @@ class DiscoveredPlugin {
     var dependencies = mutableListOf<String>()
         private set
 
+    /** List of extension names that this soft-depends on. */
+    var softDependencies = mutableListOf<String>()
+        private set
+
+    /** List of extension names that load before this*/
+    var loadBefore = mutableListOf<String>()
+
     /** List of Repositories and URLs that this depends on.  */
     var externalDependencies: ExternalDependencies? = null
 
@@ -61,7 +68,7 @@ class DiscoveredPlugin {
 
     /** The class loader that powers it.  */
     var classLoader: PluginClassLoader? = null
-    
+
 
     fun getEntrypoint(): String {
         return entrypoint!!
@@ -163,6 +170,14 @@ class DiscoveredPlugin {
                 LOGGER.warn("Plugin '{}' did not specify a version.", extension.name)
                 LOGGER.warn("Plugin '{}' will continue to load but should specify a decouple version.", extension.name)
                 extension.version = "Unspecified"
+            }
+
+            if (extension.softDependencies == null) {
+                extension.softDependencies = ArrayList()
+            }
+
+            if (extension.loadBefore == null) {
+                extension.loadBefore = ArrayList()
             }
 
             // No external dependencies were specified;

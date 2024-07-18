@@ -147,56 +147,59 @@ object PluginManagerImpl : PluginManager() {
     }
 
     fun generateLoadOrder(discoveredPlugins: MutableList<DiscoveredPlugin>): MutableList<DiscoveredPlugin> {
-        val dependencyMap = HashMap<DiscoveredPlugin,MutableList<DiscoveredPlugin>>()
-        // go through all the discovered plugins and get their dependencies as plugins
-        allPlugins@ for (discoveredPlugin in discoveredPlugins) {
-            val dependencies = mutableListOf<DiscoveredPlugin>()
-            // Map the dependencies into DiscoveredPlugins.
-            for (dependency in discoveredPlugin.dependencies) {
-                val dependent = discoveredPlugins.find { it.name == dependency }
-                // Specifies an plugin we don't have.
-                if (dependent == null) {
-                    // attempt to see if it is not already loaded (happens with dynamic (re)loading)
-                    if(containsKey(dependency.lowercase(Locale.getDefault()))) {
-                        dependencies.add(get(dependency.lowercase(Locale.getDefault()))!!.origin)
-                    }
-                    continue// Go to the next loop in this dependency loop, this iteration is done.
-                } else {
-                    // dependency isn't loaded, move on.
-                    LOGGER.error("Plugin {} requires an plugin called {}.", discoveredPlugin.name, dependency)
-                    LOGGER.error("However the plugin {} could not be found.", dependency)
-                    LOGGER.error("Therefore {} will not be loaded.", discoveredPlugin.name)
-                    discoveredPlugin.loadStatus = DiscoveredPlugin.LoadStatus.MISSING_DEPENDENCIES
-                    continue@allPlugins // the above labeled loop will go to the next plugin as this dependency is invalid.
+        val dependencyMap = mutableMapOf<DiscoveredPlugin, MutableList<DiscoveredPlugin>>()
+        val visited = mutableSetOf<DiscoveredPlugin>()
+        val order = mutableListOf<DiscoveredPlugin>()
+
+        for (plugin in discoveredPlugins) {
+            if (!visited.contains(plugin)) {
+                dfs(plugin, visited, order, dependencyMap, discoveredPlugins)
+            }
+        }
+
+        if (order.size < discoveredPlugins.size) {
+            LOGGER.error("Minestom found ${discoveredPlugins.size - order.size} cyclic plugins.")
+            LOGGER.error("Cyclic plugins depend on each other and can therefore not be loaded.")
+            for (plugin in discoveredPlugins) {
+                if (!visited.contains(plugin)) {
+                    LOGGER.error("${plugin.name} could not be loaded, as it depends on cyclic dependencies.")
                 }
             }
-            dependencyMap[discoveredPlugin] = dependencies
         }
-        val orderedPlugins = mutableListOf<DiscoveredPlugin>()
-        var loadablePlugins: Map<DiscoveredPlugin, MutableList<DiscoveredPlugin>>?
-        //每轮循环中寻找入度为0的插件，将其加入有序列表中，并将其从依赖图中移除，直到再也没有入度为0的插件
-        while ((dependencyMap.filterValues {
-            plugins -> plugins.isEmpty() || plugins.any { !containsKey(it.name!!.lowercase(Locale.getDefault())) }
-        }.apply { loadablePlugins = this }).isNotEmpty()) {
-            for (plugin in loadablePlugins!!.keys) {
-                orderedPlugins.add(plugin)
-                dependencyMap.remove(plugin)
-                dependencyMap.forEach { (_, value) -> value.remove(plugin) }
-            }
-        }
-        // Check if there are cyclic plugins.
-        if (dependencyMap.isNotEmpty()) {
-            LOGGER.error("Minestom found {} cyclic plugins.", dependencyMap.size)
-            LOGGER.error("Cyclic plugins depend on each other and can therefore not be loaded.")
-            for ((discoveredPlugin, value) in dependencyMap) {
-                LOGGER.error("{} could not be loaded, as it depends on: {}.",
-                    discoveredPlugin.name,
-                    value.map { obj -> obj.name }.joinToString(", ")
-                )
-            }
-        }
-        return orderedPlugins
 
+        return order.reversed().toMutableList()
+    }
+
+    private fun dfs(
+        plugin: DiscoveredPlugin,
+        visited: MutableSet<DiscoveredPlugin>,
+        order: MutableList<DiscoveredPlugin>,
+        dependencyMap: MutableMap<DiscoveredPlugin, MutableList<DiscoveredPlugin>>,
+        discoveredPlugins: List<DiscoveredPlugin>
+    ) {
+        visited.add(plugin)
+
+        val dependenciesToProcess = listOf(
+            plugin.dependencies,
+            plugin.loadBefore,
+            plugin.softDependencies.filter { dependency ->
+                dependency in discoveredPlugins.map { plugin -> plugin.name }
+            }
+        )
+
+        for (dependencies in dependenciesToProcess) {
+            for (dependencyName in dependencies) {
+                val dependent = discoveredPlugins.find { it.name == dependencyName }
+                dependent?.let {
+                    if (!visited.contains(it)) {
+                        dfs(it, visited, order, dependencyMap, discoveredPlugins)
+                    }
+                    dependencyMap.computeIfAbsent(plugin) { mutableListOf() }.add(it)
+                }
+            }
+        }
+
+        order.add(plugin)
     }
 
     fun loadDependencies(plugins: List<DiscoveredPlugin>) {
