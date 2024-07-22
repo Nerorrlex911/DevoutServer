@@ -183,7 +183,7 @@ object PluginManagerImpl : PluginManager() {
             plugin.dependencies,
             plugin.loadBefore,
             plugin.softDependencies.filter { dependency ->
-                dependency in discoveredPlugins.map { plugin -> plugin.name }
+                discoveredPlugins.any { plugin -> plugin.name == dependency }
             }
         )
 

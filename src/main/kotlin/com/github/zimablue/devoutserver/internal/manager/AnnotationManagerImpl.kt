@@ -27,6 +27,7 @@ object AnnotationManagerImpl: AnnotationManager() {
             AnnotationRange.PLUGIN -> pluginClasses
             AnnotationRange.CORE -> coreClasses
             AnnotationRange.ALL -> pluginClasses+ coreClasses
+
         }
         allowed.forEach { type ->
             when(type) {
