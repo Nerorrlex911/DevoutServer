@@ -13,10 +13,12 @@ DevoutServer秉持**精简、稳定、可拓展**的原则，提供:
 
 核心只保留基础功能和插件最常用的功能，具体的职业、技能、属性系统等由插件自行实现
 
+加入Minestom交流群995070869(QQ) 讨论Minestom相关、获取本核心最新进展
+
 ## 项目进度
 
 ### 控制台
-- [ ] 控制台基础功能
+- [x] 控制台基础功能
 - [ ] 控制台性能监控
 - [ ] 控制台实体管理
 - [ ] 控制台玩家管理
@@ -38,6 +40,6 @@ DevoutServer秉持**精简、稳定、可拓展**的原则，提供:
 - [ ] 插件加载 <progress value="90" max="100"></progress>
 - [ ] 配置文件 <progress value="90" max="100"></progress>
 - [ ] 生命周期 <progress value="50" max="100"></progress>
-- [ ] 依赖管理 <progress value="0" max="100"></progress>
+- [ ] 依赖管理 <progress value="50" max="100"></progress>
 - [ ] 解耦框架 <progress value="50" max="100"></progress>
 - [ ] 脚本管理 <progress value="0" max="100"></progress>
