@@ -1,8 +1,6 @@
 package com.github.zimablue.devoutserver.api.plugin
 
-import com.github.zimablue.devoutserver.api.decouple.map.component.Keyable
-import com.github.zimablue.devoutserver.api.lifecycle.LifeCycle
-import com.github.zimablue.devoutserver.internal.manager.LifeCycleManagerImpl.lifeCycle
+import com.github.zimablue.devoutserver.api.map.component.Keyable
 import net.kyori.adventure.text.logger.slf4j.ComponentLogger
 import net.minestom.server.event.Event
 import net.minestom.server.event.EventNode
@@ -29,19 +27,18 @@ abstract class Plugin protected constructor() : Keyable<String> {
     }
 
     open fun onInit() {
-        lifeCycle(LifeCycle.INIT)
     }
 
     open fun onLoad() {
-        lifeCycle(LifeCycle.LOAD)
+
     }
 
     open fun onEnable() {
-        lifeCycle((LifeCycle.ENABLE))
+
     }
 
     open fun onDisable() {
-        lifeCycle(LifeCycle.DISABLE)
+
     }
 
     fun preInitialize() {

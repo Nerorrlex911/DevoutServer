@@ -172,14 +172,6 @@ class DiscoveredPlugin {
                 extension.version = "Unspecified"
             }
 
-            if (extension.softDependencies == null) {
-                extension.softDependencies = ArrayList()
-            }
-
-            if (extension.loadBefore == null) {
-                extension.loadBefore = ArrayList()
-            }
-
             // No external dependencies were specified;
             if (extension.externalDependencies == null) {
                 extension.externalDependencies = ExternalDependencies()

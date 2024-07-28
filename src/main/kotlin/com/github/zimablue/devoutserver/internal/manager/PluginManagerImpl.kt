@@ -87,11 +87,14 @@ object PluginManagerImpl : PluginManager() {
             }
         }
 
+        //discover plugins
         val discoveredPlugins = discoverPlugins()
         if (discoveredPlugins.isEmpty()) {
             LOGGER.info("No plugins found")
             return
         }
+
+        //create classloader for plugins
         val pluginIterator = discoveredPlugins.iterator()
         while (pluginIterator.hasNext()) {
             val discoveredPlugin = pluginIterator.next()
@@ -104,10 +107,12 @@ object PluginManagerImpl : PluginManager() {
                 pluginIterator.remove()
             }
         }
+        //generate load order
         val orderedPlugins = generateLoadOrder(discoveredPlugins)
+        //load dependencies
         loadDependencies(orderedPlugins)
         orderedPlugins.removeIf { it.loadStatus != DiscoveredPlugin.LoadStatus.LOAD_SUCCESS }
-
+        //load plugins (DiscoveredPlugin to Plugin class)
         orderedPlugins.forEach {
             try {
                 loadPlugin(it)
@@ -123,21 +128,12 @@ object PluginManagerImpl : PluginManager() {
 
     fun discoverPlugins(): MutableList<DiscoveredPlugin> {
         val plugins = LinkedList<DiscoveredPlugin>()
-
         val fileList = pluginFolder.listFiles()?:return mutableListOf()
-
         for (file in fileList) {
             // Ignore folders
-
-            if (file.isDirectory) {
-                continue
-            }
-
+            if (file.isDirectory) continue
             // Ignore non .jar files
-            if (!file.name.endsWith(".jar")) {
-                continue
-            }
-
+            if (!file.name.endsWith(".jar")) continue
             val plugin = discoverFromJar(file)
             if (plugin != null && plugin.loadStatus == DiscoveredPlugin.LoadStatus.LOAD_SUCCESS) {
                 plugins.add(plugin)
@@ -210,13 +206,11 @@ object PluginManagerImpl : PluginManager() {
         for (discoveredPlugin in plugins) {
             try {
                 val getter = DependencyGetter()
-                val externalDependencies = discoveredPlugin.externalDependencies?:continue
+                val externalDependencies = discoveredPlugin.externalDependencies ?: continue
                 val repoList: MutableList<MavenRepository> = LinkedList<MavenRepository>()
                 for (repository in externalDependencies.repositories) {
                     check(!repository.name.isNullOrEmpty()) { "Missing 'name' element in repository object." }
-
                     check(!repository.url.isNullOrEmpty()) { "Missing 'url' element in repository object." }
-
                     repoList.add(MavenRepository(repository.name, repository.url))
                 }
 

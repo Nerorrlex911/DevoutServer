@@ -35,7 +35,7 @@ dependencies {
     compileOnly("com.google.guava:guava:21.0")
     //minestom
     // https://mvnrepository.com/artifact/net.minestom/minestom-snapshots
-    implementation("net.minestom:minestom-snapshots:edb73f0a5a")
+    implementation("net.minestom:minestom-snapshots:12794d4263")
     implementation("com.github.Minestom:DependencyGetter:v1.0.1")
     implementation("dev.hollowcube:minestom-ce-extensions:1.2.0")
     //database
