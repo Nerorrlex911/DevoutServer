@@ -22,13 +22,6 @@ abstract class Plugin protected constructor() : Keyable<String> {
     val dependents = HashSet<String>()
 
 
-    init {
-        this.onInit()
-    }
-
-    open fun onInit() {
-    }
-
     open fun onLoad() {
 
     }

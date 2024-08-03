@@ -9,6 +9,7 @@ repositories {
     mavenCentral()
     maven("https://jitpack.io")
     maven { url = uri("https://repo.tabooproject.org/repository/releases/") }
+    maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
 
 }
 
@@ -40,6 +41,9 @@ dependencies {
     implementation("dev.hollowcube:minestom-ce-extensions:1.2.0")
     //database
     implementation("com.zaxxer:HikariCP:4.0.3")
+    //spark
+    compileOnly("me.lucko:spark-api:0.1-SNAPSHOT")
+    implementation(fileTree("libs"))
 
 }
 

@@ -11,10 +11,10 @@ import kotlin.annotation.AnnotationTarget.*
 object AnnotationManagerImpl: AnnotationManager() {
     override val priority: Int = 0
     override val key: String = "AnnotationManager"
-    val pluginClassMap = mutableMapOf<Plugin,Set<Class<*>>>()
+    val pluginClassMap = mutableMapOf<Plugin,Set<Class<*>>>()//TODO: put plugin class in the map
     val pluginClasses
         get() = pluginClassMap.values.flatten().toSet()
-    val coreClasses = mutableSetOf<Class<*>>()
+    val coreClasses = ClassUtil.getClasses("com.github.zimablue.devoutserver")
 
     inline fun <reified V: Annotation> getTargets(range: AnnotationRange): Triple<HashSet<Field>, HashSet<Method>, HashSet<Class<*>>> {
         val annotation = V::class.java

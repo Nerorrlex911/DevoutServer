@@ -166,6 +166,19 @@ object ClassUtil {
             it.isAnnotationPresent(annotation)
         }.toSet()
     }
+    /**
+     * 从包package中获取所有持某注解的类
+     * @author Clok
+     * @date 2024/5/19 8:53 早上
+     * @param pack
+     * @return Set<Class<*>>
+     */
+
+    fun getAnnotationClass(pack: String, annotation: Class<out Annotation>): Set<Class<*>> {
+        return getClasses(pack).filter {
+            it.isAnnotationPresent(annotation)
+        }.toSet()
+    }
 
     /**
      * 从某个类中获取某个持有某注解的属性
@@ -190,6 +203,21 @@ object ClassUtil {
             it.isAnnotationPresent(annotation)
         }.toSet()
     }
+
+    fun Class<*>.isSingleton(): Boolean {
+        try {
+            this.getDeclaredField("INSTANCE").get(null) != null
+            return true
+        } catch (e: Exception) {
+            return false
+        }
+    }
+    /**
+     * 获取Kotlin单例的INSTANCE
+     */
+    val Class<*>.instance: Any?
+        get() = this.getDeclaredField("INSTANCE").get(null)
+
 
 
 }

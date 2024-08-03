@@ -1,6 +1,7 @@
 import com.github.zimablue.devoutserver.api.plugin.manager.PluginManager
 import com.github.zimablue.devoutserver.internal.manager.ConfigManagerImpl
 import com.github.zimablue.devoutserver.internal.manager.PluginManagerImpl
+import net.kyori.adventure.text.Component
 import net.minestom.server.MinecraftServer
 import java.net.InetSocketAddress
 import java.net.SocketAddress
@@ -19,20 +20,8 @@ object DevoutServer {
         pluginManager.gotoPreInit()
     }
 
-    fun debug(callback:() -> Unit) {
-        if(ConfigManagerImpl.debug) {
-            callback.invoke()
-        }
-    }
-
-    fun debugMsg(vararg msg: String) {
-        if(ConfigManagerImpl.debug) {
-            msg.forEach{ MinecraftServer.LOGGER.debug(it) }
-        }
-    }
-
-    fun start(address: String, port: Int) {
-        start(InetSocketAddress(address, port))
+    fun start() {
+        start(InetSocketAddress(ConfigManagerImpl.serverConfig.address, ConfigManagerImpl.serverConfig.port))
     }
 
     fun start(address: SocketAddress) {
