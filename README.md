@@ -35,11 +35,12 @@ DevoutServer秉持**精简、稳定、可拓展**的原则，提供:
 - [x] 数据库操作
 - [ ] 实体数据存储
 - [ ] 玩家数据存储
-### 世界实例和区块加载器
+### 世界管理系统
+- [ ] 世界创建(导入地图、存储地图)
+- [ ] 世界管理(传送、列表，加载、卸载、出生点)
 ### 插件系统
-- [ ] 插件加载 <progress value="90" max="100"></progress>
-- [ ] 配置文件 <progress value="90" max="100"></progress>
-- [ ] 生命周期 <progress value="50" max="100"></progress>
+- [ ] 插件加载 <progress value="100" max="100"></progress>
+- [ ] 配置文件 <progress value="100" max="100"></progress>
+- [ ] 生命周期 <progress value="100" max="100"></progress>
 - [ ] 依赖管理 <progress value="50" max="100"></progress>
-- [ ] 解耦框架 <progress value="50" max="100"></progress>
 - [ ] 脚本管理 <progress value="0" max="100"></progress>

@@ -82,7 +82,7 @@ object SparkMinestom : SparkPlugin{
     override fun createPlayerPingProvider(): PlayerPingProvider {
         return PlayerPing
     }
-    @Awake(LifeCycle.LOAD,AwakePriority.PRE)
+    @Awake(LifeCycle.LOAD,0)
     fun hook() {
         val platform = SparkPlatform(this)
         SparkPlatform = platform

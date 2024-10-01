@@ -3,6 +3,8 @@ package com.github.zimablue.devoutserver.internal.manager
 import com.github.zimablue.devoutserver.api.plugin.DiscoveredPlugin
 import com.github.zimablue.devoutserver.api.plugin.Plugin
 import com.github.zimablue.devoutserver.api.plugin.manager.PluginManager
+import com.github.zimablue.devoutserver.internal.core.lifecycle.LifeCycle
+import com.github.zimablue.devoutserver.internal.manager.LifeCycleManagerImpl.lifeCycle
 import com.google.gson.Gson
 import net.minestom.dependencies.DependencyGetter
 import net.minestom.dependencies.ResolvedDependency
@@ -424,7 +426,8 @@ object PluginManagerImpl : PluginManager() {
 
     private fun unload(ext: Plugin) {
         ext.preTerminate()
-        ext.terminate()
+        lifeCycle(LifeCycle.DISABLE)
+        ext.onDisable()
 
         ext.pluginClassLoader.terminate()
 
@@ -451,21 +454,24 @@ object PluginManagerImpl : PluginManager() {
     override fun gotoPreInit() {
         if (state == State.DO_NOT_START) return
         Check.stateCondition(state != State.STARTED, "Plugins have already done pre initialization")
-        values.forEach{it.preInitialize()}
+        lifeCycle(LifeCycle.LOAD)
+        values.forEach{it.onLoad()}
         state = State.PRE_INIT
     }
 
     override fun gotoInit() {
         if (state == State.DO_NOT_START) return
         Check.stateCondition(state != State.PRE_INIT, "Plugins have already done initialization")
-        values.forEach { it.initialize() }
+        lifeCycle(LifeCycle.ENABLE)
+        values.forEach { it.onEnable() }
         state = State.INIT
     }
 
     override fun gotoPostInit() {
         if (state == State.DO_NOT_START) return
         Check.stateCondition(state != State.INIT, "Plugins have already done post initialization")
-        values.forEach { it.postInitialize() }
+        lifeCycle(LifeCycle.ACTIVE)
+        values.forEach { it.onActive() }
         state = State.POST_INIT
     }
 }

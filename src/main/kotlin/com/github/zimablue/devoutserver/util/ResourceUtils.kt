@@ -46,7 +46,7 @@ object ResourceUtils {
                 @Throws(IOException::class)
                 override fun visitFile(file: Path, attrs: BasicFileAttributes): FileVisitResult {
                     val to: Path = target.resolve(jarPath.relativize(file).toString())
-                    Files.copy(file, to, StandardCopyOption.REPLACE_EXISTING)
+                    if(!Files.exists(to)) Files.copy(file, to)
                     return FileVisitResult.CONTINUE
                 }
             })

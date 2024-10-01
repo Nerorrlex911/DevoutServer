@@ -15,7 +15,7 @@ object LifeCycleManagerImpl {
     init {
         val allMethods = AnnotationManagerImpl.getTargets<Awake>(AnnotationRange.CORE).second
         allMethods.forEach { registerMethod(it) }
-        awakeMethods.forEach { (_, u) -> u.sortBy { it.priority.ordinal } }
+        awakeMethods.forEach { (_, u) -> u.sortBy { it.priority } }
     }
     fun registerMethod(method: Method) {
         val awakeMethod = AwakeMethod(method)

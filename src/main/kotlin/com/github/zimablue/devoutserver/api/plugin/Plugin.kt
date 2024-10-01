@@ -21,31 +21,18 @@ abstract class Plugin protected constructor() : Keyable<String> {
      */
     val dependents = HashSet<String>()
 
-
-    open fun onLoad() {
-
+    fun onLoad() {
     }
 
-    open fun onEnable() {
+    abstract fun onEnable()
 
-    }
-
-    open fun onDisable() {
-
-    }
-
-    fun preInitialize() {
-    }
-
-    abstract fun initialize()
-
-    fun postInitialize() {
+    fun onActive() {
     }
 
     fun preTerminate() {
     }
 
-    abstract fun terminate()
+    abstract fun onDisable()
 
     fun postTerminate() {
     }
