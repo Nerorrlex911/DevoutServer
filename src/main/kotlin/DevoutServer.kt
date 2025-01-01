@@ -1,9 +1,8 @@
-import com.github.zimablue.devoutserver.api.plugin.manager.PluginManager
-import com.github.zimablue.devoutserver.internal.core.script.nashorn.impl.NashornHookerImpl
-import com.github.zimablue.devoutserver.internal.core.terminal.EasyTerminal
-import com.github.zimablue.devoutserver.internal.manager.ConfigManagerImpl
-import com.github.zimablue.devoutserver.internal.manager.PluginManagerImpl
-import net.kyori.adventure.text.Component
+import com.github.zimablue.devoutserver.config.ConfigManagerImpl
+import com.github.zimablue.devoutserver.plugin.PluginManager
+import com.github.zimablue.devoutserver.plugin.PluginManagerImpl
+import com.github.zimablue.devoutserver.script.nashorn.impl.NashornHookerImpl
+import com.github.zimablue.devoutserver.terminal.EasyTerminal
 import net.minestom.server.MinecraftServer
 import org.slf4j.LoggerFactory
 import java.net.InetSocketAddress

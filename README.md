@@ -43,4 +43,4 @@ DevoutServer秉持**精简、稳定、可拓展**的原则，提供:
 - [ ] 配置文件 <progress value="100" max="100"></progress>
 - [ ] 生命周期 <progress value="100" max="100"></progress>
 - [ ] 依赖管理 <progress value="50" max="100"></progress>
-- [ ] 脚本管理 <progress value="0" max="100"></progress>
+- [ ] 脚本管理 <progress value="90" max="100"></progress>
