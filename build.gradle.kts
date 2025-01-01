@@ -1,3 +1,5 @@
+val graalVersion: String by project
+
 plugins {
     kotlin("jvm") version "1.9.22"
     id("com.github.johnrengelman.shadow") version "8.1.1"
@@ -41,19 +43,21 @@ dependencies {
     implementation("org.ow2.asm:asm:9.2")
     implementation("org.ow2.asm:asm-util:9.2")
     implementation("org.ow2.asm:asm-commons:9.2")
-    //guava
+    // guava
     compileOnly("com.google.guava:guava:21.0")
-    //minestom
+    // minestom
     // https://mvnrepository.com/artifact/net.minestom/minestom-snapshots
-    implementation("net.minestom:minestom-snapshots:d955f51899")
+    implementation("net.minestom:minestom-snapshots:698af959c8")
     implementation("com.github.Minestom:DependencyGetter:v1.0.1")
     implementation("dev.hollowcube:minestom-ce-extensions:1.2.0")
-    //database
+    // database
     implementation("com.zaxxer:HikariCP:4.0.3")
-    //spark
+    // spark
     compileOnly("me.lucko:spark-api:0.1-SNAPSHOT")
-    //luckperms
+    // luckperms
     implementation("me.lucko.luckperms:minestom:5.4-SNAPSHOT")
+    //nashorn
+    implementation("org.openjdk.nashorn:nashorn-core:15.4")
 
     implementation(fileTree("libs"))
 
