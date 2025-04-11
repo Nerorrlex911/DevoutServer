@@ -15,7 +15,7 @@ class PluginClassLoader(
     parent: ClassLoader? = null,
     val discoveredPlugin: DiscoveredPlugin
 ) : URLClassLoader(
-    "Ext_$name",
+    "Plugin_$name",
     urls,
     parent?: MinecraftServer::class.java.classLoader
 ) {
