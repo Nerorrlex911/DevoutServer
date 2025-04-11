@@ -8,7 +8,7 @@ import java.util.*
 
 object LifeCycleManagerImpl {
     var isStopped = false
-    val currentLifeCycle = LifeCycle.NONE
+    var currentLifeCycle = LifeCycle.NONE
     private val awakeMethods = mutableMapOf<LifeCycle, LinkedList<AwakeMethod>>()
     init {
         val allMethods = AnnotationManagerImpl.getTargets<Awake>(AnnotationRange.CORE).second
@@ -21,6 +21,7 @@ object LifeCycleManagerImpl {
     }
     fun lifeCycle(lifeCycle: LifeCycle) {
         if(!isStopped) awakeMethods[lifeCycle]?.forEach { it.execute() }
+        currentLifeCycle = lifeCycle
 
     }
 }
