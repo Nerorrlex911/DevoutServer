@@ -3,7 +3,6 @@ package com.github.zimablue.devoutserver.script
 import DevoutServer.nashornHooker
 import com.github.zimablue.devoutserver.lifecycle.Awake
 import com.github.zimablue.devoutserver.lifecycle.LifeCycle
-
 import org.slf4j.LoggerFactory
 import java.io.File
 

@@ -1,5 +1,5 @@
 package taboolib.module.configuration
-
+/*
 import net.minestom.server.MinecraftServer
 import org.tabooproject.reflex.ClassField
 import taboolib.common.LifeCycle
@@ -55,3 +55,4 @@ class ConfigNodeLoader : ClassVisitor(2) {
         return map { if (it.isUpperCase()) "-${it.lowercase()}" else it }.joinToString("")
     }
 }
+ */

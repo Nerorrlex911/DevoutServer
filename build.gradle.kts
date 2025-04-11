@@ -20,12 +20,12 @@ repositories {
 dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     //config
-    compileOnly("org.yaml:snakeyaml:2.2")
-    compileOnly("com.typesafe:config:1.4.3")
-    compileOnly("com.electronwill.night-config:core:3.6.7")
-    compileOnly("com.electronwill.night-config:toml:3.6.7")
-    compileOnly("com.electronwill.night-config:json:3.6.7")
-    compileOnly("com.electronwill.night-config:hocon:3.6.7")
+    implementation("org.yaml:snakeyaml:2.2")
+    implementation("com.typesafe:config:1.4.3")
+    implementation("com.electronwill.night-config:core:3.6.7")
+    implementation("com.electronwill.night-config:toml:3.6.7")
+    implementation("com.electronwill.night-config:json:3.6.7")
+    implementation("com.electronwill.night-config:hocon:3.6.7")
     implementation("com.electronwill.night-config:core-conversion:6.0.0")
     //terminal
     implementation("org.jline:jline-reader:3.25.0")
@@ -44,10 +44,10 @@ dependencies {
     implementation("org.ow2.asm:asm-util:9.2")
     implementation("org.ow2.asm:asm-commons:9.2")
     // guava
-    compileOnly("com.google.guava:guava:21.0")
+    implementation("com.google.guava:guava:21.0")
     // minestom
     // https://mvnrepository.com/artifact/net.minestom/minestom-snapshots
-    implementation("net.minestom:minestom-snapshots:698af959c8")
+    implementation("net.minestom:minestom-snapshots:1_21_5-c5b715aa82")
     implementation("com.github.Minestom:DependencyGetter:v1.0.1")
     implementation("dev.hollowcube:minestom-ce-extensions:1.2.0")
     // database
@@ -67,7 +67,6 @@ tasks.test {
     useJUnitPlatform()
 }
 tasks.withType<Jar> {
-    dependsOn(tasks.shadowJar)
     manifest {
         attributes["Main-Class"] = "com.github.zimablue.devoutserver.MainKt"
     }

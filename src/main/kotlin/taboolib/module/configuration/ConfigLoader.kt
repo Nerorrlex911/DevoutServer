@@ -1,5 +1,5 @@
 package taboolib.module.configuration
-
+/*
 import org.tabooproject.reflex.ClassField
 import taboolib.common.LifeCycle
 import taboolib.common.PrimitiveIO
@@ -54,3 +54,4 @@ class ConfigLoader : ClassVisitor(1) {
 
     }
 }
+ */
