@@ -1,6 +1,7 @@
 package com.github.zimablue.devoutserver.feature.luckperms
 
 import com.github.zimablue.devoutserver.lifecycle.Awake
+import com.github.zimablue.devoutserver.lifecycle.AwakePriority
 import com.github.zimablue.devoutserver.lifecycle.LifeCycle
 import com.github.zimablue.devoutserver.util.ResourceUtils.extractResource
 import me.lucko.luckperms.common.config.generic.adapter.EnvironmentVariableConfigAdapter
@@ -13,7 +14,7 @@ import java.nio.file.Path
 
 object LuckPerms {
     lateinit var luckPerms: LuckPerms
-    @Awake(LifeCycle.LOAD, 0)
+    @Awake(LifeCycle.LOAD, AwakePriority.NORMAL)
     fun init() {
         val directory: Path = Path.of("luckperms")
         extractResource("luckperms.yml")

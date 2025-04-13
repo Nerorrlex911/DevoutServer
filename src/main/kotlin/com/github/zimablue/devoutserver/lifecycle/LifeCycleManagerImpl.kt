@@ -11,7 +11,7 @@ object LifeCycleManagerImpl {
     var currentLifeCycle = LifeCycle.NONE
     private val awakeMethods = mutableMapOf<LifeCycle, LinkedList<AwakeMethod>>()
     init {
-        val allMethods = AnnotationManagerImpl.getTargets<Awake>(AnnotationRange.CORE).second
+        val allMethods = AnnotationManagerImpl.getTargets<Awake>().second
         allMethods.forEach { registerMethod(it) }
         awakeMethods.forEach { (_, u) -> u.sortBy { it.priority } }
     }

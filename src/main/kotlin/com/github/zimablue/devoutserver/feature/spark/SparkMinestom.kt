@@ -3,6 +3,7 @@ package com.github.zimablue.devoutserver.feature.spark
 
 
 import com.github.zimablue.devoutserver.lifecycle.Awake
+import com.github.zimablue.devoutserver.lifecycle.AwakePriority
 import com.github.zimablue.devoutserver.lifecycle.LifeCycle
 import me.lucko.spark.common.SparkPlatform
 import me.lucko.spark.common.SparkPlugin
@@ -82,7 +83,7 @@ object SparkMinestom : SparkPlugin{
     override fun createPlayerPingProvider(): PlayerPingProvider {
         return PlayerPing
     }
-    @Awake(LifeCycle.LOAD,0)
+    @Awake(LifeCycle.LOAD,AwakePriority.NORMAL)
     fun hook() {
         val platform = SparkPlatform(this)
         SparkPlatform = platform

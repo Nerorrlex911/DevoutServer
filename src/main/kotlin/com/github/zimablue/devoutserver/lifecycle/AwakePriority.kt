@@ -1,7 +1,15 @@
 package com.github.zimablue.devoutserver.lifecycle
 
 enum class AwakePriority {
-    PRE,
+    LOWEST,
+
+    LOW,
+
     NORMAL,
-    POST
+
+    HIGH,
+
+    HIGHEST,
+
+    MONITOR;
 }

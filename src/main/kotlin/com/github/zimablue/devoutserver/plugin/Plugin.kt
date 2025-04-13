@@ -24,7 +24,9 @@ abstract class Plugin protected constructor() : Keyable<String> {
     fun onLoad() {
     }
 
-    abstract fun onEnable()
+    fun onEnable() {
+
+    }
 
     fun onActive() {
     }
@@ -32,7 +34,9 @@ abstract class Plugin protected constructor() : Keyable<String> {
     fun preTerminate() {
     }
 
-    abstract fun onDisable()
+    fun onDisable() {
+
+    }
 
     fun postTerminate() {
     }

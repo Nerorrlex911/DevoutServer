@@ -5,12 +5,36 @@ import java.io.IOException
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 import java.net.JarURLConnection
+import java.net.URISyntaxException
 import java.net.URL
 import java.net.URLDecoder
 import java.util.*
+import java.util.jar.JarEntry
 import java.util.jar.JarFile
 
 object ClassUtil {
+
+
+    fun getClasses(clazz: Class<*>): List<Class<*>> {
+        val classes: MutableList<Class<*>> = ArrayList()
+        val url = clazz.protectionDomain.codeSource.location
+        silent {
+            val src: File = try {
+                File(url.toURI())
+            } catch (e: URISyntaxException) {
+                File(url.path)
+            }
+            JarFile(src).stream().filter { entry: JarEntry ->
+                entry.name.endsWith(".class")
+            }.forEach { entry: JarEntry ->
+                val className =
+                    entry.name.replace('/', '.').substring(0, entry.name.length - 6)
+                silent { classes.add(Class.forName(className, false, clazz.classLoader)) }
+            }
+        }
+        return classes
+    }
+
 
     /**
      * 以文件的形式来获取包下的所有Class

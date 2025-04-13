@@ -1,7 +1,8 @@
 package taboolib.module.database
 
-import taboolib.common.platform.function.warning
+
 import taboolib.common.util.unsafeLazy
+import taboolib.module.database.DatabaseManager.LOGGER
 import java.sql.ResultSet
 import java.sql.SQLException
 import java.sql.Statement
@@ -75,8 +76,8 @@ open class ExecutableSource(val table: Table<*, *>, var dataSource: DataSource, 
                         statement.executeQuery().use { func(it) }.also { action?.callFinally(statement, connection) }
                     }
                 } catch (ex: SQLException) {
-                    warning("Query: $query")
-                    warning("Parameters (${action?.elements?.size ?: 0}): ${action?.elements}")
+                    LOGGER.warn("Query: $query")
+                    LOGGER.warn("Parameters (${action?.elements?.size ?: 0}): ${action?.elements}")
                     throw ex
                 }
             }
@@ -92,8 +93,8 @@ open class ExecutableSource(val table: Table<*, *>, var dataSource: DataSource, 
                     statement.executeUpdate().also { action?.callFinally(statement, connection) }
                 }
             } catch (ex: SQLException) {
-                warning("Query: $query")
-                warning("Parameters (${action?.elements?.size ?: 0}): ${action?.elements}")
+                LOGGER.warn("Query: $query")
+                LOGGER.warn("Parameters (${action?.elements?.size ?: 0}): ${action?.elements}")
                 throw ex
             }
         }.also { processors += it }
