@@ -3,6 +3,7 @@ package com.github.zimablue.devoutserver.plugin
 
 import com.github.zimablue.devoutserver.lifecycle.LifeCycle
 import com.github.zimablue.devoutserver.lifecycle.LifeCycleManagerImpl.lifeCycle
+import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycle
 import com.google.gson.Gson
 import net.minestom.dependencies.DependencyGetter
 import net.minestom.dependencies.ResolvedDependency
@@ -120,7 +121,8 @@ object PluginManagerImpl : PluginManager() {
                 it.loadStatus = DiscoveredPlugin.LoadStatus.LOAD_FAILED
                 serverProcess.exception().handleException(e)
                 LOGGER.error("Failed to load plugin: ${it.name}", e)
-            }
+                null
+            }?.initialize()
         }
 
 
@@ -422,17 +424,18 @@ object PluginManagerImpl : PluginManager() {
         unload(ext)
     }
 
-    private fun unload(ext: Plugin) {
-        ext.preTerminate()
+    private fun unload(plugin: Plugin) {
+        plugin.preTerminate()
         lifeCycle(LifeCycle.DISABLE)
-        ext.onDisable()
+        plugin.onDisable()
+        plugin.lifeCycleManager.lifeCycle(PluginLifeCycle.DISABLE)
 
-        ext.pluginClassLoader.terminate()
+        plugin.pluginClassLoader.terminate()
 
-        ext.postTerminate()
+        plugin.postTerminate()
 
         // remove from loaded plugins
-        val id = ext.origin.name!!.lowercase(Locale.getDefault())
+        val id = plugin.origin.name!!.lowercase(Locale.getDefault())
         this.remove(id)
 
         // cleanup classloader
@@ -453,7 +456,10 @@ object PluginManagerImpl : PluginManager() {
         if (state == State.DO_NOT_START) return
         Check.stateCondition(state != State.STARTED, "Plugins have already done pre initialization")
         lifeCycle(LifeCycle.LOAD)
-        values.forEach{it.onLoad()}
+        values.forEach{
+            it.onLoad()
+            it.lifeCycleManager.lifeCycle(PluginLifeCycle.LOAD)
+        }
         state = State.PRE_INIT
     }
 
@@ -461,7 +467,10 @@ object PluginManagerImpl : PluginManager() {
         if (state == State.DO_NOT_START) return
         Check.stateCondition(state != State.PRE_INIT, "Plugins have already done initialization")
         lifeCycle(LifeCycle.ENABLE)
-        values.forEach { it.onEnable() }
+        values.forEach {
+            it.onEnable()
+            it.lifeCycleManager.lifeCycle(PluginLifeCycle.ENABLE)
+        }
         state = State.INIT
     }
 
@@ -469,7 +478,10 @@ object PluginManagerImpl : PluginManager() {
         if (state == State.DO_NOT_START) return
         Check.stateCondition(state != State.INIT, "Plugins have already done post initialization")
         lifeCycle(LifeCycle.ACTIVE)
-        values.forEach { it.onActive() }
+        values.forEach {
+            it.onActive()
+            it.lifeCycleManager.lifeCycle(PluginLifeCycle.ACTIVE)
+        }
         state = State.POST_INIT
     }
 }

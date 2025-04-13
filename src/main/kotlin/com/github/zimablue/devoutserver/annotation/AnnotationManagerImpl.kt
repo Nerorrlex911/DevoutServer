@@ -9,7 +9,7 @@ import kotlin.annotation.AnnotationTarget.*
 object AnnotationManagerImpl{
     val coreClasses = ClassUtil.getClasses("com.github.zimablue.devoutserver")
 
-    inline fun <reified V: Annotation> getTargets(): Triple<HashSet<Field>, HashSet<Method>, HashSet<Class<*>>> {
+    inline fun <reified V: Annotation> getTargets(classesToScan: Set<Class<*>> = coreClasses): Triple<HashSet<Field>, HashSet<Method>, HashSet<Class<*>>> {
         val annotation = V::class.java
         val targetAnnotation = annotation.getAnnotation(Target::class.java)
         val allowed = targetAnnotation.allowedTargets.toSet()
@@ -19,15 +19,15 @@ object AnnotationManagerImpl{
         allowed.forEach { type ->
             when(type) {
                 CLASS -> {
-                    classes.addAll(coreClasses.filter { it.isAnnotationPresent(annotation) })
+                    classes.addAll(classesToScan.filter { it.isAnnotationPresent(annotation) })
                 }
                 FIELD -> {
-                    coreClasses.forEach {
+                    classesToScan.forEach {
                         fields.addAll(ClassUtil.getAnnotationMember(it, annotation))
                     }
                 }
                 FUNCTION -> {
-                    coreClasses.forEach {
+                    classesToScan.forEach {
                         methods.addAll(ClassUtil.getAnnotationMethod(it, annotation))
                     }
                 }

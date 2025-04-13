@@ -1,6 +1,5 @@
 package com.github.zimablue.devoutserver.config
 
-import com.github.zimablue.devoutserver.internal.manager.Manager
 import taboolib.module.configuration.Configuration
 import taboolib.module.configuration.Type
 import java.io.File
