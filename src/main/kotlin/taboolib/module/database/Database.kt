@@ -12,18 +12,12 @@ object Database {
     @Config("datasource.yml")
     lateinit var settingsFile: Configuration
 
-    /**
-     * 创建一个关闭数据库连接的回调函数
-     */
-    fun prepareClose(func: Runnable) {
-        Host.callbackClose += func
-    }
 
     /**
      * 创建一个数据库连接池
      */
-    fun createDataSource(host: Host<*>, hikariConfig: HikariConfig? = null): DataSource {
-        return HikariDataSource(hikariConfig ?: createHikariConfig(host))
+    fun createDataSource(host: Host<*>, hikariConfig: HikariConfig? = null,settingsFile: Configuration=this.settingsFile): DataSource {
+        return HikariDataSource(hikariConfig ?: createHikariConfig(host,settingsFile))
     }
 
     /**
@@ -44,7 +38,7 @@ object Database {
     /**
      * 创建一个 Hikari 配置
      */
-    fun createHikariConfig(host: Host<*>): HikariConfig {
+    fun createHikariConfig(host: Host<*>,settingsFile: Configuration=this.settingsFile): HikariConfig {
         val config = HikariConfig()
         config.jdbcUrl = host.connectionUrl
         when (host) {

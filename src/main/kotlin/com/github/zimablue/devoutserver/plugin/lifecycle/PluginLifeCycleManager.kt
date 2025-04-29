@@ -10,7 +10,7 @@ import java.util.*
 class PluginLifeCycleManager(val plugin: Plugin) {
     var currentLifeCycle: PluginLifeCycle = PluginLifeCycle.NONE
     private val lifeCycleTasks = mutableMapOf<PluginLifeCycle,LinkedList<LifeCycleTask>>()
-    private fun registerTask(task: LifeCycleTask) {
+    fun registerTask(task: LifeCycleTask) {
         lifeCycleTasks.computeIfAbsent(task.lifeCycle) {
             LinkedList<LifeCycleTask>()
         }.apply {
@@ -22,6 +22,9 @@ class PluginLifeCycleManager(val plugin: Plugin) {
         if(task.lifeCycle<currentLifeCycle) {
             task.callback.run()
         }
+    }
+    fun registerTask(lifecycle: PluginLifeCycle,priority: AwakePriority, task: Runnable) {
+        registerTask(LifeCycleTask(lifecycle,priority,task))
     }
     fun lifeCycle(lifeCycle: PluginLifeCycle) {
         currentLifeCycle = lifeCycle
