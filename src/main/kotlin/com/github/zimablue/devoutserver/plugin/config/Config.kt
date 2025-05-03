@@ -1,4 +1,4 @@
-package taboolib.module.configuration
+package com.github.zimablue.devoutserver.plugin.config
 
 @Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)

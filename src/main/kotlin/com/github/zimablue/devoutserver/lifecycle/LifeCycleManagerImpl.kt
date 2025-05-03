@@ -7,8 +7,8 @@ import java.util.*
 
 
 object LifeCycleManagerImpl {
-    var isStopped = false
-    var currentLifeCycle = LifeCycle.NONE
+    private var isStopped = false
+    private var currentLifeCycle = LifeCycle.NONE
     private val awakeMethods = mutableMapOf<LifeCycle, LinkedList<AwakeMethod>>()
     init {
         val allMethods = AnnotationManagerImpl.getTargets<Awake>().second
@@ -18,6 +18,10 @@ object LifeCycleManagerImpl {
     fun registerMethod(method: Method) {
         val awakeMethod = AwakeMethod(method)
         awakeMethods.computeIfAbsent(awakeMethod.lifeCycle) { LinkedList() }.add(awakeMethod)
+        //如果已进入该周期，立即执行
+        if (awakeMethod.lifeCycle <= currentLifeCycle) {
+            awakeMethod.execute()
+        }
     }
     fun lifeCycle(lifeCycle: LifeCycle) {
         if(!isStopped) awakeMethods[lifeCycle]?.forEach { it.execute() }

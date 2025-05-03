@@ -2,14 +2,13 @@ package taboolib.module.database
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import taboolib.module.configuration.Config
 import taboolib.module.configuration.Configuration
 import javax.sql.DataSource
 
 
 object Database {
 
-    @Config("datasource.yml")
+    //@Config("datasource.yml")
     lateinit var settingsFile: Configuration
 
 
