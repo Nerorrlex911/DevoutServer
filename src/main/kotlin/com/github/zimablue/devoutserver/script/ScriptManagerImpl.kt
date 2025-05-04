@@ -1,6 +1,6 @@
 package com.github.zimablue.devoutserver.script
 
-import DevoutServer.nashornHooker
+import com.github.zimablue.devoutserver.DevoutServer.nashornHooker
 import com.github.zimablue.devoutserver.lifecycle.Awake
 import com.github.zimablue.devoutserver.lifecycle.AwakePriority
 import com.github.zimablue.devoutserver.lifecycle.LifeCycle

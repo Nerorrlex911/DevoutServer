@@ -1,3 +1,5 @@
+package com.github.zimablue.devoutserver
+
 import com.github.zimablue.devoutserver.config.ConfigManagerImpl
 import com.github.zimablue.devoutserver.plugin.PluginManager
 import com.github.zimablue.devoutserver.plugin.PluginManagerImpl
@@ -33,7 +35,7 @@ object DevoutServer {
     fun start(address: SocketAddress) {
         EasyTerminal.start()
         pluginManager.gotoInit()
-        this.server.start(address)
+        server.start(address)
         pluginManager.gotoPostInit()
     }
 
