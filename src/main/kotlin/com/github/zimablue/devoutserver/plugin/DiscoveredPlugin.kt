@@ -16,13 +16,13 @@ import java.util.*
  */
 class DiscoveredPlugin {
     /** Name of the DiscoveredPlugin. Unique for all extensions.  */
-    var name: String? = null
+    var name: String = ""
 
     /** Main class of this DiscoveredPlugin, must extend Plugin.  */
-    var entrypoint: String? = null
+    var entrypoint: String = ""
 
     /** Version of this extension, highly reccomended to set it.  */
-    private var version: String? = null
+    private var version: String = ""
 
     /** People who have made this extension.  */
     var authors = listOf<String>()
@@ -69,28 +69,10 @@ class DiscoveredPlugin {
     /** The class loader that powers it.  */
     var classLoader: PluginClassLoader? = null
 
-
-    fun getEntrypoint(): String {
-        return entrypoint!!
-    }
-
-    fun getVersion(): String {
-        return version!!
-    }
-
-    fun getExternalDependencies(): ExternalDependencies {
-        return externalDependencies!!
-    }
-
     fun createClassLoader() {
         Check.stateCondition(classLoader != null, "Plugin classloader has already been created")
         val urls = files.toTypedArray<URL>()
-        classLoader = PluginClassLoader(this.name!!, urls,  discoveredPlugin = this)
-    }
-
-
-    fun getMeta(): JsonObject {
-        return meta!!
+        classLoader = PluginClassLoader(this.name, urls,  discoveredPlugin = this)
     }
 
     /**
@@ -130,7 +112,7 @@ class DiscoveredPlugin {
          * @param extension The extension to verify
          */
         fun verifyIntegrity(extension: DiscoveredPlugin) {
-            if (extension.name == null) {
+            if (extension.name.isEmpty()) {
                 val fileList = StringBuilder()
                 for (f in extension.files) {
                     fileList.append(f.toExternalForm()).append(", ")
@@ -144,7 +126,7 @@ class DiscoveredPlugin {
                 return
             }
 
-            if (!extension.name!!.matches(NAME_REGEX.toRegex())) {
+            if (!extension.name.matches(NAME_REGEX.toRegex())) {
                 LOGGER.error("Plugin '{}' specified an invalid name.", extension.name)
                 LOGGER.error("Plugin '{}' will not be loaded.", extension.name)
                 extension.loadStatus = LoadStatus.INVALID_NAME
@@ -154,7 +136,7 @@ class DiscoveredPlugin {
                 return
             }
 
-            if (extension.entrypoint == null) {
+            if (extension.entrypoint.isEmpty()) {
                 LOGGER.error("Plugin '{}' did not specify an entry point (via 'entrypoint').", extension.name)
                 LOGGER.error("Plugin '{}' will not be loaded.", extension.name)
                 extension.loadStatus = LoadStatus.NO_ENTRYPOINT
@@ -166,7 +148,7 @@ class DiscoveredPlugin {
 
             // Handle defaults
             // If we reach this code, then the extension will most likely be loaded:
-            if (extension.version == null) {
+            if (extension.version.isEmpty()) {
                 LOGGER.warn("Plugin '{}' did not specify a version.", extension.name)
                 LOGGER.warn("Plugin '{}' will continue to load but should specify a decouple version.", extension.name)
                 extension.version = "Unspecified"

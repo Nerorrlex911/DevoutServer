@@ -1,7 +1,7 @@
 package com.github.zimablue.devoutserver.script
 
 
-import DevoutServer.nashornHooker
+import com.github.zimablue.devoutserver.DevoutServer.nashornHooker
 import java.io.File
 import java.io.Reader
 import javax.script.Invocable

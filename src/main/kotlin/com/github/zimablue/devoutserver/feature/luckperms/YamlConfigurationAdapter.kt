@@ -7,7 +7,7 @@ import taboolib.module.configuration.Type
 import java.io.File
 
 
-class YamlConfigurationAdapter(val plugin: LuckPermsPlugin,val file: File) : ConfigurationAdapter {
+class YamlConfigurationAdapter(private val plugin: LuckPermsPlugin,val file: File) : ConfigurationAdapter {
     var configuration = Configuration.loadFromFile(file, Type.YAML)
 
     override fun getPlugin(): LuckPermsPlugin {

@@ -2,7 +2,8 @@ package taboolib.module.database
 
 
 import taboolib.common.util.unsafeLazy
-import taboolib.module.database.DatabaseManager.LOGGER
+import taboolib.module.database.Database.LOGGER
+
 import java.sql.ResultSet
 import java.sql.SQLException
 import java.sql.Statement

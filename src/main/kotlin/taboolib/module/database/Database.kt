@@ -2,6 +2,7 @@ package taboolib.module.database
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import org.slf4j.LoggerFactory
 import taboolib.module.configuration.Configuration
 import javax.sql.DataSource
 
@@ -10,6 +11,8 @@ object Database {
 
     //@Config("datasource.yml")
     lateinit var settingsFile: Configuration
+
+    val LOGGER = LoggerFactory.getLogger(Database::class.java)
 
 
     /**
