@@ -121,8 +121,7 @@ object PluginManagerImpl : PluginManager() {
                 it.loadStatus = DiscoveredPlugin.LoadStatus.LOAD_FAILED
                 serverProcess.exception().handleException(e)
                 LOGGER.error("Failed to load plugin: ${it.name}", e)
-                null
-            }?.initialize()
+            }
         }
 
 

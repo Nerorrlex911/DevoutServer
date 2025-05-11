@@ -27,10 +27,14 @@ object ScriptManagerImpl: ScriptManager(File("scripts")) {
     }
 
     fun run(name: String,function: String) {
+        run(name,function, null)
+    }
+
+    fun run(name: String,function: String,map: Map<String,Any>?,vararg args: Any) {
         val script = compiledScripts[name] ?: return
         if (nashornHooker.isFunction(script.scriptEngine, function)) {
             try {
-                script.invoke(function, null)
+                script.invoke(function, map, *args)
             } catch (error: Throwable) {
                 Logger.error("Error in $function of ${script.name}")
                 error.printStackTrace()

@@ -13,6 +13,8 @@ DevoutServer秉持**精简、稳定、可拓展**的原则，提供:
 
 核心只保留基础功能和插件最常用的功能，具体的职业、技能、属性系统等由插件自行实现
 
+本项目部分功能来自跨平台的Minecraft插件开发框架Taboolib(https://github.com/TabooLib/taboolib)
+
 加入Minestom交流群995070869(QQ) 讨论Minestom相关、获取本核心最新进展
 
 ## 项目进度

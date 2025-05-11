@@ -4,7 +4,6 @@ import net.kyori.adventure.text.logger.slf4j.ComponentLogger
 import net.minestom.server.MinecraftServer
 import net.minestom.server.event.Event
 import net.minestom.server.event.EventNode
-import net.minestom.server.extensions.DiscoveredExtension
 import java.io.InputStream
 import java.net.URL
 import java.net.URLClassLoader
@@ -21,12 +20,12 @@ class PluginClassLoader(
 ) {
     private val children: MutableList<PluginClassLoader> = ArrayList()
     val eventNode: EventNode<Event> by lazy {
-        val node = EventNode.all(discoveredPlugin.name!!)
+        val node = EventNode.all(discoveredPlugin.name)
         MinecraftServer.getGlobalEventHandler().addChild(node)
         node
     }
     val logger: ComponentLogger by lazy {
-        ComponentLogger.logger(discoveredPlugin.name!!)
+        ComponentLogger.logger(discoveredPlugin.name)
     }
 
 
