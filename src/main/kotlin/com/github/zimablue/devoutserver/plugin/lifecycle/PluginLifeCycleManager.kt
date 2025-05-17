@@ -27,7 +27,8 @@ class PluginLifeCycleManager(val plugin: Plugin) {
         registerTask(LifeCycleTask(lifecycle,priority,task))
     }
     fun lifeCycle(lifeCycle: PluginLifeCycle) {
-        currentLifeCycle = lifeCycle
+        //RELOAD周期不需要调整currentLifeCycle
+        if(lifeCycle!=PluginLifeCycle.RELOAD) currentLifeCycle = lifeCycle
         lifeCycleTasks[lifeCycle]?.forEach { it.execute() }
     }
     init {

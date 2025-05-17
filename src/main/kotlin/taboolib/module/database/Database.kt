@@ -1,16 +1,23 @@
 package taboolib.module.database
 
+import com.github.zimablue.devoutserver.lifecycle.Awake
+import com.github.zimablue.devoutserver.util.ResourceUtils
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import org.slf4j.LoggerFactory
 import taboolib.module.configuration.Configuration
+import taboolib.module.configuration.Type
+import java.io.File
 import javax.sql.DataSource
 
 
 object Database {
 
-    //@Config("datasource.yml")
-    lateinit var settingsFile: Configuration
+    val settingsFile: Configuration by lazy {Configuration.loadFromFile(File("datasource.yml"),Type.YAML)}
+
+    init {
+        ResourceUtils.extractResource("datasource.yml")
+    }
 
     val LOGGER = LoggerFactory.getLogger(Database::class.java)
 

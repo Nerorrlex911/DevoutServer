@@ -9,6 +9,7 @@ enum class PluginLifeCycle: Comparable<PluginLifeCycle> {
     //首个世界开始加载时
     ACTIVE,
     //Plugin停用
-    DISABLE;
+    DISABLE,
+    RELOAD;
 
 }

@@ -14,6 +14,8 @@ repositories {
     maven { url = uri("https://repo.tabooproject.org/repository/releases/") }
     maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
     maven { url = uri("https://repo.hypera.dev/snapshots") }
+    maven { url = uri("https://repo.lucko.me/") } // spark-common
+    maven { url = uri("https://mvnrepository.com/artifact/com.mysql/mysql-connector-j")}
 
 }
 
@@ -33,6 +35,7 @@ dependencies {
     implementation("org.jline:jline-terminal-jna:3.25.0")
     implementation("org.tinylog:tinylog-api:2.7.0")
     implementation("org.tinylog:tinylog-impl:2.7.0")
+    implementation("org.tinylog:slf4j-tinylog:2.7.0")
     implementation("org.fusesource.jansi:jansi:2.4.1")
     //reflex
     // 本体
@@ -49,13 +52,13 @@ dependencies {
     // https://mvnrepository.com/artifact/net.minestom/minestom-snapshots
     implementation("net.minestom:minestom-snapshots:1_21_5-c5b715aa82")
     implementation("com.github.Minestom:DependencyGetter:v1.0.1")
-    implementation("dev.hollowcube:minestom-ce-extensions:1.2.0")
     // database
     implementation("com.zaxxer:HikariCP:4.0.3")
+    implementation("com.mysql:mysql-connector-j:9.3.0")
     // spark
-    compileOnly("me.lucko:spark-api:0.1-SNAPSHOT")
+    implementation("dev.lu15:spark-minestom:1.10-SNAPSHOT")
     // luckperms
-    implementation("me.lucko.luckperms:minestom:5.4-SNAPSHOT")
+    implementation("dev.lu15:luckperms-minestom:5.4-SNAPSHOT")
     //nashorn
     implementation("org.openjdk.nashorn:nashorn-core:15.4")
 
@@ -65,6 +68,7 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    systemProperty("user.dir",file("test").absolutePath)
 }
 tasks.withType<Jar> {
     manifest {

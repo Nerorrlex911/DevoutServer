@@ -1,6 +1,7 @@
 package com.github.zimablue.devoutserver.plugin
 
 
+import com.github.zimablue.devoutserver.config.ConfigManagerImpl
 import com.github.zimablue.devoutserver.lifecycle.LifeCycle
 import com.github.zimablue.devoutserver.lifecycle.LifeCycleManagerImpl.lifeCycle
 import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycle
@@ -12,6 +13,7 @@ import net.minestom.server.ServerProcess
 
 import net.minestom.server.utils.validate.Check
 import org.slf4j.LoggerFactory
+import org.tinylog.Logger
 import java.io.File
 import java.io.IOException
 import java.io.InputStreamReader
@@ -28,15 +30,19 @@ object PluginManagerImpl : PluginManager() {
     val GSON: Gson = Gson()
     lateinit var serverProcess: ServerProcess
 
-    val pluginFolder = File(System.getProperty("minestom.plugin.folder", "plugins"))
-    private val dependenciesFolder = File(pluginFolder, ".libs")
-    var pluginDataRoot = pluginFolder.toPath()
+    val pluginFolder by lazy { File(ConfigManagerImpl.serverConfig.pluginFolder) }
+    private val dependenciesFolder by lazy { File(pluginFolder, ".libs") }
+    val pluginDataRoot by lazy { pluginFolder.toPath() }
 
     private enum class State {
         DO_NOT_START, NOT_STARTED, STARTED, PRE_INIT, INIT, POST_INIT
     }
 
     private var state = State.NOT_STARTED
+        set(value) {
+            Logger.info("state: {},{}",field,value)
+            field = value
+        }
 
     override fun init(serverProcess: ServerProcess) {
         PluginManagerImpl.serverProcess = serverProcess
@@ -386,6 +392,12 @@ object PluginManagerImpl : PluginManager() {
         }
     }
 
+    fun reload(plugin: Plugin) {
+        LOGGER.info("Reloading plugin: ${plugin.key}")
+        plugin.onReload()
+        plugin.lifeCycleManager.lifeCycle(PluginLifeCycle.RELOAD)
+    }
+
 
     //
     // Shutdown / Unload
@@ -395,6 +407,7 @@ object PluginManagerImpl : PluginManager() {
      */
     override fun shutdown() { // copy names, as the plugins map will be modified via the calls to unload
         val pluginNames = HashSet(this.keys)
+        lifeCycle(LifeCycle.DISABLE)
         for (ext in pluginNames) {
             if (this.containsKey(ext)) { // is still loaded? Because plugins can depend on one another, it might have already been unloaded
                 unloadPlugin(ext)
@@ -425,7 +438,6 @@ object PluginManagerImpl : PluginManager() {
 
     private fun unload(plugin: Plugin) {
         plugin.preTerminate()
-        lifeCycle(LifeCycle.DISABLE)
         plugin.onDisable()
         plugin.lifeCycleManager.lifeCycle(PluginLifeCycle.DISABLE)
 
@@ -434,7 +446,7 @@ object PluginManagerImpl : PluginManager() {
         plugin.postTerminate()
 
         // remove from loaded plugins
-        val id = plugin.origin.name!!.lowercase(Locale.getDefault())
+        val id = plugin.origin.name.lowercase(Locale.getDefault())
         this.remove(id)
 
         // cleanup classloader

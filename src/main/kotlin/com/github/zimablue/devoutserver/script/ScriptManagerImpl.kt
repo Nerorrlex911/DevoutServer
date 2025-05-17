@@ -1,15 +1,24 @@
 package com.github.zimablue.devoutserver.script
 
-import com.github.zimablue.devoutserver.DevoutServer.nashornHooker
 import com.github.zimablue.devoutserver.lifecycle.Awake
 import com.github.zimablue.devoutserver.lifecycle.AwakePriority
 import com.github.zimablue.devoutserver.lifecycle.LifeCycle
+import com.github.zimablue.devoutserver.util.ResourceUtils
 import org.slf4j.LoggerFactory
 import java.io.File
 
-object ScriptManagerImpl: ScriptManager(File("scripts")) {
+object ScriptManagerImpl: ScriptManager(File("scripts").absoluteFile) {
 
     val Logger = LoggerFactory.getLogger(ScriptManagerImpl::class.java)
+
+    init {
+        ResourceUtils.extractResource("scripts")
+    }
+
+    @Awake(LifeCycle.LOAD,AwakePriority.NORMAL)
+    fun onLoad() {
+        loadScripts()
+    }
 
     @Awake(LifeCycle.ENABLE,AwakePriority.NORMAL)
     fun onEnable() {
@@ -26,20 +35,5 @@ object ScriptManagerImpl: ScriptManager(File("scripts")) {
         }
     }
 
-    fun run(name: String,function: String) {
-        run(name,function, null)
-    }
-
-    fun run(name: String,function: String,map: Map<String,Any>?,vararg args: Any) {
-        val script = compiledScripts[name] ?: return
-        if (nashornHooker.isFunction(script.scriptEngine, function)) {
-            try {
-                script.invoke(function, map, *args)
-            } catch (error: Throwable) {
-                Logger.error("Error in $function of ${script.name}")
-                error.printStackTrace()
-            }
-        }
-    }
 
 }

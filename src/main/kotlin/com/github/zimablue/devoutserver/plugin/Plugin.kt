@@ -43,6 +43,10 @@ abstract class Plugin protected constructor() : Keyable<String> {
 
     fun postTerminate() {
     }
+
+    fun onReload() {
+
+    }
     val pluginClassLoader: PluginClassLoader
         get() {
             val classLoader = javaClass.classLoader

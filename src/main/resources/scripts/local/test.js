@@ -4,3 +4,6 @@ function onEnable() {
 function onDisable() {
     print("Test script disabled");
 }
+function test() {
+    print("Test script invoked");
+}

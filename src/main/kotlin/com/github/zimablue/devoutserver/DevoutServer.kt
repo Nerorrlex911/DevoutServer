@@ -1,6 +1,8 @@
 package com.github.zimablue.devoutserver
 
 import com.github.zimablue.devoutserver.config.ConfigManagerImpl
+import com.github.zimablue.devoutserver.lifecycle.LifeCycle
+import com.github.zimablue.devoutserver.lifecycle.LifeCycleManagerImpl
 import com.github.zimablue.devoutserver.plugin.PluginManager
 import com.github.zimablue.devoutserver.plugin.PluginManagerImpl
 import com.github.zimablue.devoutserver.script.nashorn.impl.NashornHookerImpl
@@ -41,6 +43,7 @@ object DevoutServer {
 
     fun shutdown() {
         pluginManager.shutdown()
+        LifeCycleManagerImpl.lifeCycle(LifeCycle.SHUTDOWN)
         EasyTerminal.stop()
     }
 }

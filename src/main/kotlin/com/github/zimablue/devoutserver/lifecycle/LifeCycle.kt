@@ -10,4 +10,6 @@ enum class LifeCycle {
     ACTIVE,
     //Plugin停用
     DISABLE,
+    //服务器关闭
+    SHUTDOWN
 }

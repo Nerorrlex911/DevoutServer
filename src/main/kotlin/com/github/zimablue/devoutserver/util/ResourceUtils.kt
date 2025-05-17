@@ -11,7 +11,7 @@ import java.util.stream.Stream
 object ResourceUtils {
     @Throws(URISyntaxException::class, IOException::class)
     @JvmStatic
-    fun extractResource(source: String,targetDir: String=source,overwrite: Boolean=true) {
+    fun extractResource(source: String,targetDir: String=source,overwrite: Boolean=false) {
         val uri: URI = ResourceUtils::class.java.getResource("/$source")?.toURI() ?: throw IOException("Resource not found: $source")
         var fileSystem: FileSystem? = null
 
