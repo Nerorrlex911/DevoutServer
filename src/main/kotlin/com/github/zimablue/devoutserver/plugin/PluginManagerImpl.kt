@@ -14,6 +14,7 @@ import net.minestom.server.ServerProcess
 import net.minestom.server.utils.validate.Check
 import org.slf4j.LoggerFactory
 import org.tinylog.Logger
+import taboolib.module.configuration.Configuration
 import java.io.File
 import java.io.IOException
 import java.io.InputStreamReader
@@ -278,7 +279,7 @@ object PluginManagerImpl : PluginManager() {
 
     fun loadPlugin(discoveredPlugin: DiscoveredPlugin): Plugin? {
         // Create Plugin (authors, version etc.)
-        val pluginName = discoveredPlugin.name!!
+        val pluginName = discoveredPlugin.name
         val mainClass = discoveredPlugin.entrypoint
 
         val loader = discoveredPlugin.classLoader
@@ -352,7 +353,7 @@ object PluginManagerImpl : PluginManager() {
         // add dependents to pre-existing plugins, so that they can easily be found during reloading
         for (dependencyName in discoveredPlugin.dependencies) {
             val dependency = get(dependencyName.lowercase(Locale.getDefault()))
-            dependency?.dependents?.add(discoveredPlugin.name!!)
+            dependency?.dependents?.add(discoveredPlugin.name)
                 ?: LOGGER.warn(
                     "Dependency {} of {} is null? This means the plugin has been loaded without its dependency, which could cause issues later.",
                     dependencyName,
@@ -369,18 +370,14 @@ object PluginManagerImpl : PluginManager() {
     fun discoverFromJar(file: File): DiscoveredPlugin? {
         try {
             ZipFile(file).use { f ->
-                val entry = f.getEntry("plugin.json")
-                    ?: throw IllegalStateException("Missing plugin.json in plugin " + file.name + ".")
-                val reader = InputStreamReader(f.getInputStream(entry))
-
+                val entry = f.getEntry("plugin.yml")
+                    ?: throw IllegalStateException("Missing plugin.yml in plugin " + file.name + ".")
+                val pluginConfig = Configuration.loadFromInputStream(f.getInputStream(entry))
                 // Initialize DiscoveredPlugin from GSON.
-                val plugin = GSON.fromJson(
-                    reader,
-                    DiscoveredPlugin::class.java
-                )
+                val plugin = Configuration.deserialize<DiscoveredPlugin>(pluginConfig,true)
                 plugin.originalJar = file
                 plugin.files.add(file.toURI().toURL())
-                plugin.dataDirectory = pluginDataRoot.resolve(plugin.name!!)
+                plugin.dataDirectory = pluginDataRoot.resolve(plugin.name)
 
                 // Verify integrity and ensure defaults
                 DiscoveredPlugin.verifyIntegrity(plugin)

@@ -31,7 +31,7 @@ object LuckPerms {
                     ) // load from a yaml file
                 )
             }
-            .dependencyManager(true) // automatically download and classload dependencies
+            .dependencyManager(false) // automatically download and classload dependencies
             .enable()
     }
 }

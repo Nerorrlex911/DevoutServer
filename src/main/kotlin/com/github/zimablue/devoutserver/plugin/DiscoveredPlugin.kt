@@ -1,9 +1,13 @@
 package com.github.zimablue.devoutserver.plugin
 
-import com.google.gson.JsonObject
+import com.electronwill.nightconfig.core.conversion.Conversion
+import com.electronwill.nightconfig.core.conversion.Converter
+
 import net.minestom.server.utils.validate.Check
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import taboolib.library.configuration.ConfigurationSection
+import taboolib.module.configuration.Configuration
 import java.io.File
 import java.net.URL
 import java.nio.file.Path
@@ -49,7 +53,7 @@ class DiscoveredPlugin {
      * Meta is meant to handle properties that will
      * be accessed by other extensions, not accessed by itself
      */
-    private var meta: JsonObject? = null
+    private var meta: ConfigurationSection? = null
 
     /** All files of this extension  */
     @Transient
@@ -90,14 +94,15 @@ class DiscoveredPlugin {
     }
 
     class ExternalDependencies {
-        var repositories: Array<Repository> = arrayOf()
-        var artifacts: Array<String> = arrayOf()
+        val repositories: List<Repository> = listOf()
+        val artifacts: List<String> = listOf()
 
-        class Repository {
-            val name: String?=null
+        class Repository (
+            val name: String?=null,
             val url: String?=null
-        }
+        )
     }
+
 
     companion object {
         /** Static logger for this class.  */
@@ -161,7 +166,7 @@ class DiscoveredPlugin {
 
             // No meta was provided
             if (extension.meta == null) {
-                extension.meta = JsonObject()
+                extension.meta = Configuration.empty()
             }
         }
     }

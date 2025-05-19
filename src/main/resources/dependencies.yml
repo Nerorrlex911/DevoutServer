@@ -1,0 +1,25 @@
+repositories:
+  - "https://jitpack.io"
+  - "https://repo.tabooproject.org/repository/releases/"
+  - "https://oss.sonatype.org/content/repositories/snapshots"
+  - "https://repo.hypera.dev/snapshots"
+  - "https://repo.lucko.me/"
+  - "https://mvnrepository.com/artifact/com.mysql/mysql-connector-j"
+dependencies:
+  snakeyamlVersion: ${snakeyamlVersion}
+  typesafeConfigVersion: ${typesafeConfigVersion}
+  nightConfigVersion: ${nightConfigVersion}
+  coreConversionVersion: ${coreConversionVersion}
+  jlineVersion: ${jlineVersion}
+  tinylogVersion: ${tinylogVersion}
+  jansiVersion: ${jansiVersion}
+  reflexVersion: ${reflexVersion}
+  asmVersion: ${asmVersion}
+  guavaVersion: ${guavaVersion}
+  minestomVersion: ${minestomVersion}
+  dependencyGetterVersion: ${dependencyGetterVersion}
+  hikariCPVersion: ${hikariCPVersion}
+  mysqlConnectorVersion: ${mysqlConnectorVersion}
+  sparkMinestomVersion: ${sparkMinestomVersion}
+  luckpermsMinestomVersion: ${luckpermsMinestomVersion}
+  nashornVersion: ${nashornVersion}

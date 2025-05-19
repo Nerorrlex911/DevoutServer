@@ -14,14 +14,14 @@ object Spark {
     val logger = LoggerFactory.getLogger(Spark::class.java)
     val spark by lazy {
         SparkMinestom.builder(directory)
+            .logger(logger)
             .commands(true) // enables registration of Spark commands
             .permissionHandler { sender, permission ->
                 sender is ConsoleSender
             } // allows only console senders to execute all commands
             .enable()
     }
-    @Awake(LifeCycle.LOAD,AwakePriority.NORMAL)
-    fun onLoad() {
+    init {
         val version = spark.platform().plugin.version
         logger.info("Spark(version: $version) started")
     }

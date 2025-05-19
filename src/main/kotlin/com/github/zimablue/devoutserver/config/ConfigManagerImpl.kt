@@ -16,7 +16,7 @@ object ConfigManagerImpl{
     init {
 
         Logger.info("Initializing ConfigManagerImpl,server.yml path: {}",File("server.yml").absolutePath)
-        ResourceUtils.extractResource("server.yml", "sever.yml", false)
+        ResourceUtils.extractResource("server.yml", "server.yml", false)
 
     }
 
