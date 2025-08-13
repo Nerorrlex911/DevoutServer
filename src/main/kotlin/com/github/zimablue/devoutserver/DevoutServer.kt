@@ -3,9 +3,7 @@ package com.github.zimablue.devoutserver
 import com.github.zimablue.devoutserver.config.ConfigManagerImpl
 import com.github.zimablue.devoutserver.lifecycle.LifeCycle
 import com.github.zimablue.devoutserver.lifecycle.LifeCycleManagerImpl
-import com.github.zimablue.devoutserver.plugin.PluginManager
 import com.github.zimablue.devoutserver.plugin.PluginManagerImpl
-import com.github.zimablue.devoutserver.script.nashorn.impl.NashornHookerImpl
 import com.github.zimablue.devoutserver.terminal.EasyTerminal
 import net.minestom.server.MinecraftServer
 import org.slf4j.LoggerFactory
@@ -14,20 +12,20 @@ import java.net.SocketAddress
 
 object DevoutServer {
 
-    val pluginManager: PluginManager = PluginManagerImpl
 
-    val server = MinecraftServer.init()
 
-    val nashornHooker = NashornHookerImpl()
+    val server: MinecraftServer by lazy { MinecraftServer.init() }
 
-    val LOGGER = LoggerFactory.getLogger(DevoutServer::class.java)
+
+    val LOGGER by lazy { LoggerFactory.getLogger(DevoutServer::class.java) }
     
     init {
-        pluginManager.init(MinecraftServer.process())
+        server
+        PluginManagerImpl.init(MinecraftServer.process())
         MinecraftServer.getSchedulerManager().buildShutdownTask { shutdown() }
 
-        pluginManager.start()
-        pluginManager.gotoPreInit()
+        PluginManagerImpl.start()
+        PluginManagerImpl.gotoPreInit()
     }
 
     fun start() {
@@ -36,13 +34,13 @@ object DevoutServer {
 
     fun start(address: SocketAddress) {
         EasyTerminal.start()
-        pluginManager.gotoInit()
+        PluginManagerImpl.gotoInit()
         server.start(address)
-        pluginManager.gotoPostInit()
+        PluginManagerImpl.gotoPostInit()
     }
 
     fun shutdown() {
-        pluginManager.shutdown()
+        PluginManagerImpl.shutdown()
         LifeCycleManagerImpl.lifeCycle(LifeCycle.SHUTDOWN)
         EasyTerminal.stop()
     }

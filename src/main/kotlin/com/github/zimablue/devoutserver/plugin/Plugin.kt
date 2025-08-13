@@ -24,27 +24,27 @@ abstract class Plugin protected constructor() : Keyable<String> {
      */
     val dependents = HashSet<String>()
 
-    fun onLoad() {
+    open fun onLoad() {
     }
 
-    fun onEnable() {
+    open fun onEnable() {
 
     }
 
-    fun onActive() {
+    open fun onActive() {
     }
 
     fun preTerminate() {
     }
 
-    fun onDisable() {
+    open fun onDisable() {
 
     }
 
     fun postTerminate() {
     }
 
-    fun onReload() {
+    open fun onReload() {
 
     }
     val pluginClassLoader: PluginClassLoader

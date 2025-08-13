@@ -1,25 +1,34 @@
 repositories:
-  - "https://jitpack.io"
   - "https://repo.tabooproject.org/repository/releases/"
   - "https://oss.sonatype.org/content/repositories/snapshots"
   - "https://repo.hypera.dev/snapshots"
   - "https://repo.lucko.me/"
   - "https://mvnrepository.com/artifact/com.mysql/mysql-connector-j"
 dependencies:
-  snakeyamlVersion: ${snakeyamlVersion}
-  typesafeConfigVersion: ${typesafeConfigVersion}
-  nightConfigVersion: ${nightConfigVersion}
-  coreConversionVersion: ${coreConversionVersion}
-  jlineVersion: ${jlineVersion}
-  tinylogVersion: ${tinylogVersion}
-  jansiVersion: ${jansiVersion}
-  reflexVersion: ${reflexVersion}
-  asmVersion: ${asmVersion}
-  guavaVersion: ${guavaVersion}
-  minestomVersion: ${minestomVersion}
-  dependencyGetterVersion: ${dependencyGetterVersion}
-  hikariCPVersion: ${hikariCPVersion}
-  mysqlConnectorVersion: ${mysqlConnectorVersion}
-  sparkMinestomVersion: ${sparkMinestomVersion}
-  luckpermsMinestomVersion: ${luckpermsMinestomVersion}
-  nashornVersion: ${nashornVersion}
+  #- "org.yaml:snakeyaml:${snakeyamlVersion}"
+  - "com.typesafe:config:${typesafeConfigVersion}"
+  - "com.electronwill.night-config:core:${nightConfigVersion}"
+  - "com.electronwill.night-config:toml:${nightConfigVersion}"
+  - "com.electronwill.night-config:json:${nightConfigVersion}"
+  - "com.electronwill.night-config:hocon:${nightConfigVersion}"
+  - "com.electronwill.night-config:core-conversion:${coreConversionVersion}"
+
+  - "org.jline:jline-reader:${jlineVersion}"
+  - "org.jline:jline-terminal:${jlineVersion}"
+  - "org.jline:jline-terminal-jna:${jlineVersion}"
+  - "org.tinylog:tinylog-api:${tinylogVersion}"
+  - "org.tinylog:tinylog-impl:${tinylogVersion}"
+  - "org.tinylog:slf4j-tinylog:${tinylogVersion}"
+  - "org.fusesource.jansi:jansi:${jansiVersion}"
+
+  - "org.tabooproject.reflex:analyser:${reflexVersion}"
+  - "org.tabooproject.reflex:fast-instance-getter:${reflexVersion}"
+  - "org.tabooproject.reflex:reflex:${reflexVersion}"
+
+  - "org.ow2.asm:asm:${asmVersion}"
+  - "org.ow2.asm:asm-util:${asmVersion}"
+  - "org.ow2.asm:asm-commons:${asmVersion}"
+
+  - "com.zaxxer:HikariCP:${hikariCPVersion}"
+  - "com.mysql:mysql-connector-j:${mysqlConnectorVersion}"
+  - "org.openjdk.nashorn:nashorn-core:${nashornVersion}"

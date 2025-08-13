@@ -1,7 +1,7 @@
 package com.github.zimablue.devoutserver.script
 
 
-import com.github.zimablue.devoutserver.DevoutServer.nashornHooker
+import com.github.zimablue.devoutserver.script.nashorn.impl.NashornHookerImpl
 import java.io.File
 import java.io.Reader
 import javax.script.Invocable
@@ -116,5 +116,8 @@ open class CompiledScript {
             ScriptManagerImpl.Logger.error("Error in $function of ${this.name}")
             error.printStackTrace()
         }
+    }
+    companion object {
+        val nashornHooker by lazy { NashornHookerImpl() }
     }
 }

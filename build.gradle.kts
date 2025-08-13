@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 val snakeyamlVersion: String by project
 val typesafeConfigVersion: String by project
 val nightConfigVersion: String by project
@@ -12,11 +14,9 @@ val minestomVersion: String by project
 val dependencyGetterVersion: String by project
 val hikariCPVersion: String by project
 val mysqlConnectorVersion: String by project
-val sparkMinestomVersion: String by project
-val luckpermsMinestomVersion: String by project
 val nashornVersion: String by project
 plugins {
-    kotlin("jvm") version "1.9.22"
+    kotlin("jvm") version "2.1.10"
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
@@ -38,41 +38,37 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     // config
     implementation("org.yaml:snakeyaml:$snakeyamlVersion")
-    implementation("com.typesafe:config:$typesafeConfigVersion")
-    implementation("com.electronwill.night-config:core:$nightConfigVersion")
-    implementation("com.electronwill.night-config:toml:$nightConfigVersion")
-    implementation("com.electronwill.night-config:json:$nightConfigVersion")
-    implementation("com.electronwill.night-config:hocon:$nightConfigVersion")
-    implementation("com.electronwill.night-config:core-conversion:$coreConversionVersion")
+    compileOnly("com.typesafe:config:$typesafeConfigVersion")
+    compileOnly("com.electronwill.night-config:core:$nightConfigVersion")
+    compileOnly("com.electronwill.night-config:toml:$nightConfigVersion")
+    compileOnly("com.electronwill.night-config:json:$nightConfigVersion")
+    compileOnly("com.electronwill.night-config:hocon:$nightConfigVersion")
+    compileOnly("com.electronwill.night-config:core-conversion:$coreConversionVersion")
     // terminal
-    implementation("org.jline:jline-reader:$jlineVersion")
-    implementation("org.jline:jline-terminal:$jlineVersion")
-    implementation("org.jline:jline-terminal-jna:$jlineVersion")
-    implementation("org.tinylog:tinylog-api:$tinylogVersion")
-    implementation("org.tinylog:tinylog-impl:$tinylogVersion")
-    implementation("org.tinylog:slf4j-tinylog:$tinylogVersion")
-    implementation("org.fusesource.jansi:jansi:$jansiVersion")
+    compileOnly("org.jline:jline-reader:$jlineVersion")
+    compileOnly("org.jline:jline-terminal:$jlineVersion")
+    compileOnly("org.jline:jline-terminal-jna:$jlineVersion")
+    compileOnly("org.tinylog:tinylog-api:$tinylogVersion")
+    compileOnly("org.tinylog:tinylog-impl:$tinylogVersion")
+    compileOnly("org.tinylog:slf4j-tinylog:$tinylogVersion")
+    compileOnly("org.fusesource.jansi:jansi:$jansiVersion")
     //reflex
     // 本体
-    implementation("org.tabooproject.reflex:analyser:$reflexVersion")
-    implementation("org.tabooproject.reflex:fast-instance-getter:$reflexVersion")
-    implementation("org.tabooproject.reflex:reflex:$reflexVersion")
+    compileOnly("org.tabooproject.reflex:analyser:$reflexVersion")
+    compileOnly("org.tabooproject.reflex:fast-instance-getter:$reflexVersion")
+    compileOnly("org.tabooproject.reflex:reflex:$reflexVersion")
     // 本体依赖
-    implementation("org.ow2.asm:asm:$asmVersion")
-    implementation("org.ow2.asm:asm-util:$asmVersion")
-    implementation("org.ow2.asm:asm-commons:$asmVersion")
+    compileOnly("org.ow2.asm:asm:$asmVersion")
+    compileOnly("org.ow2.asm:asm-util:$asmVersion")
+    compileOnly("org.ow2.asm:asm-commons:$asmVersion")
     // minestom
     implementation("net.minestom:minestom-snapshots:$minestomVersion")
     implementation("com.github.Minestom:DependencyGetter:$dependencyGetterVersion")
     // database
-    implementation("com.zaxxer:HikariCP:$hikariCPVersion")
-    implementation("com.mysql:mysql-connector-j:$mysqlConnectorVersion")
-    // spark
-    implementation("dev.lu15:spark-minestom:$sparkMinestomVersion")
-    // luckperms
-    implementation("dev.lu15:luckperms-minestom:$luckpermsMinestomVersion")
+    compileOnly("com.zaxxer:HikariCP:$hikariCPVersion")
+    compileOnly("com.mysql:mysql-connector-j:$mysqlConnectorVersion")
     // nashorn
-    implementation("org.openjdk.nashorn:nashorn-core:$nashornVersion")
+    compileOnly("org.openjdk.nashorn:nashorn-core:$nashornVersion")
 
     implementation(fileTree("libs"))
 
@@ -86,6 +82,10 @@ tasks.withType<Jar> {
     manifest {
         attributes["Main-Class"] = "com.github.zimablue.devoutserver.MainKt"
     }
+}
+tasks.named<ShadowJar>("shadowJar") {
+    mergeServiceFiles()
+
 }
 tasks.processResources {
     filesMatching("dependencies.yml") {

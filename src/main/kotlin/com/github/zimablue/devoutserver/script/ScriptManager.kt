@@ -1,7 +1,7 @@
 package com.github.zimablue.devoutserver.script
 
-import com.github.zimablue.devoutserver.DevoutServer
-import com.github.zimablue.devoutserver.DevoutServer.nashornHooker
+
+import com.github.zimablue.devoutserver.script.CompiledScript.Companion.nashornHooker
 import com.github.zimablue.devoutserver.script.ScriptManagerImpl.Logger
 import com.github.zimablue.devoutserver.util.getAllFiles
 import java.io.File
