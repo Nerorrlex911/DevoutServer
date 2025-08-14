@@ -32,3 +32,4 @@ dependencies:
   - "com.zaxxer:HikariCP:${hikariCPVersion}"
   - "com.mysql:mysql-connector-j:${mysqlConnectorVersion}"
   - "org.openjdk.nashorn:nashorn-core:${nashornVersion}"
+  - "com.google.guava:guava:${guavaVersion}"

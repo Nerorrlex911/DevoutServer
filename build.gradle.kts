@@ -69,6 +69,11 @@ dependencies {
     compileOnly("com.mysql:mysql-connector-j:$mysqlConnectorVersion")
     // nashorn
     compileOnly("org.openjdk.nashorn:nashorn-core:$nashornVersion")
+    //guava
+    compileOnly("com.google.guava:guava:$guavaVersion")
+    //bytebuddy
+    implementation("net.bytebuddy:byte-buddy:1.17.6")
+    implementation("net.bytebuddy:byte-buddy-agent:1.17.6")
 
     implementation(fileTree("libs"))
 
