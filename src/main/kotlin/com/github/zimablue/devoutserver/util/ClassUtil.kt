@@ -15,7 +15,7 @@ import java.util.jar.JarFile
 object ClassUtil {
 
 
-    fun getClasses(clazz: Class<*>): List<Class<*>> {
+    fun getClasses(clazz: Class<*>,packageName: String?=null): List<Class<*>> {
         val classes: MutableList<Class<*>> = ArrayList()
         val url = clazz.protectionDomain.codeSource.location
         silent {
@@ -29,6 +29,7 @@ object ClassUtil {
             }.forEach { entry: JarEntry ->
                 val className =
                     entry.name.replace('/', '.').substring(0, entry.name.length - 6)
+                if(packageName!=null && !className.startsWith(packageName)) return@forEach
                 silent { classes.add(Class.forName(className, false, clazz.classLoader)) }
             }
         }

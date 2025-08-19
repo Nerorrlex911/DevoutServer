@@ -1,0 +1,49 @@
+[versions]
+kotlin = "2.1.10"
+snakeyaml = "2.2"
+typesafeConfig = "1.4.3"
+nightConfig = "3.6.7"
+coreConversion = "6.0.0"
+jline = "3.25.0"
+tinylog = "2.7.0"
+jansi = "2.4.1"
+reflex = "1.0.23"
+asm = "9.2"
+guava = "33.4.8-jre"
+minestom = "1_21_6-c3ccee696b"
+dependencyGetter = "1.0.1"
+hikariCP = "4.0.3"
+mysqlConnector = "9.3.0"
+nashorn = "15.4"
+byteBuddy = "1.17.6"
+
+[libraries]
+kotlin = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
+typesafeConfig = { module = "com.typesafe:config", version.ref = "typesafeConfig" }
+nightConfig-core = { module = "com.electronwill.night-config:core", version.ref = "nightConfig" }
+nightConfig-toml = { module = "com.electronwill.night-config:toml", version.ref = "nightConfig" }
+nightConfig-json = { module = "com.electronwill.night-config:json", version.ref = "nightConfig" }
+nightConfig-hocon = { module = "com.electronwill.night-config:hocon", version.ref = "nightConfig" }
+nightConfig-coreConversion = { module = "com.electronwill.night-config:core-conversion", version.ref = "coreConversion" }
+jline-reader = { module = "org.jline:jline-reader", version.ref = "jline" }
+jline-terminal = { module = "org.jline:jline-terminal", version.ref = "jline" }
+jline-terminalJna = { module = "org.jline:jline-terminal-jna", version.ref = "jline" }
+tinylog-api = { module = "org.tinylog:tinylog-api", version.ref = "tinylog" }
+tinylog-impl = { module = "org.tinylog:tinylog-impl", version.ref = "tinylog" }
+tinylog-slf4j = { module = "org.tinylog:slf4j-tinylog", version.ref = "tinylog" }
+jansi = { module = "org.fusesource.jansi:jansi", version.ref = "jansi" }
+reflex-analyser = { module = "org.tabooproject.reflex:analyser", version.ref = "reflex" }
+reflex-fastInstanceGetter = { module = "org.tabooproject.reflex:fast-instance-getter", version.ref = "reflex" }
+reflex-core = { module = "org.tabooproject.reflex:reflex", version.ref = "reflex" }
+asm-core = { module = "org.ow2.asm:asm", version.ref = "asm" }
+asm-util = { module = "org.ow2.asm:asm-util", version.ref = "asm" }
+asm-commons = { module = "org.ow2.asm:asm-commons", version.ref = "asm" }
+minestom = { module = "net.minestom:minestom-snapshots", version.ref = "minestom" }
+dependencyGetter = { module = "com.github.Minestom:DependencyGetter", version.ref = "dependencyGetter" }
+hikariCP = { module = "com.zaxxer:HikariCP", version.ref = "hikariCP" }
+mysqlConnector = { module = "com.mysql:mysql-connector-j", version.ref = "mysqlConnector" }
+nashorn = { module = "org.openjdk.nashorn:nashorn-core", version.ref = "nashorn" }
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+byteBuddy = { module = "net.bytebuddy:byte-buddy", version.ref = "byteBuddy" }
+byteBuddyAgent = { module = "net.bytebuddy:byte-buddy-agent", version.ref = "byteBuddy" }

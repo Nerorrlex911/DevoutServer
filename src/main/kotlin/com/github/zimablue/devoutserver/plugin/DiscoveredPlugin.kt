@@ -1,8 +1,5 @@
 package com.github.zimablue.devoutserver.plugin
 
-import com.electronwill.nightconfig.core.conversion.Conversion
-import com.electronwill.nightconfig.core.conversion.Converter
-
 import net.minestom.server.utils.validate.Check
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -14,38 +11,28 @@ import java.nio.file.Path
 import java.util.*
 
 /**
- * Represents an extension from an `extension.json` that is capable of powering an Plugin object.
+ * Represents an extension from an `plugin.yml` that is capable of powering an Plugin object.
  *
- * This has no constructor as its properties are set via GSON.
  */
-class DiscoveredPlugin {
+class DiscoveredPlugin(
     /** Name of the DiscoveredPlugin. Unique for all extensions.  */
-    var name: String = ""
-
+    val name: String = "",
     /** Main class of this DiscoveredPlugin, must extend Plugin.  */
-    var entrypoint: String = ""
-
+    val entrypoint: String = "",
     /** Version of this extension, highly reccomended to set it.  */
-    private var version: String = ""
-
+    val version: String = "Unspecified",
     /** People who have made this extension.  */
-    var authors = listOf<String>()
-        private set
-
+    val authors: List<String> = listOf(),
     /** List of extension names that this depends on.  */
-    var dependencies = mutableListOf<String>()
-        private set
-
+    val dependencies: MutableList<String> = mutableListOf(),
     /** List of extension names that this soft-depends on. */
-    var softDependencies = mutableListOf<String>()
-        private set
-
+    val softDependencies: MutableList<String> = mutableListOf(),
     /** List of extension names that load before this*/
-    var loadBefore = mutableListOf<String>()
-
+    val loadBefore: MutableList<String> = mutableListOf(),
     /** List of Repositories and URLs that this depends on.  */
-    var externalDependencies: ExternalDependencies? = null
-
+    val externalDependencies: ExternalDependencies = ExternalDependencies(),
+    /** package for annotation scan, set it to null to disable*/
+    val packageName: String? = null,
     /**
      * Extra meta on the object.
      * Do NOT use as configuration:
@@ -53,11 +40,13 @@ class DiscoveredPlugin {
      * Meta is meant to handle properties that will
      * be accessed by other extensions, not accessed by itself
      */
-    private var meta: ConfigurationSection? = null
+    private var meta: ConfigurationSection=Configuration.empty(),
+) {
+
 
     /** All files of this extension  */
     @Transient
-    var files = LinkedList<URL>()
+    val files = LinkedList<URL>()
 
     /** The load status of this extension -- LOAD_SUCCESS is the only good one.  */
     @Transient
@@ -65,13 +54,14 @@ class DiscoveredPlugin {
 
     /** The original jar this is from.  */
     @Transient
-    var originalJar: File? = null
+    lateinit var originalJar: File
 
     @Transient
-    var dataDirectory: Path? = null
+    lateinit var dataDirectory: Path
 
     /** The class loader that powers it.  */
-    var classLoader: PluginClassLoader? = null
+    @Transient
+    var classLoader: PluginClassLoader?=null
 
     fun createClassLoader() {
         Check.stateCondition(classLoader != null, "Plugin classloader has already been created")
@@ -93,14 +83,19 @@ class DiscoveredPlugin {
         LOAD_FAILED("Load failed. See logs for more information."),
     }
 
-    class ExternalDependencies {
-        val repositories: List<Repository> = listOf()
-        val artifacts: List<String> = listOf()
+    class Repository (
+        val name: String="Repository",
+        val url: String=""
+    )
 
-        class Repository (
-            val name: String?=null,
-            val url: String?=null
-        )
+    class ExternalDependencies(
+        val repositories: MutableList<Repository> = mutableListOf(),
+        val artifacts: MutableList<String> = mutableListOf(),
+    ) {
+
+        fun isEmpty(): Boolean {
+            return repositories.isEmpty() && artifacts.isEmpty()
+        }
     }
 
 
@@ -125,9 +120,6 @@ class DiscoveredPlugin {
                 LOGGER.error("Plugin with no name. (at {}})", fileList)
                 LOGGER.error("Plugin at ({}) will not be loaded.", fileList)
                 extension.loadStatus = LoadStatus.INVALID_NAME
-
-                // To ensure @NotNull: name = INVALID_NAME
-                extension.name = extension.loadStatus.name
                 return
             }
 
@@ -135,9 +127,6 @@ class DiscoveredPlugin {
                 LOGGER.error("Plugin '{}' specified an invalid name.", extension.name)
                 LOGGER.error("Plugin '{}' will not be loaded.", extension.name)
                 extension.loadStatus = LoadStatus.INVALID_NAME
-
-                // To ensure @NotNull: name = INVALID_NAME
-                extension.name = extension.loadStatus.name
                 return
             }
 
@@ -145,28 +134,14 @@ class DiscoveredPlugin {
                 LOGGER.error("Plugin '{}' did not specify an entry point (via 'entrypoint').", extension.name)
                 LOGGER.error("Plugin '{}' will not be loaded.", extension.name)
                 extension.loadStatus = LoadStatus.NO_ENTRYPOINT
-
-                // To ensure @NotNull: entrypoint = NO_ENTRYPOINT
-                extension.entrypoint = extension.loadStatus.name
                 return
             }
 
             // Handle defaults
             // If we reach this code, then the extension will most likely be loaded:
-            if (extension.version.isEmpty()) {
+            if (extension.version == "Unspecified") {
                 LOGGER.warn("Plugin '{}' did not specify a version.", extension.name)
                 LOGGER.warn("Plugin '{}' will continue to load but should specify a decouple version.", extension.name)
-                extension.version = "Unspecified"
-            }
-
-            // No external dependencies were specified;
-            if (extension.externalDependencies == null) {
-                extension.externalDependencies = ExternalDependencies()
-            }
-
-            // No meta was provided
-            if (extension.meta == null) {
-                extension.meta = Configuration.empty()
             }
         }
     }

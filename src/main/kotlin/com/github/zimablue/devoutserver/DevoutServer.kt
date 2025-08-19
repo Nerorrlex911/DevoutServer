@@ -33,7 +33,6 @@ object DevoutServer {
     }
 
     fun start(address: SocketAddress) {
-        EasyTerminal.start()
         PluginManagerImpl.gotoInit()
         server.start(address)
         PluginManagerImpl.gotoPostInit()

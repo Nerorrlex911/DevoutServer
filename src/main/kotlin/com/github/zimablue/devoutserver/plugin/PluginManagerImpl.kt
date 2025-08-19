@@ -1,7 +1,6 @@
 package com.github.zimablue.devoutserver.plugin
 
 
-import com.github.zimablue.devoutserver.config.ConfigManagerImpl
 import com.github.zimablue.devoutserver.lifecycle.LifeCycle
 import com.github.zimablue.devoutserver.lifecycle.LifeCycleManagerImpl.lifeCycle
 import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycle
@@ -10,14 +9,11 @@ import net.minestom.dependencies.DependencyGetter
 import net.minestom.dependencies.ResolvedDependency
 import net.minestom.dependencies.maven.MavenRepository
 import net.minestom.server.ServerProcess
-
 import net.minestom.server.utils.validate.Check
 import org.slf4j.LoggerFactory
-import org.tinylog.Logger
 import taboolib.module.configuration.Configuration
 import java.io.File
 import java.io.IOException
-import java.io.InputStreamReader
 import java.lang.reflect.Constructor
 import java.lang.reflect.InvocationTargetException
 import java.util.*
@@ -25,13 +21,13 @@ import java.util.zip.ZipFile
 
 object PluginManagerImpl : PluginManager() {
 
-    val LOGGER = LoggerFactory.getLogger(PluginManagerImpl::class.java)
+    val LOGGER by lazy { LoggerFactory.getLogger("PluginManager") }
     val INDEV_CLASSES_FOLDER = "minestom.plugin.indevfolder.classes"
     val INDEV_RESOURCES_FOLDER = "minestom.plugin.indevfolder.resources"
     val GSON: Gson = Gson()
     lateinit var serverProcess: ServerProcess
 
-    val pluginFolder by lazy { File(ConfigManagerImpl.serverConfig.pluginFolder) }
+    val pluginFolder by lazy { File("plugins") }
     private val dependenciesFolder by lazy { File(pluginFolder, ".libs") }
     val pluginDataRoot by lazy { pluginFolder.toPath() }
 
@@ -40,10 +36,6 @@ object PluginManagerImpl : PluginManager() {
     }
 
     private var state = State.NOT_STARTED
-        set(value) {
-            Logger.info("state: {},{}",field,value)
-            field = value
-        }
 
     override fun init(serverProcess: ServerProcess) {
         PluginManagerImpl.serverProcess = serverProcess
@@ -373,8 +365,8 @@ object PluginManagerImpl : PluginManager() {
                 val entry = f.getEntry("plugin.yml")
                     ?: throw IllegalStateException("Missing plugin.yml in plugin " + file.name + ".")
                 val pluginConfig = Configuration.loadFromInputStream(f.getInputStream(entry))
-                // Initialize DiscoveredPlugin from GSON.
-                val plugin = Configuration.deserialize<DiscoveredPlugin>(pluginConfig,true)
+                // Initialize DiscoveredPlugin from yml config.
+                val plugin = Configuration.deserialize<DiscoveredPlugin>(pluginConfig,false)
                 plugin.originalJar = file
                 plugin.files.add(file.toURI().toURL())
                 plugin.dataDirectory = pluginDataRoot.resolve(plugin.name)
@@ -390,7 +382,7 @@ object PluginManagerImpl : PluginManager() {
     }
 
     fun reload(plugin: Plugin) {
-        LOGGER.info("Reloading plugin: ${plugin.key}")
+        LOGGER.info("Reloading plugin: ${plugin.name}")
         plugin.onReload()
         plugin.lifeCycleManager.lifeCycle(PluginLifeCycle.RELOAD)
     }

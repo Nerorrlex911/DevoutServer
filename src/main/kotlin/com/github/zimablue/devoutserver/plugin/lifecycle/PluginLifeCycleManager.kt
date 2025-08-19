@@ -32,11 +32,10 @@ class PluginLifeCycleManager(val plugin: Plugin) {
         lifeCycleTasks[lifeCycle]?.forEach { it.execute() }
     }
     init {
-        AnnotationManager.addPlugin(plugin)
         val allMethods = AnnotationManager.getTargets<Awake>(plugin).second
         allMethods.forEach { method ->
             val annotation = method.getAnnotation(Awake::class.java)
-            registerTask(LifeCycleTask(annotation.lifeCycle,annotation.priority) {
+            registerTask(LifeCycleTask(annotation.lifeCycle, annotation.priority) {
                 method.execute()
             })
         }

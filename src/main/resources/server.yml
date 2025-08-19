@@ -8,5 +8,6 @@ proxy:
   secret: password
 
 debug: true
-plugin-folder: "plugins"
+mojang-auth: true
+default-world: true
 

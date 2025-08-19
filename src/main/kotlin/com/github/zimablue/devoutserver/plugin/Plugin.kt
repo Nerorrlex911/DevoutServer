@@ -1,7 +1,6 @@
 package com.github.zimablue.devoutserver.plugin
 
 import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycleManager
-import com.github.zimablue.devoutserver.util.map.component.Keyable
 import net.kyori.adventure.text.logger.slf4j.ComponentLogger
 import net.minestom.server.event.Event
 import net.minestom.server.event.EventNode
@@ -12,7 +11,12 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 
-abstract class Plugin protected constructor() : Keyable<String> {
+abstract class Plugin protected constructor() {
+
+    val name : String
+        get() {
+            return origin.name
+        }
 
     val lifeCycleManager by lazy { PluginLifeCycleManager(this) }
 

@@ -8,11 +8,15 @@ import java.lang.reflect.Method
 
 object AnnotationManager {
     val pluginClassMap = hashMapOf<Plugin,Set<Class<*>>>()
-    fun addPlugin(plugin: Plugin) {
-        pluginClassMap[plugin] = ClassUtil.getClasses(plugin.javaClass).toSet()
-    }
+
     inline fun <reified V: Annotation> getTargets(plugin: Plugin): Triple<HashSet<Field>, HashSet<Method>, HashSet<Class<*>>> {
-        val classesToScan = pluginClassMap[plugin]?:return Triple(hashSetOf(), hashSetOf(), hashSetOf())
+        // 在设置packageName的情况下再扫描注解
+        if(plugin.origin.packageName == null) {
+            return Triple(hashSetOf(), hashSetOf(), hashSetOf())
+        }
+        val classesToScan = pluginClassMap.getOrPut(plugin) {
+            ClassUtil.getClasses(plugin.javaClass,plugin.origin.packageName).toSet()
+        }
         return AnnotationManagerImpl.getTargets<V>(classesToScan)
     }
 }
