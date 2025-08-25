@@ -1,5 +1,6 @@
 [versions]
 kotlin = "2.1.10"
+kotlinx-coroutines = "1.10.2"
 snakeyaml = "2.2"
 typesafeConfig = "1.4.3"
 nightConfig = "3.6.7"
@@ -19,6 +20,7 @@ byteBuddy = "1.17.6"
 
 [libraries]
 kotlin = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
 typesafeConfig = { module = "com.typesafe:config", version.ref = "typesafeConfig" }
 nightConfig-core = { module = "com.electronwill.night-config:core", version.ref = "nightConfig" }

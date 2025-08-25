@@ -4,6 +4,8 @@ package com.github.zimablue.devoutserver.plugin
 import com.github.zimablue.devoutserver.lifecycle.LifeCycle
 import com.github.zimablue.devoutserver.lifecycle.LifeCycleManagerImpl.lifeCycle
 import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycle
+import com.github.zimablue.devoutserver.util.ClassUtil.instance
+import com.github.zimablue.devoutserver.util.ClassUtil.isSingleton
 import com.google.gson.Gson
 import net.minestom.dependencies.DependencyGetter
 import net.minestom.dependencies.ResolvedDependency
@@ -11,6 +13,7 @@ import net.minestom.dependencies.maven.MavenRepository
 import net.minestom.server.ServerProcess
 import net.minestom.server.utils.validate.Check
 import org.slf4j.LoggerFactory
+import org.tabooproject.reflex.FastInstGetter
 import taboolib.module.configuration.Configuration
 import java.io.File
 import java.io.IOException
@@ -209,8 +212,8 @@ object PluginManagerImpl : PluginManager() {
                 val externalDependencies = discoveredPlugin.externalDependencies ?: continue
                 val repoList: MutableList<MavenRepository> = LinkedList<MavenRepository>()
                 for (repository in externalDependencies.repositories) {
-                    check(!repository.name.isNullOrEmpty()) { "Missing 'name' element in repository object." }
-                    check(!repository.url.isNullOrEmpty()) { "Missing 'url' element in repository object." }
+                    check(repository.name.isNotEmpty()) { "Missing 'name' element in repository object." }
+                    check(repository.url.isNotEmpty()) { "Missing 'url' element in repository object." }
                     repoList.add(MavenRepository(repository.name, repository.url))
                 }
 
@@ -304,42 +307,49 @@ object PluginManagerImpl : PluginManager() {
             )
             return null
         }
-
-        val constructor: Constructor<out Plugin>
-        try {
-            constructor = pluginClass.getDeclaredConstructor()
-            // Let's just make it accessible, plugin creators don't have to make this public.
-            constructor.setAccessible(true)
-        } catch (e: NoSuchMethodException) {
-            LOGGER.error(
-                "Main class '{}' in '{}' does not define a no-args constructor.",
-                mainClass,
-                pluginName,
-                e
-            )
-            return null
-        }
+        // Check if the plugin class is a kotlin object
         var plugin: Plugin? = null
-        try {
-            plugin = constructor.newInstance()
-        } catch (e: InstantiationException) {
-            LOGGER.error(
-                "Main class '{}' in '{}' cannot be an abstract class.",
-                mainClass,
-                pluginName,
-                e
-            )
-            return null
-        } catch (ignored: IllegalAccessException) {
-            // We made it accessible, should not occur
-        } catch (e: InvocationTargetException) {
-            LOGGER.error(
-                "While instantiating the main class '{}' in '{}' an exception was thrown.",
-                mainClass,
-                pluginName,
-                e.targetException
-            )
-            return null
+        if(pluginClass.isSingleton()) {
+            plugin = pluginClass.instance as Plugin
+        }
+
+        if (plugin == null) {
+            val constructor: Constructor<out Plugin>
+            try {
+                constructor = pluginClass.getDeclaredConstructor()
+                // Let's just make it accessible, plugin creators don't have to make this public.
+                constructor.setAccessible(true)
+            } catch (e: NoSuchMethodException) {
+                LOGGER.error(
+                    "Main class '{}' in '{}' does not define a no-args constructor.",
+                    mainClass,
+                    pluginName,
+                    e
+                )
+                return null
+            }
+
+            try {
+                plugin = constructor.newInstance()
+            } catch (e: InstantiationException) {
+                LOGGER.error(
+                    "Main class '{}' in '{}' cannot be an abstract class.",
+                    mainClass,
+                    pluginName,
+                    e
+                )
+                return null
+            } catch (ignored: IllegalAccessException) {
+                // We made it accessible, should not occur
+            } catch (e: InvocationTargetException) {
+                LOGGER.error(
+                    "While instantiating the main class '{}' in '{}' an exception was thrown.",
+                    mainClass,
+                    pluginName,
+                    e.targetException
+                )
+                return null
+            }
         }
 
         // add dependents to pre-existing plugins, so that they can easily be found during reloading

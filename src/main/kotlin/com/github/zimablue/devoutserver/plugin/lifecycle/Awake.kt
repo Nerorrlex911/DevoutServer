@@ -24,4 +24,4 @@ package com.github.zimablue.devoutserver.plugin.lifecycle
  */
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class Awake(val lifeCycle: PluginLifeCycle,val priority: AwakePriority)
+annotation class Awake(val lifeCycle: PluginLifeCycle,val priority: AwakePriority=AwakePriority.NORMAL)

@@ -3,7 +3,6 @@ package com.github.zimablue.devoutserver.plugin.config
 import com.github.zimablue.devoutserver.lifecycle.Awake
 import com.github.zimablue.devoutserver.lifecycle.AwakePriority
 import com.github.zimablue.devoutserver.lifecycle.LifeCycle
-import com.github.zimablue.devoutserver.plugin.PluginManager
 import com.github.zimablue.devoutserver.plugin.PluginManagerImpl
 import com.github.zimablue.devoutserver.plugin.annotation.AnnotationManager
 import org.slf4j.LoggerFactory

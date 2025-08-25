@@ -22,6 +22,8 @@ repositories {
 dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 
+    implementation(libs.kotlinx.coroutines.core)
+
     // config
     implementation(libs.snakeyaml)
     compileOnly(libs.typesafeConfig)
