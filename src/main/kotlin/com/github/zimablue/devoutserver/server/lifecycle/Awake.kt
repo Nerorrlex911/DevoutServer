@@ -1,4 +1,4 @@
-package com.github.zimablue.devoutserver.lifecycle
+package com.github.zimablue.devoutserver.server.lifecycle
 
 /**
  * `Awake` 注解用于标记某个方法在特定环节下执行的定义。
@@ -24,4 +24,4 @@ package com.github.zimablue.devoutserver.lifecycle
  */
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class Awake(val lifeCycle: LifeCycle,val priority: AwakePriority=AwakePriority.NORMAL)
+annotation class Awake(val lifeCycle: LifeCycle, val priority: AwakePriority = AwakePriority.NORMAL)

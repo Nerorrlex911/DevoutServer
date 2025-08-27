@@ -1,7 +1,7 @@
 package com.github.zimablue.devoutserver
 
 import com.github.zimablue.devoutserver.server.ServerDependencyManager
-import com.github.zimablue.devoutserver.terminal.EasyTerminal
+import com.github.zimablue.devoutserver.server.terminal.EasyTerminal
 
 
 fun main(args: Array<String>) {

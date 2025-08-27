@@ -1,8 +1,8 @@
 package com.github.zimablue.devoutserver.plugin
 
 
-import com.github.zimablue.devoutserver.lifecycle.LifeCycle
-import com.github.zimablue.devoutserver.lifecycle.LifeCycleManagerImpl.lifeCycle
+import com.github.zimablue.devoutserver.server.lifecycle.LifeCycle
+import com.github.zimablue.devoutserver.server.lifecycle.LifeCycleManagerImpl.lifeCycle
 import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycle
 import com.github.zimablue.devoutserver.util.ClassUtil.instance
 import com.github.zimablue.devoutserver.util.ClassUtil.isSingleton

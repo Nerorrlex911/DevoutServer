@@ -1,8 +1,8 @@
 package taboolib.module.database
 
-import com.github.zimablue.devoutserver.lifecycle.Awake
-import com.github.zimablue.devoutserver.lifecycle.AwakePriority
-import com.github.zimablue.devoutserver.lifecycle.LifeCycle
+import com.github.zimablue.devoutserver.server.lifecycle.Awake
+import com.github.zimablue.devoutserver.server.lifecycle.AwakePriority
+import com.github.zimablue.devoutserver.server.lifecycle.LifeCycle
 import com.zaxxer.hikari.HikariDataSource
 import java.util.concurrent.CopyOnWriteArrayList
 import javax.sql.DataSource
@@ -36,7 +36,7 @@ abstract class Host<T : ColumnBuilder> {
         internal val dataSources = CopyOnWriteArrayList<HikariDataSource>()
         internal val callbackClose = CopyOnWriteArrayList<Runnable>()
 
-        @Awake(LifeCycle.DISABLE,AwakePriority.NORMAL)
+        @Awake(LifeCycle.DISABLE, AwakePriority.NORMAL)
         internal fun release() {
             callbackClose.forEach { it.run() }
             dataSources.forEach { it.close() }

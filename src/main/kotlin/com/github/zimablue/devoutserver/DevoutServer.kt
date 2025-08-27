@@ -1,10 +1,10 @@
 package com.github.zimablue.devoutserver
 
-import com.github.zimablue.devoutserver.config.ConfigManagerImpl
-import com.github.zimablue.devoutserver.lifecycle.LifeCycle
-import com.github.zimablue.devoutserver.lifecycle.LifeCycleManagerImpl
+import com.github.zimablue.devoutserver.server.config.ConfigManagerImpl
+import com.github.zimablue.devoutserver.server.lifecycle.LifeCycle
+import com.github.zimablue.devoutserver.server.lifecycle.LifeCycleManagerImpl
 import com.github.zimablue.devoutserver.plugin.PluginManagerImpl
-import com.github.zimablue.devoutserver.terminal.EasyTerminal
+import com.github.zimablue.devoutserver.server.terminal.EasyTerminal
 import net.minestom.server.MinecraftServer
 import org.slf4j.LoggerFactory
 import java.net.InetSocketAddress

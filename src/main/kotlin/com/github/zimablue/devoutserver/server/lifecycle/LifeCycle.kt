@@ -1,4 +1,4 @@
-package com.github.zimablue.devoutserver.lifecycle
+package com.github.zimablue.devoutserver.server.lifecycle
 
 enum class LifeCycle {
     //生命周期管理器的初始状态，一经加载就会立即执行

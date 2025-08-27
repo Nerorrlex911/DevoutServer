@@ -1,4 +1,4 @@
-package com.github.zimablue.devoutserver.terminal
+package com.github.zimablue.devoutserver.server.terminal
 
 enum class LoggerColor(val code: String) {
     //Color end string, color reset

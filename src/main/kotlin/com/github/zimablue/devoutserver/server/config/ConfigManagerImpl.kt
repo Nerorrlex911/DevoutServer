@@ -1,4 +1,4 @@
-package com.github.zimablue.devoutserver.config
+package com.github.zimablue.devoutserver.server.config
 
 
 import com.github.zimablue.devoutserver.util.ResourceUtils

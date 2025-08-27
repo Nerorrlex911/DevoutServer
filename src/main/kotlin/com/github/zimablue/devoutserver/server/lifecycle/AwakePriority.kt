@@ -1,4 +1,4 @@
-package com.github.zimablue.devoutserver.lifecycle
+package com.github.zimablue.devoutserver.server.lifecycle
 
 enum class AwakePriority {
     LOWEST,

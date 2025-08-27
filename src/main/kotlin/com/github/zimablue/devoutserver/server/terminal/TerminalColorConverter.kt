@@ -1,4 +1,4 @@
-package com.github.zimablue.devoutserver.terminal
+package com.github.zimablue.devoutserver.server.terminal
 
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer

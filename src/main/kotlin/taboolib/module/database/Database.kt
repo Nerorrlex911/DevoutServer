@@ -1,6 +1,6 @@
 package taboolib.module.database
 
-import com.github.zimablue.devoutserver.lifecycle.Awake
+import com.github.zimablue.devoutserver.server.lifecycle.Awake
 import com.github.zimablue.devoutserver.util.ResourceUtils
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource

@@ -1,4 +1,4 @@
-package com.github.zimablue.devoutserver.terminal
+package com.github.zimablue.devoutserver.server.terminal
 
 import net.minestom.server.MinecraftServer
 import net.minestom.server.command.builder.Command

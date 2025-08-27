@@ -1,7 +1,6 @@
-package com.github.zimablue.devoutserver.lifecycle
+package com.github.zimablue.devoutserver.server.lifecycle
 
 import com.github.zimablue.devoutserver.annotation.AnnotationManagerImpl
-import com.github.zimablue.devoutserver.annotation.AnnotationRange
 import java.lang.reflect.Method
 import java.util.*
 

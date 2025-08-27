@@ -1,6 +1,5 @@
 package com.github.zimablue.devoutserver.annotation
 
-import com.github.zimablue.devoutserver.plugin.Plugin
 import com.github.zimablue.devoutserver.util.ClassUtil
 import java.lang.reflect.Field
 import java.lang.reflect.Method

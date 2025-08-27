@@ -1,4 +1,4 @@
-package com.github.zimablue.devoutserver.lifecycle
+package com.github.zimablue.devoutserver.server.lifecycle
 
 import com.github.zimablue.devoutserver.util.execute
 import java.lang.reflect.Method

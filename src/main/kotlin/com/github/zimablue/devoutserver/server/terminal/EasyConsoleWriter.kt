@@ -1,4 +1,4 @@
-package com.github.zimablue.devoutserver.terminal
+package com.github.zimablue.devoutserver.server.terminal
 
 import org.fusesource.jansi.AnsiConsole
 import org.tinylog.core.LogEntry
