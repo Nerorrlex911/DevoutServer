@@ -1,12 +1,15 @@
 package com.github.zimablue.devoutserver.script
 
 
+import com.github.zimablue.devoutserver.DevoutServer
+import com.github.zimablue.devoutserver.DevoutServer.currentDir
 import com.github.zimablue.devoutserver.script.CompiledScript.Companion.nashornHooker
-import com.github.zimablue.devoutserver.script.ScriptManagerImpl.Logger
+
 import com.github.zimablue.devoutserver.util.getAllFiles
+import org.slf4j.Logger
 import java.io.File
 
-open class ScriptManager(val path: File) {
+open class ScriptManager(val scriptFolder: File,val logger: Logger=DevoutServer.LOGGER) {
     /**
      * 获取公用ScriptEngine
      */
@@ -22,8 +25,9 @@ open class ScriptManager(val path: File) {
      * 加载全部脚本
      */
     protected fun loadScripts() {
-        for (file in getAllFiles(path)) {
-            val fileName = file.path
+        for (file in getAllFiles(scriptFolder)) {
+            // 以文件相对主目录的路径作为key
+            val fileName = currentDir.relativize(file.absoluteFile.toPath()).toString()
             try {
                 compiledScripts[fileName] = CompiledScript(file)
             } catch (error: Throwable) {
@@ -46,13 +50,13 @@ open class ScriptManager(val path: File) {
     }
 
     fun run(name: String,function: String,map: Map<String,Any>?,vararg args: Any) : Any?{
-        val absoluteName = path.absolutePath + File.separator + name
-        val script = compiledScripts[absoluteName] ?: return null
+        //val relativizedName = currentDir.relativize(scriptFolder.absoluteFile.toPath().resolve(name)).toString()
+        val script = compiledScripts[name] ?: return null
         if (nashornHooker.isFunction(script.scriptEngine, function)) {
             val result = try {
                 script.invoke(function, map, *args)
             } catch (error: Throwable) {
-                Logger.error("Error in $function of ${script.name}")
+                logger.error("Error in $function of ${script.name}")
                 error.printStackTrace()
                 null
             }

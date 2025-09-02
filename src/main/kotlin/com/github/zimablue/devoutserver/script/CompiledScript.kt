@@ -113,10 +113,16 @@ open class CompiledScript {
         try {
             invoke(function,null)
         } catch (error: Throwable) {
-            ScriptManagerImpl.Logger.error("Error in $function of ${this.name}")
+            ScriptManagerImpl.logger.error("Error in $function of ${this.name}")
             error.printStackTrace()
         }
     }
+    /**
+     * 判断脚本中是否存在指定函数
+     * @param func 函数名
+     */
+    fun isFunction(func: String) = nashornHooker.isFunction(scriptEngine, func)
+
     companion object {
         val nashornHooker by lazy { NashornHookerImpl() }
     }

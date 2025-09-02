@@ -7,17 +7,9 @@ import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycle
 import com.github.zimablue.devoutserver.script.ScriptManager
 import java.io.File
 
-class PluginScriptManager(val plugin: Plugin,path: File): ScriptManager(path) {
+class PluginScriptManager(val plugin: Plugin,path: File=plugin.dataDirectory.resolve("scripts").toFile()): ScriptManager(path,plugin.logger) {
     init {
         with(plugin.lifeCycleManager) {
-            registerTask(
-                PluginLifeCycle.NONE,
-                AwakePriority.NORMAL
-            ) { onInit() }
-            registerTask(
-                PluginLifeCycle.LOAD,
-                AwakePriority.NORMAL
-            ) { onLoad() }
             registerTask(
                 PluginLifeCycle.ENABLE,
                 AwakePriority.NORMAL
@@ -26,18 +18,15 @@ class PluginScriptManager(val plugin: Plugin,path: File): ScriptManager(path) {
                 PluginLifeCycle.DISABLE,
                 AwakePriority.NORMAL
             ) { onDisable() }
+            registerTask(
+                PluginLifeCycle.RELOAD,
+                AwakePriority.NORMAL
+            ) { onReload() }
         }
     }
 
-    fun onInit() {
-        plugin.savePackagedResource(path.toPath())
-    }
-
-    fun onLoad() {
-        loadScripts()
-    }
-
     fun onEnable() {
+        loadScripts()
         compiledScripts.forEach { (name, _) ->
             plugin.logger.info("Enabling script $name")
             run(name,"onEnable")
@@ -47,6 +36,13 @@ class PluginScriptManager(val plugin: Plugin,path: File): ScriptManager(path) {
         compiledScripts.forEach { (name, _) ->
             plugin.logger.info("Disabling script $name")
             run(name,"onDisable")
+        }
+    }
+    fun onReload() {
+        reload()
+        compiledScripts.forEach { (name, _) ->
+            plugin.logger.info("Reloading script $name")
+            run(name,"onReload")
         }
     }
 

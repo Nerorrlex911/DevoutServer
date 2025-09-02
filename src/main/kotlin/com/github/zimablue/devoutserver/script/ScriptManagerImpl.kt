@@ -7,9 +7,8 @@ import com.github.zimablue.devoutserver.util.ResourceUtils
 import org.slf4j.LoggerFactory
 import java.io.File
 
-object ScriptManagerImpl: ScriptManager(File("scripts").absoluteFile) {
+object ScriptManagerImpl: ScriptManager(File("scripts").absoluteFile,LoggerFactory.getLogger(ScriptManagerImpl::class.java)) {
 
-    val Logger = LoggerFactory.getLogger(ScriptManagerImpl::class.java)
 
     init {
         ResourceUtils.extractResource("scripts")
@@ -23,14 +22,14 @@ object ScriptManagerImpl: ScriptManager(File("scripts").absoluteFile) {
     @Awake(LifeCycle.ENABLE, AwakePriority.NORMAL)
     fun onEnable() {
         compiledScripts.forEach { (name, _) ->
-            Logger.info("Enabling script $name")
+            logger.info("Enabling script $name")
             run(name,"onEnable")
         }
     }
     @Awake(LifeCycle.DISABLE, AwakePriority.NORMAL)
     fun onDisable() {
         compiledScripts.forEach { (name, _) ->
-            Logger.info("Disabling script $name")
+            logger.info("Disabling script $name")
             run(name,"onDisable")
         }
     }
