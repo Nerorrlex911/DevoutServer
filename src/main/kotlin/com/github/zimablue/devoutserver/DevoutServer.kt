@@ -9,9 +9,12 @@ import net.minestom.server.MinecraftServer
 import org.slf4j.LoggerFactory
 import java.net.InetSocketAddress
 import java.net.SocketAddress
+import java.nio.file.Path
+import java.nio.file.Paths
 
 object DevoutServer {
 
+    val currentDir: Path = Paths.get("").toAbsolutePath()
 
 
     val server: MinecraftServer by lazy { MinecraftServer.init() }
@@ -42,5 +45,6 @@ object DevoutServer {
         PluginManagerImpl.shutdown()
         LifeCycleManagerImpl.lifeCycle(LifeCycle.SHUTDOWN)
         EasyTerminal.stop()
+        MinecraftServer.stopCleanly()
     }
 }
