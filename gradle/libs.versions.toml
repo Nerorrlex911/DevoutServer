@@ -17,6 +17,7 @@ hikariCP = "4.0.3"
 mysqlConnector = "9.3.0"
 nashorn = "15.4"
 byteBuddy = "1.17.6"
+luckperms = "5.5-SNAPSHOT"
 
 [libraries]
 kotlin = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
@@ -49,3 +50,4 @@ nashorn = { module = "org.openjdk.nashorn:nashorn-core", version.ref = "nashorn"
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
 byteBuddy = { module = "net.bytebuddy:byte-buddy", version.ref = "byteBuddy" }
 byteBuddyAgent = { module = "net.bytebuddy:byte-buddy-agent", version.ref = "byteBuddy" }
+luckperms = {module="dev.lu15:luckperms-minestom", version.ref="luckperms" }
