@@ -161,22 +161,24 @@ abstract class Plugin protected constructor() {
     }
 
     /**
-     * Copies a resource file to the extension directory, replacing any existing copy.
+     * Copies a resource file to the extension directory.
      *
      * @param fileName The resource to save
+     * @param replace whether to replace the file if it already exists
      * @return True if the resource was saved successfully, null otherwise
      */
-    fun savePackagedResource(fileName: String): Boolean {
-        return savePackagedResource(Paths.get(fileName))
+    fun savePackagedResource(fileName: String, replace: Boolean=false): Boolean {
+        return savePackagedResource(Paths.get(fileName), replace)
     }
 
     /**
-     * Copies a resource file to the extension directory, replacing any existing copy.
+     * Copies a resource file to the extension directory.
      *
      * @param target The resource to save
+     * @param replace whether to replace the file if it already exists
      * @return True if the resource was saved successfully, null otherwise
      */
-    fun savePackagedResource(target: Path): Boolean {
+    fun savePackagedResource(target: Path, replace: Boolean=false): Boolean {
         val targetFile = dataDirectory.resolve(target)
         try {
             getPackagedResource(target).use { `is` ->
@@ -184,6 +186,9 @@ abstract class Plugin protected constructor() {
                     return false
                 }
                 Files.createDirectories(targetFile.parent)
+                if(!replace&&Files.exists(targetFile)) {
+                    return true
+                }
                 Files.copy(`is`, targetFile, StandardCopyOption.REPLACE_EXISTING)
                 return true
             }
