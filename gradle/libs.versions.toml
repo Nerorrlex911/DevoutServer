@@ -11,7 +11,7 @@ jansi = "2.4.1"
 reflex = "1.0.23"
 asm = "9.2"
 guava = "33.4.8-jre"
-minestom = "1_21_6-c3ccee696b"
+minestom = "2025.08.29-1.21.8"
 dependencyGetter = "1.0.1"
 hikariCP = "4.0.3"
 mysqlConnector = "9.3.0"
@@ -42,7 +42,7 @@ reflex-core = { module = "org.tabooproject.reflex:reflex", version.ref = "reflex
 asm-core = { module = "org.ow2.asm:asm", version.ref = "asm" }
 asm-util = { module = "org.ow2.asm:asm-util", version.ref = "asm" }
 asm-commons = { module = "org.ow2.asm:asm-commons", version.ref = "asm" }
-minestom = { module = "net.minestom:minestom-snapshots", version.ref = "minestom" }
+minestom = { module = "net.minestom:minestom", version.ref = "minestom" }
 dependencyGetter = { module = "com.github.Minestom:DependencyGetter", version.ref = "dependencyGetter" }
 hikariCP = { module = "com.zaxxer:HikariCP", version.ref = "hikariCP" }
 mysqlConnector = { module = "com.mysql:mysql-connector-j", version.ref = "mysqlConnector" }
