@@ -3,16 +3,13 @@ package com.github.zimablue.devoutserver.plugin.database
 import com.github.zimablue.devoutserver.plugin.Plugin
 import com.github.zimablue.devoutserver.plugin.lifecycle.AwakePriority
 import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycle
-import com.github.zimablue.devoutserver.util.ResourceUtils
 import com.zaxxer.hikari.HikariDataSource
 import taboolib.module.configuration.Configuration
 import taboolib.module.database.Database
 import taboolib.module.database.Database.createDataSourceWithoutConfig
 import taboolib.module.database.Host
-import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 import javax.sql.DataSource
-import kotlin.io.path.absolute
 
 object PluginDatabase {
     val settingsFiles = ConcurrentHashMap<Plugin, Configuration>()
@@ -27,20 +24,11 @@ object PluginDatabase {
     }
     /**
      * 给插件部署数据库
-     * 在插件配置文件夹下释放datasource.yml
      * 并注册关闭数据库连接的周期任务
+     * @param settings 指定配置文件，默认使用插件的 datasource.yml 文件，如果不存在则使用主程序目录下的 datasource.yml 文件
      */
-    fun setupDatabase(plugin: Plugin) {
+    fun setupDatabase(plugin: Plugin,settings: Configuration=Database.settingsFile) {
         // datasource.yml
-        val settingsPath = File("${plugin.dataDirectory.absolute()}${File.separator}datasource.yml")
-        ResourceUtils.extractResource(
-            "datasource.yml",
-            settingsPath.toString(),
-            false
-        )
-        val settings = Configuration.loadFromFile(
-            File("${plugin.dataDirectory.absolute()}${File.separator}datasource.yml")
-        )
         settingsFiles[plugin]= settings
         // lifeCycle
         plugin.lifeCycleManager.registerTask(PluginLifeCycle.DISABLE, AwakePriority.HIGH) {
