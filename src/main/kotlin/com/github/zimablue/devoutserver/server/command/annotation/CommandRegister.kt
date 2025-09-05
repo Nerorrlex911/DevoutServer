@@ -5,6 +5,7 @@ import com.github.zimablue.devoutserver.server.lifecycle.Awake
 import com.github.zimablue.devoutserver.server.lifecycle.LifeCycle
 import net.minestom.server.MinecraftServer
 import net.minestom.server.command.builder.Command
+import org.checkerframework.checker.units.qual.C
 import org.tabooproject.reflex.FastInstGetter
 
 object CommandRegister {
@@ -12,8 +13,8 @@ object CommandRegister {
     fun registerCommands() {
         val regCommandClasses = AnnotationManagerImpl.getTargets<RegCommand>().third
         for (commandClass in regCommandClasses) {
-            val commandInstance = FastInstGetter(commandClass.name).instance
-            MinecraftServer.getCommandManager().register(commandInstance as Command)
+            val commandInstance = FastInstGetter(commandClass.name).instance as Command
+            MinecraftServer.getCommandManager().register(commandInstance)
         }
     }
 }

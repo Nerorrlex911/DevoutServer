@@ -6,6 +6,7 @@ import com.github.zimablue.devoutserver.server.lifecycle.LifeCycleManagerImpl
 import com.github.zimablue.devoutserver.plugin.PluginManagerImpl
 import com.github.zimablue.devoutserver.server.terminal.EasyTerminal
 import net.minestom.server.MinecraftServer
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.net.InetSocketAddress
 import java.net.SocketAddress
@@ -20,7 +21,7 @@ object DevoutServer {
     val server: MinecraftServer by lazy { MinecraftServer.init() }
 
 
-    val LOGGER by lazy { LoggerFactory.getLogger(DevoutServer::class.java) }
+    val LOGGER: Logger by lazy { LoggerFactory.getLogger(DevoutServer::class.java) }
     
     init {
         server
