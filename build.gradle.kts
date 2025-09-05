@@ -60,8 +60,8 @@ dependencies {
     // bytebuddy
     implementation(libs.byteBuddy)
     implementation(libs.byteBuddyAgent)
-    // luckperms
-    compileOnly(libs.luckperms)
+    // luckperms 无法联网下载，只能打包起来了
+    implementation(libs.luckperms)
 
 
     implementation(fileTree("libs"))
@@ -113,7 +113,6 @@ tasks.processResources {
               - "${toDependencyStr(libs.mysqlConnector.get())}"
               - "${toDependencyStr(libs.nashorn.get())}"
               - "${toDependencyStr(libs.guava.get())}"
-              - "${toDependencyStr(libs.luckperms.get())}"
             """
                 .trimIndent()
         this.file.writeText(dependenciesStr)

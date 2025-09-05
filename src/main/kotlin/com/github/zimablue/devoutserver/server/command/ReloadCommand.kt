@@ -1,14 +1,20 @@
 package com.github.zimablue.devoutserver.server.command
 
+import com.github.zimablue.devoutserver.feature.luckperms.LuckPerms.hasPermission
 import com.github.zimablue.devoutserver.plugin.PluginManagerImpl
 import com.github.zimablue.devoutserver.server.command.annotation.RegCommand
 import net.minestom.server.command.builder.Command
+import net.minestom.server.command.builder.arguments.ArgumentString
 import net.minestom.server.command.builder.arguments.ArgumentType
+import net.minestom.server.entity.Player
 
 @RegCommand
 object ReloadCommand : Command("reload") {
-    val pluginArg = ArgumentType.String("plugin")
+    private val pluginArg: ArgumentString = ArgumentType.String("plugin")
     init {
+        setCondition { sender, s ->
+            return@setCondition if(sender is Player) sender.hasPermission("devoutserver.reload") else false
+        }
         setDefaultExecutor { sender, context ->
             sender.sendMessage("§a/reload <plugin> call Reload LifeCycle of a plugin")
         }
@@ -23,4 +29,6 @@ object ReloadCommand : Command("reload") {
             sender.sendMessage("§aPlugin $pluginName reloaded")
         },pluginArg)
     }
+
+
 }

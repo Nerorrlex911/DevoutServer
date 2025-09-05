@@ -1,5 +1,6 @@
 package com.github.zimablue.devoutserver.feature.luckperms
 
+import com.github.zimablue.devoutserver.feature.luckperms.LuckPerms.hasPermission
 import com.github.zimablue.devoutserver.server.lifecycle.Awake
 import com.github.zimablue.devoutserver.server.lifecycle.AwakePriority
 import com.github.zimablue.devoutserver.server.lifecycle.LifeCycle
@@ -9,12 +10,15 @@ import me.lucko.luckperms.common.config.generic.adapter.MultiConfigurationAdapte
 import me.lucko.luckperms.minestom.CommandRegistry
 import me.lucko.luckperms.minestom.LuckPermsMinestom
 import net.luckperms.api.LuckPerms
+import net.luckperms.api.util.Tristate
+import net.minestom.server.entity.Player
 import org.slf4j.LoggerFactory
 import java.io.File
 import java.nio.file.Path
 
 object LuckPerms {
     lateinit var luckPerms: LuckPerms
+    val adapter by lazy { luckPerms.getPlayerAdapter(Player::class.java) }
     @Awake(LifeCycle.LOAD, AwakePriority.NORMAL)
     fun init() {
         val directory: Path = Path.of("luckperms")
@@ -35,4 +39,11 @@ object LuckPerms {
             .logger(LoggerFactory.getLogger("LuckPerms"))
             .enable()
     }
+
+    fun Player.hasPermission(permission: String) : Boolean {
+        return getPermission(this,permission).asBoolean()
+    }
+
+    fun getPermission(player: Player,permission: String) : Tristate =
+        adapter.getUser(player).cachedData.permissionData.checkPermission(permission)
 }
