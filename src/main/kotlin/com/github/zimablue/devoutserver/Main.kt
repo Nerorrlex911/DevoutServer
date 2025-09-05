@@ -5,8 +5,8 @@ import com.github.zimablue.devoutserver.server.terminal.EasyTerminal
 
 
 fun main(args: Array<String>) {
-    EasyTerminal.start()
     ServerDependencyManager.loadDependencies()
     DevoutServer.start()
+    EasyTerminal.start()
     //MinecraftServer.getBiomeManager().loadVanillaBiomes()
 }
