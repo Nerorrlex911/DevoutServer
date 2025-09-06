@@ -76,7 +76,7 @@ abstract class Plugin protected constructor() {
         get() = pluginClassLoader.eventNode
 
     val dataDirectory: Path
-        get() = origin.dataDirectory!!
+        get() = origin.dataDirectory
 
     /**
      * Gets a resource from the extension directory, or from inside the jar if it does not

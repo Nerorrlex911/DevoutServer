@@ -1,9 +1,9 @@
 package com.github.zimablue.devoutserver.plugin
 
 
+import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycle
 import com.github.zimablue.devoutserver.server.lifecycle.LifeCycle
 import com.github.zimablue.devoutserver.server.lifecycle.LifeCycleManagerImpl.lifeCycle
-import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycle
 import com.github.zimablue.devoutserver.util.ClassUtil.instance
 import com.github.zimablue.devoutserver.util.ClassUtil.isSingleton
 import com.google.gson.Gson
@@ -13,7 +13,6 @@ import net.minestom.dependencies.maven.MavenRepository
 import net.minestom.server.ServerProcess
 import net.minestom.server.utils.validate.Check
 import org.slf4j.LoggerFactory
-import org.tabooproject.reflex.FastInstGetter
 import taboolib.module.configuration.Configuration
 import java.io.File
 import java.io.IOException
@@ -166,7 +165,7 @@ object PluginManagerImpl : PluginManager() {
             }
         }
 
-        return order.reversed().toMutableList()
+        return order//.reversed().toMutableList()
     }
 
     private fun dfs(
@@ -199,6 +198,7 @@ object PluginManagerImpl : PluginManager() {
         }
 
         order.add(plugin)
+        LOGGER.info("Adding plugin ${plugin.name} to load order; order: ${order.joinToString(", ") { it.name }}")
     }
 
     fun loadDependencies(plugins: List<DiscoveredPlugin>) {
@@ -468,6 +468,7 @@ object PluginManagerImpl : PluginManager() {
         lifeCycle(LifeCycle.LOAD)
         values.forEach{
             it.onLoad()
+            LOGGER.info("calling Load lifecylcle of plugin ${it.name}")
             it.lifeCycleManager.lifeCycle(PluginLifeCycle.LOAD)
         }
         state = State.PRE_INIT
