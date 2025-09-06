@@ -13,7 +13,7 @@ object ReloadCommand : Command("reload") {
     private val pluginArg: ArgumentString = ArgumentType.String("plugin")
     init {
         setCondition { sender, s ->
-            return@setCondition if(sender is Player) sender.hasPermission("devoutserver.reload") else false
+            return@setCondition if(sender is Player) sender.hasPermission("devoutserver.reload") else true
         }
         setDefaultExecutor { sender, context ->
             sender.sendMessage("§a/reload <plugin> call Reload LifeCycle of a plugin")
