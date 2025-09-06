@@ -6,8 +6,13 @@ import com.github.zimablue.devoutserver.plugin.lifecycle.AwakePriority
 import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycle
 import com.github.zimablue.devoutserver.script.ScriptManager
 import java.io.File
+import javax.script.ScriptEngine
 
-class PluginScriptManager(val plugin: Plugin,path: File=plugin.dataDirectory.resolve("scripts").toFile()): ScriptManager(path,plugin.logger) {
+class PluginScriptManager(
+    val plugin: Plugin,
+    path: File=plugin.dataDirectory.resolve("scripts").toFile(),
+    loadLib: ScriptEngine.() -> Unit={}
+): ScriptManager(path,plugin.logger,plugin.pluginClassLoader,loadLib) {
     init {
         with(plugin.lifeCycleManager) {
             registerTask(

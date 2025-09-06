@@ -99,7 +99,7 @@ abstract class NashornHooker {
      * @return 返回值
      */
     abstract fun invoke(
-        compiledScript: com.github.zimablue.devoutserver.script.CompiledScript,
+        compiledScript: com.github.zimablue.devoutserver.script.ScriptManager.CompiledScript,
         function: String,
         map: Map<String, Any>?,
         vararg args: Any

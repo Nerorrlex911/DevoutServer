@@ -1,6 +1,7 @@
 package com.github.zimablue.devoutserver.script.nashorn.impl
 
 
+import com.github.zimablue.devoutserver.script.ScriptManager
 import com.github.zimablue.devoutserver.script.nashorn.NashornHooker
 import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory
 import org.openjdk.nashorn.api.scripting.ScriptObjectMirror
@@ -18,7 +19,7 @@ class NashornHookerImpl : NashornHooker() {
     }
 
     override fun invoke(
-        compiledScript: com.github.zimablue.devoutserver.script.CompiledScript,
+        compiledScript: ScriptManager.CompiledScript,
         function: String,
         map: Map<String, Any>?,
         vararg args: Any

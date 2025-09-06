@@ -7,7 +7,7 @@ import com.github.zimablue.devoutserver.util.ResourceUtils
 import org.slf4j.LoggerFactory
 import java.io.File
 
-object ScriptManagerImpl: ScriptManager(File("scripts").absoluteFile,LoggerFactory.getLogger(ScriptManagerImpl::class.java)) {
+object ScriptManagerImpl: ScriptManager(File("scripts").absoluteFile,LoggerFactory.getLogger("ScriptManagerImpl")) {
 
 
     init {
