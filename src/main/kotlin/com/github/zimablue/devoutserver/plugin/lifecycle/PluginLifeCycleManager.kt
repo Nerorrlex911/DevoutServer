@@ -5,14 +5,15 @@ import com.github.zimablue.devoutserver.plugin.Plugin
 import com.github.zimablue.devoutserver.plugin.annotation.AnnotationManager
 import com.github.zimablue.devoutserver.util.execute
 import java.util.*
+import java.util.concurrent.CopyOnWriteArrayList
 
 
 class PluginLifeCycleManager(val plugin: Plugin) {
     var currentLifeCycle: PluginLifeCycle = PluginLifeCycle.NONE
-    private val lifeCycleTasks = mutableMapOf<PluginLifeCycle,LinkedList<LifeCycleTask>>()
+    private val lifeCycleTasks = mutableMapOf<PluginLifeCycle,CopyOnWriteArrayList<LifeCycleTask>>()
     fun registerTask(task: LifeCycleTask) {
         lifeCycleTasks.computeIfAbsent(task.lifeCycle) {
-            LinkedList<LifeCycleTask>()
+            CopyOnWriteArrayList<LifeCycleTask>()
         }.apply {
             add(task)
             sortBy{it.priority}
@@ -36,7 +37,15 @@ class PluginLifeCycleManager(val plugin: Plugin) {
         allMethods.forEach { method ->
             val annotation = method.getAnnotation(Awake::class.java)
             registerTask(LifeCycleTask(annotation.lifeCycle, annotation.priority) {
-                method.execute()
+                try {
+                    method.execute()
+                } catch (e: Exception) {
+                    plugin.logger.error(
+                        """
+                        Error while executing lifecycle method ${method.name} in class ${method.declaringClass.name} plugin ${plugin.name},
+                        lifecycle method should either be singleton or static.
+                        """.trimIndent(), e)
+                }
             })
         }
     }
