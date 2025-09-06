@@ -14,7 +14,6 @@ guava = "33.4.8-jre"
 minestom = "2025.08.29-1.21.8"
 dependencyGetter = "1.0.1"
 hikariCP = "4.0.3"
-mysqlConnector = "9.3.0"
 nashorn = "15.4"
 byteBuddy = "1.17.6"
 luckperms = "5.5-SNAPSHOT"
@@ -45,7 +44,6 @@ asm-commons = { module = "org.ow2.asm:asm-commons", version.ref = "asm" }
 minestom = { module = "net.minestom:minestom", version.ref = "minestom" }
 dependencyGetter = { module = "com.github.Minestom:DependencyGetter", version.ref = "dependencyGetter" }
 hikariCP = { module = "com.zaxxer:HikariCP", version.ref = "hikariCP" }
-mysqlConnector = { module = "com.mysql:mysql-connector-j", version.ref = "mysqlConnector" }
 nashorn = { module = "org.openjdk.nashorn:nashorn-core", version.ref = "nashorn" }
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
 byteBuddy = { module = "net.bytebuddy:byte-buddy", version.ref = "byteBuddy" }

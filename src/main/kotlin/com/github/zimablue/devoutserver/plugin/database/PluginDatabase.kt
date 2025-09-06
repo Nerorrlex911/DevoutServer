@@ -29,7 +29,7 @@ object PluginDatabase {
      */
     fun setupDatabase(plugin: Plugin,settings: Configuration=Database.settingsFile) {
         // datasource.yml
-        settingsFiles[plugin]= settings
+        settingsFiles[plugin] = settings
         // lifeCycle
         plugin.lifeCycleManager.registerTask(PluginLifeCycle.DISABLE, AwakePriority.HIGH) {
             release(plugin)
@@ -41,7 +41,7 @@ object PluginDatabase {
      * @param autoRelease 在插件卸载时自动释放数据库连接
      */
     fun createDataSource(plugin: Plugin, host: Host<*>, autoRelease: Boolean = true, withoutConfig: Boolean = false): DataSource {
-        val pluginSettingsFile = settingsFiles[plugin]?:error("datasource.yml not found: $plugin")
+        val pluginSettingsFile = settingsFiles[plugin]?:error("datasource.yml not found: ${plugin.name}")
         val dataSource = if (withoutConfig) createDataSourceWithoutConfig(host) else Database.createDataSource(
             host,
             settingsFile = pluginSettingsFile

@@ -15,7 +15,6 @@ repositories {
     maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
     maven { url = uri("https://repo.hypera.dev/snapshots") }
     maven { url = uri("https://repo.lucko.me/") } // spark-common
-    maven { url = uri("https://mvnrepository.com/artifact/com.mysql/mysql-connector-j")}
 
 }
 
@@ -53,7 +52,6 @@ dependencies {
     implementation(libs.dependencyGetter)
     // database
     compileOnly(libs.hikariCP)
-    compileOnly(libs.mysqlConnector)
     // nashorn
     compileOnly(libs.nashorn)
     // guava
@@ -96,7 +94,6 @@ tasks.processResources {
               - "https://oss.sonatype.org/content/repositories/snapshots"
               - "https://repo.hypera.dev/snapshots"
               - "https://repo.lucko.me/"
-              - "https://mvnrepository.com/artifact/com.mysql/mysql-connector-j"
             dependencies:
               - "${toDependencyStr(libs.typesafeConfig.get())}"
               - "${toDependencyStr(libs.nightConfig.core.get())}"
@@ -111,9 +108,10 @@ tasks.processResources {
               - "${toDependencyStr(libs.asm.util.get())}"
               - "${toDependencyStr(libs.asm.commons.get())}"
               - "${toDependencyStr(libs.hikariCP.get())}"
-              - "${toDependencyStr(libs.mysqlConnector.get())}"
               - "${toDependencyStr(libs.nashorn.get())}"
               - "${toDependencyStr(libs.guava.get())}"
+              - "com.mysql:mysql-connector-j:9.4.0"
+              - "org.xerial:sqlite-jdbc:3.50.3.0"
             """
                 .trimIndent()
         this.file.writeText(dependenciesStr)
