@@ -6,8 +6,8 @@ import com.github.zimablue.devoutserver.util.ClassUtil.isSingleton
 import java.lang.reflect.Method
 
 fun Method.execute(vararg args: Any) {
-    if (this.declaringClass.isSingleton()) {
-        this.invoke(this.declaringClass.instance, *args)
+    this.declaringClass.instance?.let {
+        this.invoke(it, *args)
         return
     }
     this.invoke(null, *args)

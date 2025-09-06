@@ -230,29 +230,30 @@ object ClassUtil {
     }
 
     fun Class<*>.isSingleton(): Boolean {
-        // 必须是 final class
-        if (!java.lang.reflect.Modifier.isFinal(this.modifiers)) return false
-
-        // 必须有 static final INSTANCE 字段
-        val instanceField = try {
-            this.getField("INSTANCE")
-        } catch (e: NoSuchFieldException) {
-            return false
-        }
-        if (!java.lang.reflect.Modifier.isStatic(instanceField.modifiers)) return false
-        if (!java.lang.reflect.Modifier.isFinal(instanceField.modifiers)) return false
-        if (instanceField.type != this) return false
-
-        // 构造方法必须是 private
-        if (this.declaredConstructors.any { java.lang.reflect.Modifier.isPublic(it.modifiers) }) return false
-
-        return true
+        return this.kotlin.objectInstance != null
+//        // 必须是 final class
+//        if (!java.lang.reflect.Modifier.isFinal(this.modifiers)) return false
+//
+//        // 必须有 static final INSTANCE 字段
+//        val instanceField = try {
+//            this.getField("INSTANCE")
+//        } catch (e: NoSuchFieldException) {
+//            return false
+//        }
+//        if (!java.lang.reflect.Modifier.isStatic(instanceField.modifiers)) return false
+//        if (!java.lang.reflect.Modifier.isFinal(instanceField.modifiers)) return false
+//        if (instanceField.type != this) return false
+//
+//        // 构造方法必须是 private
+//        if (this.declaredConstructors.any { java.lang.reflect.Modifier.isPublic(it.modifiers) }) return false
+//
+//        return true
     }
     /**
      * 获取Kotlin单例的INSTANCE
      */
     val Class<*>.instance: Any?
-        get() = this.getDeclaredField("INSTANCE").get(null)
+        get() = this.kotlin.objectInstance
 
 
 

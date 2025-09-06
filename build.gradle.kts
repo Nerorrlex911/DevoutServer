@@ -23,6 +23,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 
     implementation(libs.kotlinx.coroutines.core)
+    implementation(kotlin("reflect"))
 
     // config
     implementation(libs.snakeyaml)
