@@ -6,7 +6,6 @@ import com.github.zimablue.devoutserver.server.lifecycle.LifeCycle
 import com.github.zimablue.devoutserver.server.lifecycle.LifeCycleManagerImpl.lifeCycle
 import com.github.zimablue.devoutserver.util.ClassUtil.instance
 import com.github.zimablue.devoutserver.util.ClassUtil.isSingleton
-import com.google.gson.Gson
 import net.minestom.dependencies.DependencyGetter
 import net.minestom.dependencies.ResolvedDependency
 import net.minestom.dependencies.maven.MavenRepository
@@ -26,7 +25,6 @@ object PluginManagerImpl : PluginManager() {
     val LOGGER by lazy { LoggerFactory.getLogger("PluginManager") }
     val INDEV_CLASSES_FOLDER = "minestom.plugin.indevfolder.classes"
     val INDEV_RESOURCES_FOLDER = "minestom.plugin.indevfolder.resources"
-    val GSON: Gson = Gson()
     lateinit var serverProcess: ServerProcess
 
     val pluginFolder by lazy { File("plugins") }
@@ -198,7 +196,6 @@ object PluginManagerImpl : PluginManager() {
         }
 
         order.add(plugin)
-        LOGGER.info("Adding plugin ${plugin.name} to load order; order: ${order.joinToString(", ") { it.name }}")
     }
 
     fun loadDependencies(plugins: List<DiscoveredPlugin>) {
@@ -209,7 +206,7 @@ object PluginManagerImpl : PluginManager() {
         for (discoveredPlugin in plugins) {
             try {
                 val getter = DependencyGetter()
-                val externalDependencies = discoveredPlugin.externalDependencies ?: continue
+                val externalDependencies = discoveredPlugin.externalDependencies
                 val repoList: MutableList<MavenRepository> = LinkedList<MavenRepository>()
                 for (repository in externalDependencies.repositories) {
                     check(repository.name.isNotEmpty()) { "Missing 'name' element in repository object." }
@@ -421,7 +418,7 @@ object PluginManagerImpl : PluginManager() {
         val dependents = LinkedList(ext.dependents) // copy dependents list
 
         for (dependentID in dependents) {
-            val dependentExt = this[dependentID.lowercase(Locale.getDefault())]!!
+            val dependentExt = this[dependentID.lowercase(Locale.getDefault())]?:continue
             // check if plugin isn't already unloaded.
             LOGGER.info(
                 "Unloading dependent plugin {} (because it depends on {})",
@@ -468,7 +465,6 @@ object PluginManagerImpl : PluginManager() {
         lifeCycle(LifeCycle.LOAD)
         values.forEach{
             it.onLoad()
-            LOGGER.info("calling Load lifecylcle of plugin ${it.name}")
             it.lifeCycleManager.lifeCycle(PluginLifeCycle.LOAD)
         }
         state = State.PRE_INIT
