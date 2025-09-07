@@ -16,7 +16,7 @@ class ScriptCommand {
     @Subcommand("run")
     @Description("Run a script in server core")
     fun run(actor: MinestomCommandActor, path: String, function: String, args: String) {
-        scriptManager.run(path, function, mapOf("sender" to actor.sender()), args.split(",").toTypedArray())
+        scriptManager.run(path, function, mapOf("sender" to actor.sender()), args)
     }
 
     @LuckPermission("devoutserver.command.script.eval")
@@ -24,5 +24,12 @@ class ScriptCommand {
     @Description("Eval a script string with the public scriptEngine in server core")
     fun eval(actor: MinestomCommandActor, script: String) {
         scriptManager.eval(script)
+    }
+    @LuckPermission("devoutserver.command.script.reload")
+    @Subcommand("reload")
+    @Description("reload all scripts in server core")
+    fun reload(actor: MinestomCommandActor) {
+        scriptManager.reload()
+        actor.sender().sendMessage("scripts reloaded")
     }
 }
