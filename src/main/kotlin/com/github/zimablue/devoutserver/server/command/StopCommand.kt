@@ -11,7 +11,7 @@ import net.minestom.server.entity.Player
 object StopCommand : Command("stop") {
     init {
         setCondition { sender, s ->
-            return@setCondition if(sender is Player) sender.hasPermission("devoutserver.stop") else true
+            return@setCondition if(sender is Player) sender.hasPermission("devoutserver.command.stop") else true
         }
         setDefaultExecutor{ sender,context ->
             sender.sendMessage(Component.text("Server Stopping"))

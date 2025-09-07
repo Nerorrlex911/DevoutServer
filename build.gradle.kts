@@ -50,6 +50,9 @@ dependencies {
     // minestom
     implementation(libs.minestom)
     implementation(libs.dependencyGetter)
+    // command framework
+    implementation(libs.lamp.common)
+    implementation(libs.lamp.minestom)
     // database
     compileOnly(libs.hikariCP)
     // nashorn
@@ -65,6 +68,16 @@ dependencies {
 
     implementation(fileTree("libs"))
 
+}
+
+tasks.withType<JavaCompile> {
+    // Preserve parameter names in the bytecode
+    options.compilerArgs.add("-parameters")
+}
+kotlin {
+    compilerOptions {
+        javaParameters = true
+    }
 }
 
 tasks.test {

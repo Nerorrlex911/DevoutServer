@@ -33,7 +33,7 @@ open class ScriptManager(
     protected fun loadScripts() {
         for (file in getAllFiles(scriptFolder)) {
             // 以文件相对主目录的路径作为key
-            val fileName = file.path
+            val fileName = file.toRelativeString(File(".").absoluteFile)
             try {
                 compiledScripts[fileName] = CompiledScript(file)
             } catch (error: Throwable) {
@@ -49,6 +49,17 @@ open class ScriptManager(
     fun reload() {
         compiledScripts.clear()
         loadScripts()
+    }
+
+    fun eval(script: String) : Any? {
+        try {
+            return scriptEngine.eval(script)
+
+        } catch (error: Throwable) {
+            logger.error("Error in eval script:$script")
+            error.printStackTrace()
+            return null
+        }
     }
 
     /**
@@ -68,7 +79,10 @@ open class ScriptManager(
      * @param args 传入对应方法的参数
      */
     fun run(name: String,function: String,map: Map<String,Any>?,vararg args: Any) : Any?{
-        val script = compiledScripts[name] ?: return null
+        val script = compiledScripts[name] ?: run {
+            logger.error("Script $name not found!, scripts loaded: ${compiledScripts.keys}")
+            return null
+        }
         if (nashornHooker.isFunction(script.scriptEngine, function)) {
             val result = try {
                 script.invoke(function, map, *args)

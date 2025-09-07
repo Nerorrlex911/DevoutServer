@@ -11,6 +11,7 @@ import me.lucko.luckperms.minestom.CommandRegistry
 import me.lucko.luckperms.minestom.LuckPermsMinestom
 import net.luckperms.api.LuckPerms
 import net.luckperms.api.util.Tristate
+import net.minestom.server.command.CommandSender
 import net.minestom.server.entity.Player
 import org.slf4j.LoggerFactory
 import java.io.File
@@ -46,4 +47,12 @@ object LuckPerms {
 
     fun getPermission(player: Player,permission: String) : Tristate =
         adapter.getUser(player).cachedData.permissionData.checkPermission(permission)
+
+    fun CommandSender.hasPermission(permission: String): Boolean {
+        return if (this is Player) {
+            this.hasPermission(permission)
+        } else {
+            true
+        }
+    }
 }

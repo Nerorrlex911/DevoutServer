@@ -4,7 +4,6 @@ package com.github.zimablue.devoutserver.plugin.lifecycle
 import com.github.zimablue.devoutserver.plugin.Plugin
 import com.github.zimablue.devoutserver.plugin.annotation.AnnotationManager
 import com.github.zimablue.devoutserver.util.execute
-import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 
 

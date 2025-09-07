@@ -1,5 +1,6 @@
 package com.github.zimablue.devoutserver.server.command.annotation
 
+import com.github.zimablue.devoutserver.DevoutServer
 import com.github.zimablue.devoutserver.annotation.AnnotationManagerImpl
 import com.github.zimablue.devoutserver.server.lifecycle.Awake
 import com.github.zimablue.devoutserver.server.lifecycle.LifeCycle
@@ -7,14 +8,21 @@ import net.minestom.server.MinecraftServer
 import net.minestom.server.command.builder.Command
 import org.checkerframework.checker.units.qual.C
 import org.tabooproject.reflex.FastInstGetter
+import revxrsal.commands.minestom.MinestomLamp
 
 object CommandRegister {
     @Awake(LifeCycle.NONE)
     fun registerCommands() {
         val regCommandClasses = AnnotationManagerImpl.getTargets<RegCommand>().third
         for (commandClass in regCommandClasses) {
-            val commandInstance = FastInstGetter(commandClass.name).instance as Command
+            val commandInstance = FastInstGetter(commandClass.name).instance as? Command?: continue
             MinecraftServer.getCommandManager().register(commandInstance)
         }
+
+        val lampCommandClasses = AnnotationManagerImpl.getTargets<RegLamp>().third
+        for (commandClass in lampCommandClasses) {
+            DevoutServer.lamp.register(commandClass.getDeclaredConstructor().newInstance())
+        }
     }
+
 }
