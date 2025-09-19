@@ -4,7 +4,6 @@ import com.github.zimablue.devoutserver.feature.lamp.LuckPermFactory
 import com.github.zimablue.devoutserver.plugin.PluginManagerImpl
 import com.github.zimablue.devoutserver.script.ScriptManager
 import com.github.zimablue.devoutserver.script.ScriptManagerImpl
-import com.github.zimablue.devoutserver.server.command.ScriptCommand
 import com.github.zimablue.devoutserver.server.config.ConfigManagerImpl
 import com.github.zimablue.devoutserver.server.lifecycle.LifeCycle
 import com.github.zimablue.devoutserver.server.lifecycle.LifeCycleManagerImpl
@@ -17,13 +16,10 @@ import revxrsal.commands.minestom.MinestomLamp
 import revxrsal.commands.minestom.actor.MinestomCommandActor
 import java.net.InetSocketAddress
 import java.net.SocketAddress
-import java.nio.file.Path
-import java.nio.file.Paths
 import kotlin.system.exitProcess
 
 object DevoutServer {
 
-    val currentDir: Path = Paths.get("").toAbsolutePath()
 
     val lamp: Lamp<MinestomCommandActor> = MinestomLamp.builder()
         .permissionFactory(LuckPermFactory())
@@ -32,13 +28,12 @@ object DevoutServer {
     val scriptManager: ScriptManager = ScriptManagerImpl
 
 
-    val server: MinecraftServer by lazy { MinecraftServer.init() }
+    val server: MinecraftServer = MinecraftServer.init()
 
 
     val LOGGER: Logger by lazy { LoggerFactory.getLogger(DevoutServer::class.java) }
     
     init {
-        server
         PluginManagerImpl.init(MinecraftServer.process())
         MinecraftServer.getSchedulerManager().buildShutdownTask { EasyTerminal.stop() }
 
@@ -53,7 +48,6 @@ object DevoutServer {
     fun start(address: SocketAddress) {
         PluginManagerImpl.gotoInit()
         server.start(address)
-        LOGGER.info("registered commands: ${MinecraftServer.getCommandManager().commands.map { it.name }}")
         PluginManagerImpl.gotoPostInit()
     }
 

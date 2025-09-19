@@ -1,6 +1,5 @@
 package com.github.zimablue.devoutserver.feature.luckperms
 
-import com.github.zimablue.devoutserver.feature.luckperms.LuckPerms.hasPermission
 import com.github.zimablue.devoutserver.server.lifecycle.Awake
 import com.github.zimablue.devoutserver.server.lifecycle.AwakePriority
 import com.github.zimablue.devoutserver.server.lifecycle.LifeCycle

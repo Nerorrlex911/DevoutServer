@@ -111,6 +111,8 @@ open class ScriptManager(
         return run(relativizedName,function,map,*args)
     }
 
+    //todo 更好地融合funcPath和ScriptPath两种调用方式
+
     fun createNashornEngine() = nashornHooker.getNashornEngine(arrayOf("-Dnashorn.args=--language=es6"),classLoader)
 
 
