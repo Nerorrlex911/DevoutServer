@@ -1,6 +1,7 @@
 package com.github.zimablue.devoutserver.plugin.script
 
 
+import com.github.zimablue.devoutserver.DevoutServer
 import com.github.zimablue.devoutserver.plugin.Plugin
 import com.github.zimablue.devoutserver.plugin.lifecycle.AwakePriority
 import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycle
@@ -13,7 +14,8 @@ class PluginScriptManager(
     path: File=plugin.dataDirectory.resolve("scripts").toFile(),
     loadLib: ScriptEngine.() -> Unit={}
 ): ScriptManager(path,plugin.logger,plugin.pluginClassLoader,loadLib) {
-    init {
+    // init应当手动调用，以防止提前调用生命周期管理器导致问题
+    fun init() {
         with(plugin.lifeCycleManager) {
             registerTask(
                 PluginLifeCycle.ENABLE,

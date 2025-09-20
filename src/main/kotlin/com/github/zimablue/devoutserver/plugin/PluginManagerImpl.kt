@@ -3,6 +3,7 @@ package com.github.zimablue.devoutserver.plugin
 
 import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycle
 import com.github.zimablue.devoutserver.server.lifecycle.LifeCycle
+import com.github.zimablue.devoutserver.server.lifecycle.LifeCycleManagerImpl
 import com.github.zimablue.devoutserver.server.lifecycle.LifeCycleManagerImpl.lifeCycle
 import com.github.zimablue.devoutserver.util.ClassUtil.instance
 import com.github.zimablue.devoutserver.util.ClassUtil.isSingleton
@@ -457,6 +458,10 @@ object PluginManagerImpl : PluginManager() {
         Check.stateCondition(state != State.NOT_STARTED, "PluginManager has already been started")
         loadPlugins()
         state = State.STARTED
+        LifeCycleManagerImpl.init()
+        values.forEach {
+            it.lifeCycleManager
+        }
     }
 
     override fun gotoPreInit() {

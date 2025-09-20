@@ -4,12 +4,13 @@ package com.github.zimablue.devoutserver.plugin.lifecycle
 import com.github.zimablue.devoutserver.plugin.Plugin
 import com.github.zimablue.devoutserver.plugin.annotation.AnnotationManager
 import com.github.zimablue.devoutserver.util.execute
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
 
 
 class PluginLifeCycleManager(val plugin: Plugin) {
     var currentLifeCycle: PluginLifeCycle = PluginLifeCycle.NONE
-    private val lifeCycleTasks = mutableMapOf<PluginLifeCycle,CopyOnWriteArrayList<LifeCycleTask>>()
+    private val lifeCycleTasks = ConcurrentHashMap<PluginLifeCycle,CopyOnWriteArrayList<LifeCycleTask>>()
     fun registerTask(task: LifeCycleTask) {
         lifeCycleTasks.computeIfAbsent(task.lifeCycle) {
             CopyOnWriteArrayList<LifeCycleTask>()
@@ -19,7 +20,7 @@ class PluginLifeCycleManager(val plugin: Plugin) {
         }
 
         //如果注册任务应当执行的生命周期已经过去，就现场运行
-        if(task.lifeCycle<currentLifeCycle) {
+        if(task.lifeCycle<=currentLifeCycle) {
             task.callback.run()
         }
     }

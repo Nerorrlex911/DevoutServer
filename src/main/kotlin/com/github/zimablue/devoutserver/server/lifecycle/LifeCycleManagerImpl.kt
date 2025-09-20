@@ -9,7 +9,7 @@ object LifeCycleManagerImpl {
     private var isStopped = false
     private var currentLifeCycle = LifeCycle.NONE
     private val awakeMethods = mutableMapOf<LifeCycle, CopyOnWriteArrayList<AwakeMethod>>()
-    init {
+    fun init() {
         val allMethods = AnnotationManagerImpl.getTargets<Awake>().second
         allMethods.forEach { registerMethod(it) }
         awakeMethods.forEach { (_, u) -> u.sortBy { it.priority } }
