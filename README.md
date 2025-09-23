@@ -14,7 +14,7 @@ DevoutServer在便利与精简之间寻求平衡，提供:
 
 核心只保留基础功能和插件最常用的功能，具体的职业、技能、属性系统等由插件自行实现
 
-本项目部分功能来自跨平台的Minecraft插件开发框架Taboolib(https://github.com/TabooLib/taboolib)
+本项目部分功能来自跨平台的Minecraft插件开发框架Taboolib(https://github.com/TabooLib/taboolib),Bukkit物品库系统NeigeItems(https://github.com/ankhorg/NeigeItems-Kotlin)
 
 加入Minestom交流群995070869(QQ) 讨论Minestom相关、获取本核心最新进展
 
