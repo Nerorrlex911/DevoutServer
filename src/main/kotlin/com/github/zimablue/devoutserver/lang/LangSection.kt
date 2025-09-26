@@ -1,5 +1,7 @@
 package com.github.zimablue.devoutserver.lang
 
+import com.github.zimablue.devoutserver.lang.impl.MiniMessageSection
+import com.github.zimablue.devoutserver.lang.impl.TextSection
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import net.minestom.server.command.CommandSender
@@ -18,7 +20,11 @@ abstract class LangSection(val source: Map<String,Any>) {
 
     companion object {
         fun create(type: String, source: Map<String, Any>): LangSection? {
-            TODO()
+            return when(type) {
+                "text" -> TextSection(source)
+                "minimessage" -> MiniMessageSection(source)
+                else -> null
+            }
         }
     }
 }
