@@ -20,7 +20,7 @@ object ReloadCommand : Command("reload") {
             sender.sendMessage("§a/reload <plugin> call Reload LifeCycle of a plugin")
         }
         addSyntax({ sender, context ->
-            val pluginName = context.get(pluginArg)
+            val pluginName = context.get(pluginArg).lowercase()
             val plugin = PluginManagerImpl[pluginName]
             if (plugin == null) {
                 sender.sendMessage("§cPlugin $pluginName not found")
