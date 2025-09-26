@@ -1,0 +1,7 @@
+global-prefix: "&8[&6DevoutServer&8]"
+command-stop-info: "&a/stop &estop the server"
+test-minimessage:
+  - type: "MiniMessage"
+    text: "Hello <rainbow>world</rainbow>, isn't <blue><u><click:open_url:'https://docs.advntr.dev/minimessage'>MiniMessage</click></u></blue> fun?"
+  - "&c&lThis is red, [click:open_url:https://github.com]this is clickable, &#abc123this is hex color"
+  - "this is nothing"

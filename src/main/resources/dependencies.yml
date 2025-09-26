@@ -3,7 +3,6 @@ repositories:
   - "https://oss.sonatype.org/content/repositories/snapshots"
   - "https://repo.hypera.dev/snapshots"
   - "https://repo.lucko.me/"
-  - "https://mvnrepository.com/artifact/com.mysql/mysql-connector-j"
 dependencies:
   - "com.typesafe:config:1.4.3"
   - "com.electronwill.night-config:core:3.6.7"
@@ -18,6 +17,7 @@ dependencies:
   - "org.ow2.asm:asm-util:9.2"
   - "org.ow2.asm:asm-commons:9.2"
   - "com.zaxxer:HikariCP:4.0.3"
-  - "com.mysql:mysql-connector-j:9.3.0"
   - "org.openjdk.nashorn:nashorn-core:15.4"
   - "com.google.guava:guava:33.4.8-jre"
+  - "com.mysql:mysql-connector-j:9.4.0"
+  - "org.xerial:sqlite-jdbc:3.50.3.0"

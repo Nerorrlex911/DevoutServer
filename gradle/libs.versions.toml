@@ -11,13 +11,14 @@ jansi = "2.4.1"
 reflex = "1.0.23"
 asm = "9.2"
 guava = "33.4.8-jre"
-minestom = "2025.08.29-1.21.8"
+minestom = "2025.09.13-1.21.8"
 dependencyGetter = "1.0.1"
 hikariCP = "4.0.3"
 nashorn = "15.4"
 byteBuddy = "1.17.6"
 luckperms = "5.5-SNAPSHOT"
 lamp = "4.0.0-rc.12"
+enhancedlegacytext = "1.0.0"
 
 [libraries]
 kotlin = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
@@ -52,3 +53,4 @@ byteBuddyAgent = { module = "net.bytebuddy:byte-buddy-agent", version.ref = "byt
 luckperms = {module="dev.lu15:luckperms-minestom", version.ref="luckperms" }
 lamp-common = { module="io.github.revxrsal:lamp.common", version.ref="lamp" }
 lamp-minestom = { module="io.github.revxrsal:lamp.minestom", version.ref="lamp" }
+enhancedlegacytext = { module="dev.vankka:enhancedlegacytext", version.ref="enhancedlegacytext" }

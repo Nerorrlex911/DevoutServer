@@ -1,5 +1,6 @@
 package com.github.zimablue.devoutserver
 
+import com.github.zimablue.devoutserver.feature.lamp.EntityTypeParam
 import com.github.zimablue.devoutserver.feature.lamp.LuckPermFactory
 import com.github.zimablue.devoutserver.plugin.PluginManagerImpl
 import com.github.zimablue.devoutserver.script.ScriptManager
@@ -9,6 +10,7 @@ import com.github.zimablue.devoutserver.server.lifecycle.LifeCycle
 import com.github.zimablue.devoutserver.server.lifecycle.LifeCycleManagerImpl
 import com.github.zimablue.devoutserver.server.terminal.EasyTerminal
 import net.minestom.server.MinecraftServer
+import net.minestom.server.entity.EntityType
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import revxrsal.commands.Lamp
@@ -23,6 +25,9 @@ object DevoutServer {
 
     val lamp: Lamp<MinestomCommandActor> = MinestomLamp.builder()
         .permissionFactory(LuckPermFactory())
+        .parameterTypes {
+            it.addParameterType(EntityType::class.java,EntityTypeParam())
+        }
         .build()
 
     val scriptManager: ScriptManager = ScriptManagerImpl
