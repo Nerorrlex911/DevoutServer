@@ -3,6 +3,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     kotlin("jvm") version "2.1.10"
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("maven-publish")
 }
 
 group = "com.github.zimablue.devoutserver"
@@ -64,6 +65,7 @@ dependencies {
     implementation(libs.byteBuddyAgent)
     // luckperms 无法联网下载，只能打包起来了
     implementation(libs.luckperms)
+    implementation(libs.enhancedlegacytext)
 
 
     implementation(fileTree("libs"))
@@ -91,7 +93,7 @@ tasks.withType<Jar> {
 }
 tasks.named<ShadowJar>("shadowJar") {
     mergeServiceFiles()
-
+    archiveFileName.set("${project.name}-${project.version}.jar")
 }
 
 tasks.processResources {
@@ -128,5 +130,15 @@ tasks.processResources {
             """
                 .trimIndent()
         this.file.writeText(dependenciesStr)
+    }
+}
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
+            artifact(tasks.named("shadowJar"))
+        }
     }
 }
