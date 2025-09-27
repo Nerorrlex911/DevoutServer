@@ -25,7 +25,7 @@ object PluginDatabase {
     /**
      * 给插件部署数据库
      * 并注册关闭数据库连接的周期任务
-     * @param settings 指定配置文件，默认使用插件的 datasource.yml 文件，如果不存在则使用主程序目录下的 datasource.yml 文件
+     * @param settings 指定配置文件，即插件的 datasource.yml 文件，如果不存在则使用主程序目录下的 datasource.yml 文件
      */
     fun setupDatabase(plugin: Plugin,settings: Configuration=Database.settingsFile) {
         // datasource.yml
