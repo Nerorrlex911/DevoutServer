@@ -28,7 +28,7 @@ object ResourceUtils {
     /**
      * Extracts a resource from the classpath to a target directory.
      * If the resource is inside a JAR, it handles the extraction accordingly.
-     * @param url The resource URL
+     * @param uri The resource URL
      * @param targetDir The target directory to extract to.
      * @param overwrite Whether to overwrite existing files in the target directory
      * @throws URISyntaxException If the resource URI is malformed
