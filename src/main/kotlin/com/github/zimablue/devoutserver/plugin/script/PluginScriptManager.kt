@@ -9,13 +9,13 @@ import com.github.zimablue.devoutserver.script.ScriptManager
 import java.io.File
 import javax.script.ScriptEngine
 
-class PluginScriptManager(
+open class PluginScriptManager(
     val plugin: Plugin,
     path: File=plugin.dataDirectory.resolve("scripts").toFile(),
     loadLib: ScriptEngine.() -> Unit={}
 ): ScriptManager(path,plugin.logger,plugin.pluginClassLoader,loadLib) {
     // init应当手动调用，以防止提前调用生命周期管理器导致问题
-    fun init() {
+    open fun init() {
         with(plugin.lifeCycleManager) {
             registerTask(
                 PluginLifeCycle.ENABLE,
@@ -32,20 +32,20 @@ class PluginScriptManager(
         }
     }
 
-    fun onEnable() {
+    open fun onEnable() {
         loadScripts()
         compiledScripts.forEach { (name, _) ->
             plugin.logger.info("Enabling script $name")
             run(name,"onEnable")
         }
     }
-    fun onDisable() {
+    open fun onDisable() {
         compiledScripts.forEach { (name, _) ->
             plugin.logger.info("Disabling script $name")
             run(name,"onDisable")
         }
     }
-    fun onReload() {
+    open fun onReload() {
         reload()
         compiledScripts.forEach { (name, _) ->
             plugin.logger.info("Reloading script $name")
