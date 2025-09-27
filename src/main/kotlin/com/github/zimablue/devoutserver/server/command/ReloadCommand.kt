@@ -7,11 +7,15 @@ import com.github.zimablue.devoutserver.server.command.annotation.RegCommand
 import net.minestom.server.command.builder.Command
 import net.minestom.server.command.builder.arguments.ArgumentString
 import net.minestom.server.command.builder.arguments.ArgumentType
+import net.minestom.server.command.builder.suggestion.SuggestionEntry
 import net.minestom.server.entity.Player
 
 @RegCommand
 object ReloadCommand : Command("reload") {
-    private val pluginArg: ArgumentString = ArgumentType.String("plugin")
+    private val pluginArg = ArgumentType.String("plugin")
+        .setSuggestionCallback { sender, context, suggestion ->
+            PluginManagerImpl.keys.forEach{ suggestion.addEntry(SuggestionEntry(it.lowercase())) }
+        }
     init {
         setCondition { sender, s ->
             return@setCondition if(sender is Player) sender.hasPermission("devoutserver.command.reload") else true

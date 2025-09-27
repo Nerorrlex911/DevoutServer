@@ -2,6 +2,9 @@ package com.github.zimablue.devoutserver
 
 import com.github.zimablue.devoutserver.feature.lamp.EntityTypeParam
 import com.github.zimablue.devoutserver.feature.lamp.LuckPermFactory
+import com.github.zimablue.devoutserver.lang.LangManager
+import com.github.zimablue.devoutserver.lang.LangManagerImpl
+import com.github.zimablue.devoutserver.lang.LangManagerImpl.sendLang
 import com.github.zimablue.devoutserver.plugin.PluginManagerImpl
 import com.github.zimablue.devoutserver.script.ScriptManager
 import com.github.zimablue.devoutserver.script.ScriptManagerImpl
@@ -37,13 +40,15 @@ object DevoutServer {
 
 
     val LOGGER: Logger by lazy { LoggerFactory.getLogger(DevoutServer::class.java) }
+
+    val langManager: LangManager = LangManagerImpl
     
     init {
         PluginManagerImpl.init(MinecraftServer.process())
         MinecraftServer.getSchedulerManager().buildShutdownTask { EasyTerminal.stop() }
 
         PluginManagerImpl.start()
-        PluginManagerImpl.gotoPreInit()
+        PluginManagerImpl.load()
     }
 
     fun start() {
@@ -51,9 +56,13 @@ object DevoutServer {
     }
 
     fun start(address: SocketAddress) {
-        PluginManagerImpl.gotoInit()
+        PluginManagerImpl.enable()
+        MinecraftServer.getCommandManager().setUnknownCommandCallback { sender, s ->
+            if(s.isNullOrEmpty()) return@setUnknownCommandCallback
+            sendLang(sender, "unknown-command", s)
+        }
         server.start(address)
-        PluginManagerImpl.gotoPostInit()
+        PluginManagerImpl.active()
     }
 
     fun shutdown() {

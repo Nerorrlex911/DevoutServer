@@ -6,8 +6,8 @@ import net.minestom.server.ServerProcess
 abstract class PluginManager: LinkedHashMap<String, Plugin>() {
     abstract fun shutdown()
     abstract fun start()
-    abstract fun gotoPreInit()
+    abstract fun load()
     abstract fun init(serverProcess: ServerProcess)
-    abstract fun gotoInit()
-    abstract fun gotoPostInit()
+    abstract fun enable()
+    abstract fun active()
 }

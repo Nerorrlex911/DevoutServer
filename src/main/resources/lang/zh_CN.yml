@@ -1,4 +1,6 @@
 global-prefix: "&8[&6DevoutServer&8]"
+unknown-command: "&cUnknown command: {0}. Type &6/help &cfor help."
+no-permission: "&cYou do not have permission to perform this command."
 command-stop-info: "&a/stop &estop the server"
 test-minimessage:
   - type: "MiniMessage"

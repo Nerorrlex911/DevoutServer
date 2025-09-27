@@ -11,7 +11,6 @@ import revxrsal.commands.annotation.Command
 import revxrsal.commands.annotation.Description
 import revxrsal.commands.annotation.Optional
 import revxrsal.commands.minestom.actor.MinestomCommandActor
-import java.io.FileWriter
 
 @RegLamp
 class GiveCommand {

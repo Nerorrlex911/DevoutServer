@@ -15,8 +15,8 @@ class ScriptCommand {
     @LuckPermission("devoutserver.command.script.run")
     @Subcommand("run")
     @Description("Run a script in server core")
-    fun run(actor: MinestomCommandActor, path: String, function: String, args: String) {
-        scriptManager.run(path, function, mapOf("sender" to actor.sender()), args)
+    fun run(actor: MinestomCommandActor, path: String, function: String, args: Array<String>) {
+        scriptManager.run(path, function, mapOf("sender" to actor.sender()), *args)
     }
 
     @LuckPermission("devoutserver.command.script.eval")

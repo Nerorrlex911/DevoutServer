@@ -464,7 +464,7 @@ object PluginManagerImpl : PluginManager() {
         }
     }
 
-    override fun gotoPreInit() {
+    override fun load() {
         if (state == State.DO_NOT_START) return
         Check.stateCondition(state != State.STARTED, "Plugins have already done pre initialization")
         lifeCycle(LifeCycle.LOAD)
@@ -475,7 +475,7 @@ object PluginManagerImpl : PluginManager() {
         state = State.PRE_INIT
     }
 
-    override fun gotoInit() {
+    override fun enable() {
         if (state == State.DO_NOT_START) return
         Check.stateCondition(state != State.PRE_INIT, "Plugins have already done initialization")
         lifeCycle(LifeCycle.ENABLE)
@@ -486,7 +486,7 @@ object PluginManagerImpl : PluginManager() {
         state = State.INIT
     }
 
-    override fun gotoPostInit() {
+    override fun active() {
         if (state == State.DO_NOT_START) return
         Check.stateCondition(state != State.INIT, "Plugins have already done post initialization")
         lifeCycle(LifeCycle.ACTIVE)
