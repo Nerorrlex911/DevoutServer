@@ -8,10 +8,14 @@ import java.io.File
 
 open class PluginLangManager(
     val plugin: Plugin,
-    val file: File=plugin.dataDirectory.resolve("lang").toFile(),
+    val langFolder: File=plugin.dataDirectory.resolve("lang").toFile(),
 ) : LangManager() {
     open fun init() {
         with(plugin.lifeCycleManager) {
+            registerTask(
+                PluginLifeCycle.LOAD,
+                AwakePriority.LOW
+            ) { onLoad() }
             registerTask(
                 PluginLifeCycle.ENABLE,
                 AwakePriority.NORMAL
@@ -26,6 +30,11 @@ open class PluginLangManager(
             ) { onReload() }
         }
     }
+    open fun onLoad() {
+        plugin.extractResource(
+            plugin.dataDirectory.relativize(langFolder.toPath())
+        )
+    }
     open fun onEnable() {
         onReload()
     }
@@ -33,6 +42,6 @@ open class PluginLangManager(
 
     }
     open fun onReload() {
-        reload(file)
+        reload(langFolder)
     }
 }

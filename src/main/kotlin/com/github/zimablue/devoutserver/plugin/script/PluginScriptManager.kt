@@ -1,7 +1,6 @@
 package com.github.zimablue.devoutserver.plugin.script
 
 
-import com.github.zimablue.devoutserver.DevoutServer
 import com.github.zimablue.devoutserver.plugin.Plugin
 import com.github.zimablue.devoutserver.plugin.lifecycle.AwakePriority
 import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycle
@@ -18,6 +17,10 @@ open class PluginScriptManager(
     open fun init() {
         with(plugin.lifeCycleManager) {
             registerTask(
+                PluginLifeCycle.LOAD,
+                AwakePriority.LOW
+            ) { onLoad() }
+            registerTask(
                 PluginLifeCycle.ENABLE,
                 AwakePriority.NORMAL
             ) { onEnable() }
@@ -30,6 +33,12 @@ open class PluginScriptManager(
                 AwakePriority.NORMAL
             ) { onReload() }
         }
+    }
+
+    open fun onLoad() {
+        plugin.extractResource(
+            plugin.dataDirectory.relativize(scriptFolder.toPath())
+        )
     }
 
     open fun onEnable() {
