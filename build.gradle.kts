@@ -93,7 +93,7 @@ tasks.withType<Jar> {
 }
 tasks.named<ShadowJar>("shadowJar") {
     mergeServiceFiles()
-    archiveFileName.set("${project.name}-${project.version}.jar")
+    archiveClassifier.set("")
 }
 
 tasks.processResources {
@@ -138,7 +138,7 @@ publishing {
             groupId = project.group.toString()
             artifactId = project.name
             version = project.version.toString()
-            artifact(tasks.named("shadowJar"))
+            artifact(tasks.named<ShadowJar>("shadowJar"))
         }
     }
 }
