@@ -16,7 +16,7 @@ abstract class LangSection(val source: Map<String,Any>) {
     /**
      * 将语言文本转换为纯文本
      */
-    open fun toText(sender: CommandSender, vararg args: Any): String? {
+    open fun toPlainText(sender: CommandSender, vararg args: Any): String? {
         return toComponent(sender, *args)?.let { PlainTextComponentSerializer.plainText().serialize(it) }
     }
 

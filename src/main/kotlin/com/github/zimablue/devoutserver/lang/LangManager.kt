@@ -1,8 +1,10 @@
 package com.github.zimablue.devoutserver.lang
 
+import com.github.zimablue.devoutserver.lang.impl.TextSection
 import com.github.zimablue.devoutserver.util.map.BaseMap
 import net.kyori.adventure.text.Component
 import net.minestom.server.command.CommandSender
+import taboolib.common.util.replaceWithOrder
 import java.io.File
 
 open class LangManager : BaseMap<String,LangFile>() {
@@ -18,6 +20,14 @@ open class LangManager : BaseMap<String,LangFile>() {
             }
         }
         return this
+    }
+
+    fun hasLang(sender: CommandSender, key: String): Boolean {
+        return hasLang(sender.getLocale(), key)
+    }
+
+    fun hasLang(locale: String, key: String): Boolean {
+        return get(locale)?.containsKey(key) ?: false
     }
 
     /**
@@ -50,6 +60,40 @@ open class LangManager : BaseMap<String,LangFile>() {
         }
         return sections.mapNotNull { section ->
             section.toComponent(sender, *args)
+        }
+    }
+
+    /**
+     * 根据命令发送者获取原文本
+     * 如果找不到对应语言文件或键值，则发送{key}
+     * @param sender 命令发送者
+     * @param key 语言键值
+     * @param args 替换参数，以{0},{1}...表示
+     * @return 原文本列表,可能为单元素列表或空列表
+     */
+    fun asLangText(sender: CommandSender, key: String, vararg args: Any): List<String> {
+        val sections = get(sender.getLocale())?.get(key)?:run{
+            return listOf("{$key}")
+        }
+        return sections.mapNotNull { section ->
+            (section as? TextSection)?.text?.replaceWithOrder(*args)
+        }
+    }
+
+    /**
+     * 根据命令发送者获取纯文本
+     * 如果找不到对应语言文件或键值，则发送{key}
+     * @param sender 命令发送者
+     * @param key 语言键值
+     * @param args 替换参数，以{0},{1}...表示
+     * @return 纯文本列表,可能为单元素列表或空列表
+     */
+    fun asLangPlainText(sender: CommandSender, key: String, vararg args: Any): List<String> {
+        val sections = get(sender.getLocale())?.get(key)?:run{
+            return listOf("{$key}")
+        }
+        return sections.mapNotNull { section ->
+            section.toPlainText(sender, *args)
         }
     }
 
