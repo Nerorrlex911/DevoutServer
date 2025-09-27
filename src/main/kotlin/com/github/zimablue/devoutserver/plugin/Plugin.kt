@@ -1,11 +1,15 @@
 package com.github.zimablue.devoutserver.plugin
 
 import com.github.zimablue.devoutserver.plugin.lifecycle.PluginLifeCycleManager
+import com.github.zimablue.devoutserver.util.ResourceUtils
 import net.kyori.adventure.text.logger.slf4j.ComponentLogger
 import net.minestom.server.event.Event
 import net.minestom.server.event.EventNode
 import java.io.IOException
 import java.io.InputStream
+import java.net.URI
+import java.net.URISyntaxException
+import java.net.URL
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -196,5 +200,32 @@ abstract class Plugin protected constructor() {
             logger.debug("Failed to save resource {}.", target, ex)
             return false
         }
+    }
+    /**
+     * Extracts a resource from plugin jar to corresponding target directory.
+     * @param source The resource path to extract
+     * @param overwrite Whether to overwrite existing files in the target directory
+     * @throws URISyntaxException If the resource URI is malformed
+     * @throws IOException If an I/O error occurs during extraction
+     */
+    @Throws(URISyntaxException::class, IOException::class)
+    fun extractResource(source: Path,overwrite: Boolean=false) {
+        val uri = URI(
+            "jar",                               // 协议
+            origin.originalJar.toURI().toString() + "!/" + source.toString(),
+            null                                 // fragment
+        )
+        ResourceUtils.extractResource(uri,dataDirectory.resolve(source),overwrite)
+    }
+    /**
+     * Extracts a resource from plugin jar to corresponding target directory.
+     * @param source The resource path to extract
+     * @param overwrite Whether to overwrite existing files in the target directory
+     * @throws URISyntaxException If the resource URI is malformed
+     * @throws IOException If an I/O error occurs during extraction
+     */
+    @Throws(URISyntaxException::class, IOException::class)
+    fun extractResource(source: String,overwrite: Boolean=false) {
+        extractResource(Path.of(source),overwrite)
     }
 }
