@@ -59,6 +59,10 @@ object ResourceUtils {
                 @Throws(IOException::class)
                 override fun visitFile(file: Path, attrs: BasicFileAttributes): FileVisitResult {
                     val to = targetDir.resolve(jarPath.relativize(file).toString())
+                    if(to.parent != null && !to.parent.toFile().exists()) {
+                        Files.createDirectories(to.parent)
+                    }
+
                     if (!Files.exists(to)) {
                         Files.copy(file, to)
                     } else if(overwrite) {
