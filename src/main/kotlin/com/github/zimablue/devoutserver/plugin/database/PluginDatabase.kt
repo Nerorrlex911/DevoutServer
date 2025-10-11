@@ -31,7 +31,7 @@ object PluginDatabase {
         // datasource.yml
         settingsFiles[plugin] = settings
         // lifeCycle
-        plugin.lifeCycleManager.registerTask(PluginLifeCycle.DISABLE, AwakePriority.HIGH) {
+        plugin.lifeCycleManager.registerTask("PluginDatabase",PluginLifeCycle.DISABLE, AwakePriority.HIGH) {
             release(plugin)
         }
     }

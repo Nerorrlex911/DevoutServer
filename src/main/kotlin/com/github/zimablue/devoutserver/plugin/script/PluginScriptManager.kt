@@ -13,22 +13,27 @@ open class PluginScriptManager(
     path: File=plugin.dataDirectory.resolve("scripts").toFile(),
     loadLib: ScriptEngine.() -> Unit={}
 ): ScriptManager(path,plugin.logger,plugin.pluginClassLoader,loadLib) {
+    val name = "PluginScriptManager"
     // init应当手动调用，以防止提前调用生命周期管理器导致问题
     open fun init() {
         with(plugin.lifeCycleManager) {
             registerTask(
+                name,
                 PluginLifeCycle.LOAD,
                 AwakePriority.LOW
             ) { onLoad() }
             registerTask(
+                name,
                 PluginLifeCycle.ENABLE,
                 AwakePriority.NORMAL
             ) { onEnable() }
             registerTask(
+                name,
                 PluginLifeCycle.DISABLE,
                 AwakePriority.NORMAL
             ) { onDisable() }
             registerTask(
+                name,
                 PluginLifeCycle.RELOAD,
                 AwakePriority.NORMAL
             ) { onReload() }

@@ -24,19 +24,23 @@ class PluginLifeCycleManager(val plugin: Plugin) {
             task.callback.run()
         }
     }
-    fun registerTask(lifecycle: PluginLifeCycle,priority: AwakePriority, task: Runnable) {
-        registerTask(LifeCycleTask(lifecycle,priority,task))
+    fun registerTask(name: String,lifecycle: PluginLifeCycle,priority: AwakePriority, task: Runnable) {
+        registerTask(LifeCycleTask(name,lifecycle,priority,task))
     }
     fun lifeCycle(lifeCycle: PluginLifeCycle) {
         //RELOAD周期不需要调整currentLifeCycle
         if(lifeCycle!=PluginLifeCycle.RELOAD) currentLifeCycle = lifeCycle
-        lifeCycleTasks[lifeCycle]?.forEach { it.execute() }
+        lifeCycleTasks[lifeCycle]?.forEach {
+            plugin.logger.info("plugin ${plugin.name} executing $lifeCycle task ${it.name}")
+            it.execute()
+        }
     }
     init {
         val allMethods = AnnotationManager.getTargets<Awake>(plugin).second
         allMethods.forEach { method ->
             val annotation = method.getAnnotation(Awake::class.java)
-            registerTask(LifeCycleTask(annotation.lifeCycle, annotation.priority) {
+            val name = "${method.declaringClass.name}.${method.name}"
+            registerTask(LifeCycleTask(name,annotation.lifeCycle, annotation.priority) {
                 try {
                     method.execute()
                 } catch (e: Exception) {
