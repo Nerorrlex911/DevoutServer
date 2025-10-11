@@ -1,5 +1,6 @@
 package com.github.zimablue.devoutserver
 
+import com.github.zimablue.devoutserver.executor.DevoutSchedulerManager
 import com.github.zimablue.devoutserver.feature.lamp.EntityTypeParam
 import com.github.zimablue.devoutserver.feature.lamp.LuckPermFactory
 import com.github.zimablue.devoutserver.lang.LangManager
@@ -14,6 +15,7 @@ import com.github.zimablue.devoutserver.server.lifecycle.LifeCycleManagerImpl
 import com.github.zimablue.devoutserver.server.terminal.EasyTerminal
 import net.minestom.server.MinecraftServer
 import net.minestom.server.entity.EntityType
+import net.minestom.server.timer.Scheduler
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import revxrsal.commands.Lamp
@@ -25,6 +27,9 @@ import kotlin.system.exitProcess
 
 object DevoutServer {
 
+    val scheduler: Scheduler
+        get() = if(LifeCycleManagerImpl.currentLifeCycle < LifeCycle.ACTIVE)
+            error("the scheduler is not activated yet!") else DevoutSchedulerManager.scheduler
 
     val lamp: Lamp<MinestomCommandActor> = MinestomLamp.builder()
         .permissionFactory(LuckPermFactory())
@@ -62,6 +67,8 @@ object DevoutServer {
             sendLang(sender, "unknown-command", s)
         }
         server.start(address)
+        DevoutSchedulerManager.init()
+        MinecraftServer.getSchedulerManager().buildShutdownTask { DevoutSchedulerManager.stop() }
         PluginManagerImpl.active()
     }
 

@@ -6,7 +6,10 @@ import com.github.zimablue.devoutserver.server.command.annotation.RegLamp
 import revxrsal.commands.annotation.Command
 import revxrsal.commands.annotation.Description
 import revxrsal.commands.annotation.Subcommand
+import revxrsal.commands.annotation.SuggestWith
+import revxrsal.commands.autocomplete.SuggestionProvider
 import revxrsal.commands.minestom.actor.MinestomCommandActor
+import revxrsal.commands.node.ExecutionContext
 
 @RegLamp
 @Command("script")
@@ -15,7 +18,7 @@ class ScriptCommand {
     @LuckPermission("devoutserver.command.script.run")
     @Subcommand("run")
     @Description("Run a script in server core")
-    fun run(actor: MinestomCommandActor, path: String, function: String, args: Array<String>) {
+    fun run(actor: MinestomCommandActor,@SuggestWith(ScriptSuggestion::class) path: String, function: String, args: Array<String>) {
         scriptManager.run(path, function, mapOf("sender" to actor.sender()), *args)
     }
 
@@ -31,5 +34,11 @@ class ScriptCommand {
     fun reload(actor: MinestomCommandActor) {
         scriptManager.reload()
         actor.sender().sendMessage("scripts reloaded")
+    }
+
+    class ScriptSuggestion(): SuggestionProvider<MinestomCommandActor> {
+        override fun getSuggestions(p0: ExecutionContext<MinestomCommandActor>): MutableCollection<String> {
+            return scriptManager.compiledScripts.keys.toMutableList()
+        }
     }
 }

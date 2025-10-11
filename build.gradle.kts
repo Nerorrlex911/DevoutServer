@@ -10,11 +10,12 @@ group = "com.github.zimablue.devoutserver"
 version = "1.0-SNAPSHOT"
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven("https://jitpack.io")
     maven { url = uri("https://repo.tabooproject.org/repository/releases/") }
     maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
-    maven { url = uri("https://repo.hypera.dev/snapshots") }
+    //maven { url = uri("https://repo.hypera.dev/snapshots") }
     maven { url = uri("https://repo.lucko.me/") } // spark-common
 
 }

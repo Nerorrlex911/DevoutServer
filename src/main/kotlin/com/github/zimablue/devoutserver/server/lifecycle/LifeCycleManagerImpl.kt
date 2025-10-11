@@ -7,7 +7,8 @@ import java.util.concurrent.CopyOnWriteArrayList
 
 object LifeCycleManagerImpl {
     private var isStopped = false
-    private var currentLifeCycle = LifeCycle.NONE
+    var currentLifeCycle = LifeCycle.NONE
+        private set
     private val awakeMethods = mutableMapOf<LifeCycle, CopyOnWriteArrayList<AwakeMethod>>()
     fun init() {
         val allMethods = AnnotationManagerImpl.getTargets<Awake>().second
